@@ -3,845 +3,885 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Гарант-Профит — Юридическое агентство для бизнеса</title>
+<title>Гарант-Профит — Закрытая юридическая практика</title>
 <meta name="description" content="Закрытая юридическая практика для собственников и топ-менеджеров. Налоговые проверки. Корпоративные конфликты. Банкротство и субсидиарная ответственность.">
 <style>
 :root {
-  --navy: #0A1628;
-  --deep: #162544;
-  --steel: #2C4A6E;
+  --bg: #0a0a0a;
+  --bg-card: #1a1a1a;
+  --bg-card-hover: #222;
+  --bg-elevated: #252525;
+  --text-primary: #f5f5f5;
+  --text-secondary: #999;
+  --text-muted: #666;
   --gold: #C8963E;
   --gold-l: #D4AA5C;
   --gold-p: #F0E0C0;
-  --white: #FFFFFF;
-  --off: #F5F3EF;
-  --wg: #8A8680;
-  --lg: #E8E4DF;
-  --char: #2D2B28;
-  --red: #9B2C2C;
-  --amber: #92400E;
-  --green: #276749;
-  --text: 740px;
-  --hpad: 40px;
-  --hf-pad: max(40px, calc(50vw - 460px));
-  --max-w: 1080px;
-  --section-pad: max(60px, 8vh);
+  --border: rgba(255,255,255,.08);
+  --border-hover: rgba(200,150,62,.4);
+  --radius: 24px;
+  --radius-sm: 14px;
+  --max-w: 1320px;
+  --pad: 40px;
+  --gap: 16px;
 }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 body {
   font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  background: var(--off);
-  color: var(--char);
+  background: var(--bg);
+  color: var(--text-primary);
   font-size: 15px;
-  line-height: 1.65;
+  line-height: 1.55;
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
 }
 
-/* ── Sticky Header ── */
-.lp-header {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 64px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 var(--hf-pad);
-  z-index: 1000;
-  transition: background .3s, box-shadow .3s;
-}
-.lp-header.scrolled {
-  background: var(--navy);
-  box-shadow: 0 2px 20px rgba(0,0,0,.3);
-}
-.lp-header-logo {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  text-decoration: none;
-}
-.lp-header-logo-text {
-  font-size: 14px;
-  font-weight: 700;
-  color: var(--white);
-  letter-spacing: .5px;
-  text-transform: uppercase;
-}
-.lp-header-cta {
-  display: inline-block;
-  padding: 8px 24px;
-  border: 1.5px solid var(--gold);
-  border-radius: 6px;
-  color: var(--gold-l);
-  font-size: 13px;
-  font-weight: 600;
-  text-decoration: none;
-  letter-spacing: .3px;
-  transition: all .2s;
-}
-.lp-header-cta:hover {
-  background: var(--gold);
-  color: var(--navy);
+a { color: inherit; text-decoration: none; }
+
+/* ── Layout ── */
+.container {
+  max-width: var(--max-w);
+  margin: 0 auto;
+  padding: 0 var(--pad);
 }
 
-/* ── Sections base ── */
-.lp-section {
-  padding: var(--section-pad) var(--hf-pad);
+.section {
+  padding: 100px 0;
 }
-.lp-section > * {
+
+.section-title {
+  font-size: clamp(28px, 3.2vw, 42px);
+  font-weight: 600;
+  letter-spacing: -.02em;
+  margin-bottom: 48px;
+  line-height: 1.15;
+}
+
+.section-title-center {
+  text-align: center;
+}
+
+/* ── Reveal Animation ── */
+.reveal {
   opacity: 0;
-  transform: translateY(24px);
-  transition: opacity .6s ease, transform .6s ease;
+  transform: translateY(32px);
+  transition: opacity .7s cubic-bezier(.16,1,.3,1), transform .7s cubic-bezier(.16,1,.3,1);
 }
-.lp-section.visible > * {
+.reveal.visible {
   opacity: 1;
   transform: translateY(0);
 }
-.lp-section.visible > *:nth-child(2) { transition-delay: .1s; }
-.lp-section.visible > *:nth-child(3) { transition-delay: .15s; }
-.lp-section.visible > *:nth-child(4) { transition-delay: .2s; }
-.lp-section.visible > *:nth-child(5) { transition-delay: .25s; }
-.lp-section.visible > *:nth-child(6) { transition-delay: .3s; }
-.lp-section.visible > *:nth-child(7) { transition-delay: .35s; }
 
-.lp-wrap {
-  max-width: var(--max-w);
-  margin: 0 auto;
+/* ── Card base ── */
+.card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 32px;
+  transition: transform .35s cubic-bezier(.16,1,.3,1), border-color .35s, box-shadow .35s;
+}
+.card:hover {
+  transform: translateY(-4px);
+  border-color: var(--border-hover);
+  box-shadow: 0 8px 40px rgba(200,150,62,.06);
+}
+
+/* ── Header ── */
+.header {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  height: 72px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 var(--pad);
+  z-index: 1000;
+  transition: background .35s, backdrop-filter .35s, box-shadow .35s;
+}
+.header.scrolled {
+  background: rgba(10,10,10,.85);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  box-shadow: 0 1px 0 var(--border);
+}
+.header-logo {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.header-logo-text {
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: .3px;
+}
+.header-cta {
+  padding: 10px 28px;
+  border: 1.5px solid var(--gold);
+  border-radius: var(--radius-sm);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--gold-l);
+  letter-spacing: .3px;
+  transition: all .25s;
+}
+.header-cta:hover {
+  background: var(--gold);
+  color: var(--bg);
 }
 
 /* ── Hero ── */
-.lp-hero {
-  min-height: 100vh;
-  background: linear-gradient(160deg, var(--navy) 0%, var(--deep) 50%, var(--steel) 100%);
-  color: var(--white);
+.hero {
+  min-height: max(70vh, 600px);
   display: flex;
-  flex-direction: column;
-  justify-content: center;
   align-items: center;
-  text-align: center;
-  padding: 100px var(--hf-pad) 60px;
+  padding-top: 72px;
   position: relative;
   overflow: hidden;
 }
-.lp-hero::after {
+.hero::after {
   content: '';
   position: absolute;
-  top: 0; right: 0;
-  width: 400px; height: 400px;
-  background: radial-gradient(circle at top right, rgba(200,150,62,.1), transparent 70%);
+  top: -100px; right: -100px;
+  width: 600px; height: 600px;
+  background: radial-gradient(circle, rgba(200,150,62,.07) 0%, transparent 65%);
   pointer-events: none;
 }
-.lp-hero-label {
-  font-size: 11px;
-  letter-spacing: 2.5px;
-  text-transform: uppercase;
-  color: var(--gold);
-  margin-bottom: 28px;
-  font-weight: 600;
-}
-.lp-hero-title {
-  font-size: clamp(26px, 3.5vw, 42px);
-  font-weight: 300;
-  line-height: 1.35;
-  max-width: 800px;
-  margin-bottom: 24px;
-}
-.lp-hero-sub {
-  font-size: 16px;
-  color: rgba(255,255,255,.6);
-  max-width: 600px;
-  line-height: 1.7;
-  margin-bottom: 40px;
-}
-.lp-hero-stats {
-  display: flex;
-  gap: 16px;
-  margin-bottom: 44px;
-  flex-wrap: wrap;
-  justify-content: center;
-}
-.lp-pill {
-  display: inline-block;
-  padding: 8px 20px;
-  border: 1px solid rgba(200,150,62,.4);
-  border-radius: 40px;
-  font-size: 13px;
-  color: var(--gold-p);
-  letter-spacing: .3px;
-}
-.lp-btn-gold {
-  display: inline-block;
-  padding: 14px 36px;
-  background: var(--gold);
-  color: var(--navy);
-  font-size: 14px;
-  font-weight: 700;
-  border-radius: 6px;
-  text-decoration: none;
-  letter-spacing: .3px;
-  transition: all .2s;
-  border: none;
-  cursor: pointer;
-}
-.lp-btn-gold:hover {
-  background: var(--gold-l);
-  transform: translateY(-1px);
-  box-shadow: 0 4px 16px rgba(200,150,62,.3);
-}
-.lp-scroll-hint {
-  position: absolute;
-  bottom: 32px;
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 6px;
-  color: rgba(255,255,255,.3);
-  font-size: 11px;
-  letter-spacing: 1px;
-  animation: lp-bounce 2s infinite;
-}
-@keyframes lp-bounce {
-  0%, 100% { transform: translateX(-50%) translateY(0); }
-  50% { transform: translateX(-50%) translateY(6px); }
-}
-
-/* ── Section Titles ── */
-.lp-sh {
-  font-size: 13px;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  color: var(--gold);
-  font-weight: 600;
-  margin-bottom: 12px;
-}
-.lp-title {
-  font-size: clamp(22px, 2.5vw, 32px);
-  font-weight: 300;
-  color: var(--navy);
-  line-height: 1.3;
-  margin-bottom: 40px;
-}
-.lp-title-light {
-  color: var(--white);
-}
-
-/* ── Problem Cards ── */
-.lp-problems {
-  background: var(--off);
-}
-.lp-problem-grid {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  margin-bottom: 32px;
-}
-.lp-pcard {
-  background: var(--white);
-  border-radius: 10px;
-  padding: 28px 32px;
-  border-left: 4px solid var(--lg);
-  font-size: 15px;
-  line-height: 1.7;
-  color: var(--char);
-  box-shadow: 0 1px 4px rgba(0,0,0,.04);
-}
-.lp-pcard.red { border-left-color: var(--red); }
-.lp-pcard.amber { border-left-color: var(--amber); }
-.lp-pcard-num {
-  font-size: 12px;
-  font-weight: 700;
-  color: var(--wg);
-  letter-spacing: 1px;
-  margin-bottom: 8px;
-}
-.lp-dark-box {
-  background: var(--navy);
-  color: var(--white);
-  border-radius: 10px;
-  padding: 32px 36px;
-  font-size: 16px;
-  line-height: 1.6;
-  font-weight: 400;
-  border-left: 4px solid var(--gold);
-}
-
-/* ── Case Category Cards ── */
-.lp-cases {
-  background: var(--white);
-}
-.lp-case-grid {
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
-}
-.lp-case {
-  background: var(--off);
-  border: 1px solid var(--lg);
-  border-radius: 10px;
-  padding: 36px 40px;
-  transition: border-color .2s;
-}
-.lp-case:hover {
-  border-color: var(--gold);
-}
-.lp-case.feat {
-  border: 2px solid var(--gold);
-  background: var(--white);
-}
-.lp-case-label {
-  font-size: 11px;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  color: var(--gold);
-  font-weight: 600;
-  margin-bottom: 8px;
-}
-.lp-case-title {
-  font-size: 22px;
-  font-weight: 500;
-  color: var(--navy);
-  margin-bottom: 6px;
-}
-.lp-case-subtitle {
-  font-size: 14px;
-  color: var(--wg);
-  margin-bottom: 16px;
-  font-style: italic;
-}
-.lp-case-text {
-  font-size: 15px;
-  line-height: 1.7;
-  color: var(--char);
-  margin-bottom: 24px;
-}
-.lp-case-stats {
+.hero-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 16px;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+  width: 100%;
+}
+.hero-content {
+  max-width: 620px;
+}
+.hero-label {
+  display: inline-block;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 24px;
+  padding: 6px 16px;
+  border: 1px solid rgba(200,150,62,.25);
+  border-radius: 40px;
+}
+.hero-title {
+  font-size: clamp(32px, 4.5vw, 56px);
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -.03em;
   margin-bottom: 20px;
 }
-.lp-case-stat {
-  text-align: center;
-  padding: 16px 8px;
-  background: rgba(200,150,62,.06);
-  border-radius: 8px;
-}
-.lp-case-stat-num {
-  font-size: 22px;
-  font-weight: 700;
-  color: var(--gold);
-  line-height: 1.2;
-}
-.lp-case-stat-label {
-  font-size: 12px;
-  color: var(--wg);
-  margin-top: 4px;
-  line-height: 1.4;
-}
-.lp-case-link {
-  display: inline-block;
-  color: var(--gold);
-  font-size: 14px;
-  font-weight: 600;
-  text-decoration: none;
-  letter-spacing: .3px;
-  transition: color .2s;
-}
-.lp-case-link:hover { color: var(--gold-l); }
-.lp-case-link::after { content: ' \2192'; }
-
-/* ── Credibility Numbers ── */
-.lp-numbers {
-  background: linear-gradient(160deg, var(--navy) 0%, var(--deep) 100%);
-  color: var(--white);
-}
-.lp-num-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 24px;
-  margin-bottom: 40px;
-}
-.lp-num-item {
-  text-align: center;
-  padding: 20px 8px;
-}
-.lp-num-val {
-  font-size: clamp(32px, 4vw, 48px);
-  font-weight: 700;
-  color: var(--white);
-  line-height: 1.1;
-  margin-bottom: 6px;
-}
-.lp-num-label {
-  font-size: 13px;
-  color: rgba(255,255,255,.5);
-  line-height: 1.4;
-}
-.lp-num-sub {
-  font-size: 11px;
-  color: rgba(255,255,255,.35);
-  margin-top: 2px;
-}
-.lp-quote {
-  text-align: center;
+.hero-sub {
   font-size: 17px;
-  color: var(--gold-l);
-  font-weight: 400;
+  color: var(--text-secondary);
   line-height: 1.6;
-  max-width: 600px;
-  margin: 0 auto;
+  margin-bottom: 36px;
+  max-width: 480px;
+}
+.hero-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 16px 36px;
+  background: var(--gold);
+  color: var(--bg);
+  font-size: 15px;
+  font-weight: 700;
+  border-radius: var(--radius-sm);
+  border: none;
+  cursor: pointer;
+  transition: all .25s;
+}
+.hero-btn:hover {
+  background: var(--gold-l);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 32px rgba(200,150,62,.25);
+}
+.hero-btn svg {
+  width: 18px; height: 18px;
+  transition: transform .25s;
+}
+.hero-btn:hover svg {
+  transform: translateX(3px);
 }
 
-/* ── Steps ── */
-.lp-steps {
-  background: var(--off);
+/* Hero stat cards */
+.hero-stats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--gap);
 }
-.lp-step-list {
-  display: flex;
-  flex-direction: column;
-  gap: 0;
-  margin-bottom: 32px;
+.hero-stat {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 28px 24px;
+  text-align: center;
 }
-.lp-step {
-  display: flex;
-  gap: 24px;
-  align-items: flex-start;
-  padding: 28px 0;
-  border-bottom: 1px solid var(--lg);
-}
-.lp-step:last-child { border-bottom: none; }
-.lp-step-num {
+.hero-stat-num {
   font-size: 36px;
   font-weight: 700;
-  color: var(--gold);
-  line-height: 1;
-  min-width: 48px;
-  text-align: center;
-}
-.lp-step-body {}
-.lp-step-title {
-  font-size: 17px;
-  font-weight: 600;
-  color: var(--navy);
+  color: var(--text-primary);
+  line-height: 1.1;
   margin-bottom: 4px;
 }
-.lp-step-desc {
-  font-size: 14px;
-  color: var(--wg);
-  line-height: 1.6;
+.hero-stat-label {
+  font-size: 13px;
+  color: var(--text-muted);
+  line-height: 1.3;
 }
-.lp-note {
-  background: var(--white);
-  border-left: 4px solid var(--gold);
-  border-radius: 8px;
-  padding: 20px 24px;
-  font-size: 14px;
-  color: var(--char);
-  line-height: 1.65;
+.hero-stat-sub {
+  font-size: 11px;
+  color: var(--text-muted);
+  margin-top: 2px;
+  opacity: .6;
 }
 
-/* ── Form Section ── */
-.lp-form-section {
-  background: linear-gradient(160deg, var(--navy) 0%, var(--deep) 100%);
-  color: var(--white);
-  border-top: 3px solid var(--gold);
+/* ── Bento Grid: Privileges ── */
+.bento-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--gap);
 }
-.lp-form-grid {
+.bento-grid .card-wide {
+  grid-column: span 2;
+}
+.bento-grid .card-tall {
+  grid-row: span 2;
+}
+.card-icon {
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(200,150,62,.1);
+  border-radius: 12px;
+  margin-bottom: 20px;
+  color: var(--gold);
+  font-size: 20px;
+}
+.card-title {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 10px;
+  letter-spacing: -.01em;
+  line-height: 1.25;
+}
+.card-text {
+  font-size: 15px;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+.card-big-num {
+  font-size: 72px;
+  font-weight: 800;
+  color: var(--gold);
+  line-height: 1;
+  margin-top: 16px;
+  letter-spacing: -.04em;
+  opacity: .35;
+}
+.card-accent {
+  border-color: var(--gold);
+  background: linear-gradient(160deg, rgba(200,150,62,.08) 0%, var(--bg-card) 60%);
+}
+
+/* ── Practice Directions ── */
+.practice-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--gap);
+}
+.practice-card {
+  display: flex;
+  flex-direction: column;
+}
+.practice-num {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--gold);
+  letter-spacing: 2px;
+  margin-bottom: 16px;
+}
+.practice-title {
+  font-size: 22px;
+  font-weight: 600;
+  margin-bottom: 6px;
+  line-height: 1.25;
+  letter-spacing: -.01em;
+}
+.practice-subtitle {
+  font-size: 14px;
+  color: var(--text-muted);
+  font-style: italic;
+  margin-bottom: 16px;
+  line-height: 1.5;
+}
+.practice-text {
+  font-size: 14px;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin-bottom: 24px;
+  flex-grow: 1;
+}
+.practice-stats {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding-top: 20px;
+  border-top: 1px solid var(--border);
+  margin-bottom: 20px;
+}
+.practice-stat {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+}
+.practice-stat-val {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--gold-l);
+  white-space: nowrap;
+}
+.practice-stat-text {
+  font-size: 13px;
+  color: var(--text-muted);
+}
+.practice-link {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--gold);
+  transition: color .2s;
+}
+.practice-link:hover { color: var(--gold-l); }
+.practice-link::after { content: ' \2192'; }
+
+/* ── Steps ── */
+.steps-track {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: var(--gap);
+  margin-bottom: 32px;
+  position: relative;
+}
+.steps-track::before {
+  content: '';
+  position: absolute;
+  top: 36px;
+  left: 60px;
+  right: 60px;
+  height: 2px;
+  background: linear-gradient(90deg, var(--gold), rgba(200,150,62,.15));
+  border-radius: 1px;
+}
+.step-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 28px 20px;
+  text-align: center;
+  position: relative;
+  transition: transform .35s cubic-bezier(.16,1,.3,1), border-color .35s;
+}
+.step-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--border-hover);
+}
+.step-num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(200,150,62,.12);
+  color: var(--gold);
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 16px;
+  position: relative;
+  z-index: 1;
+}
+.step-title {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+.step-desc {
+  font-size: 13px;
+  color: var(--text-muted);
+  line-height: 1.5;
+}
+
+.quote-card {
+  background: var(--bg-card);
+  border: 1px solid var(--gold);
+  border-radius: var(--radius);
+  padding: 36px 48px;
+  text-align: center;
+  font-size: 18px;
+  color: var(--gold-p);
+  font-weight: 400;
+  line-height: 1.6;
+}
+
+/* ── Form ── */
+.form-section {
+  padding: 100px 0;
+}
+.form-wrapper {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-top: 3px solid var(--gold);
+  border-radius: var(--radius);
+  padding: 56px;
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 60px;
   align-items: start;
 }
-.lp-form-title {
-  font-size: clamp(22px, 2.5vw, 30px);
-  font-weight: 300;
+.form-title {
+  font-size: clamp(24px, 2.5vw, 32px);
+  font-weight: 600;
   margin-bottom: 16px;
-  line-height: 1.3;
+  letter-spacing: -.02em;
+  line-height: 1.2;
 }
-.lp-form-sub {
+.form-sub {
   font-size: 15px;
-  color: rgba(255,255,255,.6);
-  line-height: 1.7;
-  margin-bottom: 24px;
+  color: var(--text-secondary);
+  line-height: 1.65;
+  margin-bottom: 28px;
 }
-.lp-form-note {
-  font-size: 12px;
-  color: rgba(255,255,255,.35);
-  line-height: 1.5;
+.form-note {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 13px;
+  color: var(--text-muted);
 }
-.lp-form {
+.form-note svg {
+  width: 16px; height: 16px;
+  color: var(--gold);
+  flex-shrink: 0;
+}
+.form-fields {
   display: flex;
   flex-direction: column;
   gap: 14px;
 }
-.lp-input {
+.input {
   width: 100%;
-  padding: 13px 16px;
-  background: rgba(255,255,255,.08);
-  border: 1px solid rgba(255,255,255,.15);
-  border-radius: 8px;
-  color: var(--white);
+  padding: 14px 18px;
+  background: rgba(255,255,255,.04);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  color: var(--text-primary);
   font-size: 14px;
   font-family: inherit;
-  transition: border-color .2s, box-shadow .2s;
   outline: none;
+  transition: border-color .25s, box-shadow .25s;
 }
-.lp-input::placeholder {
-  color: rgba(255,255,255,.35);
-}
-.lp-input:focus {
+.input::placeholder { color: var(--text-muted); }
+.input:focus {
   border-color: var(--gold);
-  box-shadow: 0 0 0 3px rgba(200,150,62,.15);
+  box-shadow: 0 0 0 3px rgba(200,150,62,.1);
 }
-textarea.lp-input {
+textarea.input {
   resize: vertical;
-  min-height: 80px;
+  min-height: 90px;
 }
-.lp-submit {
+.submit-btn {
   width: 100%;
-  padding: 14px 24px;
+  padding: 16px 24px;
   background: var(--gold);
-  color: var(--navy);
-  font-size: 14px;
+  color: var(--bg);
+  font-size: 15px;
   font-weight: 700;
   border: none;
-  border-radius: 8px;
+  border-radius: var(--radius-sm);
   cursor: pointer;
   font-family: inherit;
-  letter-spacing: .3px;
-  transition: all .2s;
+  transition: all .25s;
 }
-.lp-submit:hover {
-  background: var(--gold-l);
-}
-.lp-submit:disabled {
-  opacity: .6;
-  cursor: not-allowed;
-}
-.lp-form-success {
-  text-align: center;
-  padding: 40px 20px;
-}
-.lp-form-success-icon {
-  font-size: 48px;
-  margin-bottom: 16px;
-}
-.lp-form-success-title {
-  font-size: 22px;
-  font-weight: 500;
-  margin-bottom: 8px;
-}
-.lp-form-success-text {
-  font-size: 15px;
-  color: rgba(255,255,255,.6);
-}
+.submit-btn:hover { background: var(--gold-l); }
+.submit-btn:disabled { opacity: .5; cursor: not-allowed; }
 
-/* ── Footer ── */
-.lp-footer {
-  background: var(--navy);
-  padding: 20px var(--hf-pad) 24px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  font-size: 12px;
-  color: rgba(255,255,255,.5);
-  flex-wrap: wrap;
-  gap: 12px;
-  border-top: 1px solid rgba(255,255,255,.06);
+.form-success {
+  display: none;
+  text-align: center;
+  padding: 48px 20px;
 }
-.lp-footer-left {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-.lp-footer-text {
-  font-size: 12px;
-  color: rgba(255,255,255,.5);
-  line-height: 1.6;
-}
-.lp-footer-icon {
+.form-success-check {
+  width: 56px; height: 56px;
+  border-radius: 50%;
+  background: rgba(200,150,62,.12);
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 32px;
-  height: 32px;
+  margin-bottom: 20px;
+}
+.form-success-check svg { width: 28px; height: 28px; color: var(--gold); }
+.form-success-title {
+  font-size: 22px;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+.form-success-text {
+  font-size: 15px;
+  color: var(--text-secondary);
+}
+
+/* ── Footer ── */
+.footer {
+  padding: 32px var(--pad);
+  border-top: 1px solid var(--border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+.footer-left {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.footer-text {
+  font-size: 13px;
+  color: var(--text-muted);
+}
+.footer-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
   border-radius: 50%;
-  border: 1px solid rgba(255,255,255,.2);
-  transition: all .2s;
-  text-decoration: none;
+  border: 1px solid var(--border);
+  transition: all .25s;
 }
-.lp-footer-icon:hover {
-  border-color: var(--gold-l);
-  background: rgba(200,150,62,.12);
+.footer-icon:hover {
+  border-color: var(--gold);
+  background: rgba(200,150,62,.08);
 }
-.lp-footer-icon svg {
-  width: 16px;
-  height: 16px;
-  fill: rgba(255,255,255,.6);
+.footer-icon svg {
+  width: 16px; height: 16px;
+  fill: var(--text-muted);
 }
-.lp-footer-icon:hover svg { fill: var(--gold-l); }
+.footer-icon:hover svg { fill: var(--gold-l); }
 
 /* ── Mobile ── */
+@media (max-width: 960px) {
+  .bento-grid { grid-template-columns: 1fr 1fr; }
+  .bento-grid .card-wide { grid-column: span 2; }
+  .practice-grid { grid-template-columns: 1fr; }
+  .steps-track {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+  .steps-track::before { display: none; }
+}
+
 @media (max-width: 768px) {
-  :root { --hpad: 24px; --hf-pad: 24px; --section-pad: 48px; }
-  .lp-header-logo-text { font-size: 12px; }
-  .lp-hero { padding: 80px var(--hf-pad) 60px; }
-  .lp-hero-title { font-size: 24px; }
-  .lp-hero-sub { font-size: 14px; }
-  .lp-num-grid { grid-template-columns: 1fr 1fr; }
-  .lp-case-stats { grid-template-columns: 1fr; }
-  .lp-form-grid { grid-template-columns: 1fr; gap: 32px; }
-  .lp-pcard { padding: 20px 24px; }
-  .lp-case { padding: 24px 28px; }
-  .lp-step { gap: 16px; }
-  .lp-step-num { font-size: 28px; min-width: 36px; }
-  .lp-footer { padding: 20px var(--hf-pad); }
+  :root { --pad: 20px; --gap: 12px; }
+  .section { padding: 64px 0; }
+  .hero { min-height: auto; padding-top: 100px; padding-bottom: 40px; }
+  .hero-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+  .hero-title { font-size: 28px; }
+  .hero-sub { font-size: 15px; }
+  .hero-stats { grid-template-columns: 1fr 1fr; }
+  .hero-stat { padding: 20px 16px; }
+  .hero-stat-num { font-size: 28px; }
+  .bento-grid {
+    grid-template-columns: 1fr;
+  }
+  .bento-grid .card-wide { grid-column: span 1; }
+  .card { padding: 24px; }
+  .form-wrapper {
+    grid-template-columns: 1fr;
+    gap: 32px;
+    padding: 32px 24px;
+  }
+  .section-title { margin-bottom: 32px; }
+  .header { padding: 0 20px; }
+  .header-logo-text { font-size: 13px; }
+  .footer { padding: 24px 20px; }
 }
 
 /* ── Print ── */
 @media print {
-  .lp-header { display: none !important; }
-  .lp-section > * { opacity: 1 !important; transform: none !important; }
-  body { background: white; }
+  .header { display: none !important; }
+  .reveal { opacity: 1 !important; transform: none !important; }
+  body { background: white; color: #333; }
+  .card, .hero-stat, .step-card, .form-wrapper { border-color: #ddd; background: #fafafa; }
 }
 </style>
 </head>
 <body>
 
-<!-- ════════════ STICKY HEADER ════════════ -->
-<header class="lp-header" id="lp-header">
-  <a href="#" class="lp-header-logo">
-    <svg width="36" height="36" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <rect x="2" y="2" width="96" height="96" rx="6" fill="none" stroke="rgba(255,255,255,.2)" stroke-width="1.5"/>
+<!-- ════════════ HEADER ════════════ -->
+<header class="header" id="header">
+  <a href="#" class="header-logo">
+    <svg width="38" height="38" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <rect x="2" y="2" width="96" height="96" rx="6" fill="none" stroke="rgba(255,255,255,.15)" stroke-width="1.5"/>
       <rect x="16" y="14" width="68" height="1.5" rx=".75" fill="#C8963E" opacity=".8"/>
       <text x="30" y="64" text-anchor="middle" font-family="Georgia,serif" font-size="46" font-weight="700" fill="white">Г</text>
       <rect x="49.5" y="28" width="1" height="48" rx=".5" fill="#C8963E" opacity=".6"/>
       <text x="70" y="64" text-anchor="middle" font-family="Georgia,serif" font-size="46" font-weight="700" fill="white">П</text>
       <rect x="16" y="84.5" width="68" height="1.5" rx=".75" fill="#C8963E" opacity=".8"/>
     </svg>
-    <span class="lp-header-logo-text">Гарант-Профит</span>
+    <span class="header-logo-text">Гарант-Профит</span>
   </a>
-  <a href="#form" class="lp-header-cta">Подать заявку</a>
+  <a href="#form" class="header-cta">Оставить заявку</a>
 </header>
 
 <!-- ════════════ HERO ════════════ -->
-<section class="lp-hero lp-section" id="hero">
-  <div class="lp-hero-label">Юридическое агентство с 2002 года</div>
-  <h1 class="lp-hero-title">Мы не оказываем юридические услуги.<br>Мы управляем ситуациями, в&nbsp;которых решается судьба бизнеса.</h1>
-  <p class="lp-hero-sub">Закрытая практика для собственников и&nbsp;топ-менеджеров. Отбор клиентов. Ограниченное число проектов одновременно.</p>
-  <div class="lp-hero-stats">
-    <span class="lp-pill">24 года на рынке</span>
-    <span class="lp-pill">1 700+ закрытых проектов</span>
-  </div>
-  <a href="#form" class="lp-btn-gold">Узнать, подходит ли вам</a>
-  <div class="lp-scroll-hint">
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg>
-  </div>
-</section>
-
-<!-- ════════════ PROBLEMS ════════════ -->
-<section class="lp-section lp-problems" id="problems">
-  <div class="lp-wrap">
-    <div class="lp-sh">Диагностика</div>
-    <h2 class="lp-title">Узнаёте свою ситуацию?</h2>
-    <div class="lp-problem-grid">
-      <div class="lp-pcard red">
-        <div class="lp-pcard-num">СИТУАЦИЯ 01</div>
-        Вам пришло требование из налоговой. Суммы вызывают вопросы. Сроки давят. Бухгалтер говорит «всё нормально», но вы чувствуете, что это не так.
+<section class="hero section">
+  <div class="container">
+    <div class="hero-grid">
+      <div class="hero-content reveal">
+        <div class="hero-label">С 2002 года</div>
+        <h1 class="hero-title">Управляем ситуациями, в&nbsp;которых решается судьба бизнеса</h1>
+        <p class="hero-sub">Закрытая юридическая практика для собственников. Ограниченный приём. Персональное ведение каждого проекта.</p>
+        <a href="#form" class="hero-btn">
+          Подать заявку на рассмотрение
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+        </a>
       </div>
-      <div class="lp-pcard amber">
-        <div class="lp-pcard-num">СИТУАЦИЯ 02</div>
-        Партнёр начал действовать странно. Появились новые лица в реестре. Решения принимаются без вас. Вы теряете контроль — но пока этого не осознали.
+      <div class="hero-stats reveal" style="transition-delay:.15s">
+        <div class="hero-stat">
+          <div class="hero-stat-num" data-target="24">0</div>
+          <div class="hero-stat-label">года на рынке</div>
+          <div class="hero-stat-sub">с 2002 года</div>
+        </div>
+        <div class="hero-stat">
+          <div class="hero-stat-num" data-target="1700" data-suffix="+">0</div>
+          <div class="hero-stat-label">закрытых проектов</div>
+        </div>
+        <div class="hero-stat">
+          <div class="hero-stat-num" data-target="42">0</div>
+          <div class="hero-stat-label">специалистов</div>
+        </div>
+        <div class="hero-stat">
+          <div class="hero-stat-num" data-target="98.7" data-suffix=" млрд&nbsp;₽" data-decimal="1">0</div>
+          <div class="hero-stat-label">защищённых активов</div>
+        </div>
       </div>
-      <div class="lp-pcard red">
-        <div class="lp-pcard-num">СИТУАЦИЯ 03</div>
-        Компания в предбанкротном состоянии. Кредиторы подают иски. Вы понимаете, что отвечать будете лично — своим имуществом.
-      </div>
-    </div>
-    <div class="lp-dark-box">
-      Если вы узнали хотя бы одну ситуацию — значит, время действовать. Не через месяц. Сейчас.
     </div>
   </div>
 </section>
 
-<!-- ════════════ CASE CATEGORIES ════════════ -->
-<section class="lp-section lp-cases" id="cases">
-  <div class="lp-wrap">
-    <div class="lp-sh">Практика</div>
-    <h2 class="lp-title">Три типа ситуаций, в которых мы работаем</h2>
-    <div class="lp-case-grid">
+<!-- ════════════ BENTO: PRIVILEGES ════════════ -->
+<section class="section" id="privileges">
+  <div class="container">
+    <h2 class="section-title section-title-center reveal">Что вы получаете</h2>
+    <div class="bento-grid">
 
-      <div class="lp-case feat">
-        <div class="lp-case-label">Направление A</div>
-        <div class="lp-case-title">Налоговые проверки</div>
-        <div class="lp-case-subtitle">Когда государство решило посчитать ваши деньги заново</div>
-        <div class="lp-case-text">Выездная проверка. Доначисления. Блокировка счетов. Уголовная перспектива. Мы входим в ситуацию до того, как она станет необратимой.</div>
-        <div class="lp-case-stats">
-          <div class="lp-case-stat">
-            <div class="lp-case-stat-num">340+</div>
-            <div class="lp-case-stat-label">налоговых проектов</div>
-          </div>
-          <div class="lp-case-stat">
-            <div class="lp-case-stat-num">87%</div>
-            <div class="lp-case-stat-label">снижение доначислений</div>
-          </div>
-          <div class="lp-case-stat">
-            <div class="lp-case-stat-num">0</div>
-            <div class="lp-case-stat-label">возбуждённых дел по нашим проектам</div>
-          </div>
+      <div class="card card-wide card-accent reveal">
+        <div class="card-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
         </div>
-        <a href="#form" class="lp-case-link">Обсудить ситуацию</a>
+        <div class="card-title">Персональный куратор</div>
+        <div class="card-text">Один куратор на весь проект. Доступен 24/7. Знает каждую деталь вашей ситуации. Вы&nbsp;общаетесь с&nbsp;человеком, который принимает решения, а&nbsp;не&nbsp;с&nbsp;колл-центром.</div>
       </div>
 
-      <div class="lp-case">
-        <div class="lp-case-label">Направление B</div>
-        <div class="lp-case-title">Потеря контроля над бизнесом</div>
-        <div class="lp-case-subtitle">Когда ваш бизнес забирают — тихо или открыто</div>
-        <div class="lp-case-text">Рейдерский захват. Корпоративный конфликт. Размытие долей. Вывод активов партнёром. Мы возвращаем контроль и закрываем все входы.</div>
-        <div class="lp-case-stats">
-          <div class="lp-case-stat">
-            <div class="lp-case-stat-num">180+</div>
-            <div class="lp-case-stat-label">корпоративных конфликтов</div>
-          </div>
-          <div class="lp-case-stat">
-            <div class="lp-case-stat-num">94%</div>
-            <div class="lp-case-stat-label">сохранение контроля клиентом</div>
-          </div>
-          <div class="lp-case-stat">
-            <div class="lp-case-stat-num">4.5 мес.</div>
-            <div class="lp-case-stat-label">средний срок разрешения</div>
-          </div>
+      <div class="card reveal">
+        <div class="card-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
         </div>
-        <a href="#form" class="lp-case-link">Обсудить ситуацию</a>
+        <div class="card-title">Конфиденциальность</div>
+        <div class="card-text">Все коммуникации защищены. NDA с&nbsp;первой встречи. Закрытый контур работы.</div>
       </div>
 
-      <div class="lp-case">
-        <div class="lp-case-label">Направление C</div>
-        <div class="lp-case-title">Банкротство и субсидиарка</div>
-        <div class="lp-case-subtitle">Когда долги компании становятся вашими личными</div>
-        <div class="lp-case-text">Субсидиарная ответственность. Оспаривание сделок. Привлечение КДЛ. Мы строим линию защиты, которая отсекает личное имущество от корпоративных долгов.</div>
-        <div class="lp-case-stats">
-          <div class="lp-case-stat">
-            <div class="lp-case-stat-num">520+</div>
-            <div class="lp-case-stat-label">банкротных проектов</div>
-          </div>
-          <div class="lp-case-stat">
-            <div class="lp-case-stat-num">12.8 млрд ₽</div>
-            <div class="lp-case-stat-label">защищённые активы</div>
-          </div>
-          <div class="lp-case-stat">
-            <div class="lp-case-stat-num">73%</div>
-            <div class="lp-case-stat-label">полное снятие субсидиарки</div>
-          </div>
+      <div class="card reveal">
+        <div class="card-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
         </div>
-        <a href="#form" class="lp-case-link">Обсудить ситуацию</a>
+        <div class="card-title">Стратегия, не шаблон</div>
+        <div class="card-text">Каждый проект — индивидуальный план с&nbsp;прогнозами, сроками и&nbsp;сценариями.</div>
+      </div>
+
+      <div class="card reveal">
+        <div class="card-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        </div>
+        <div class="card-title">Еженедельная отчётность</div>
+        <div class="card-text">Полный контроль на каждом этапе. Отчёт каждую неделю. Никаких сюрпризов.</div>
+      </div>
+
+      <div class="card reveal" style="display:flex;flex-direction:column;justify-content:space-between;">
+        <div>
+          <div class="card-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          </div>
+          <div class="card-title">Ограниченный приём</div>
+          <div class="card-text">Не более 15 новых проектов в&nbsp;квартал. Внимание, невозможное в&nbsp;массовой практике.</div>
+        </div>
+        <div class="card-big-num">15</div>
+      </div>
+
+      <div class="card card-wide card-accent reveal">
+        <div class="card-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        </div>
+        <div class="card-title">Результат, не процесс</div>
+        <div class="card-text">Мы ведём проект до результата. Не&nbsp;консультируем — управляем ситуацией. Один куратор. Полный контроль. Вы&nbsp;получаете не&nbsp;юридическую услугу, а&nbsp;решение проблемы.</div>
       </div>
 
     </div>
   </div>
 </section>
 
-<!-- ════════════ CREDIBILITY NUMBERS ════════════ -->
-<section class="lp-section lp-numbers" id="numbers">
-  <div class="lp-wrap">
-    <div class="lp-num-grid">
-      <div class="lp-num-item">
-        <div class="lp-num-val" data-target="24">0</div>
-        <div class="lp-num-label">года на рынке</div>
-        <div class="lp-num-sub">с 2002 года</div>
+<!-- ════════════ PRACTICE DIRECTIONS ════════════ -->
+<section class="section" id="practice">
+  <div class="container">
+    <h2 class="section-title reveal">Три типа ситуаций,<br>в которых мы работаем</h2>
+    <div class="practice-grid">
+
+      <div class="card practice-card reveal">
+        <div class="practice-num">01</div>
+        <div class="practice-title">Налоговые проверки</div>
+        <div class="practice-subtitle">Когда государство решило посчитать ваши деньги заново</div>
+        <div class="practice-text">Выездная проверка. Доначисления. Блокировка счетов. Уголовная перспектива. Мы входим в&nbsp;ситуацию до того, как она станет необратимой.</div>
+        <div class="practice-stats">
+          <div class="practice-stat">
+            <span class="practice-stat-val">340+</span>
+            <span class="practice-stat-text">налоговых проектов</span>
+          </div>
+          <div class="practice-stat">
+            <span class="practice-stat-val">87%</span>
+            <span class="practice-stat-text">снижение доначислений</span>
+          </div>
+          <div class="practice-stat">
+            <span class="practice-stat-val">0</span>
+            <span class="practice-stat-text">возбуждённых дел</span>
+          </div>
+        </div>
+        <a href="#form" class="practice-link">Обсудить ситуацию</a>
       </div>
-      <div class="lp-num-item">
-        <div class="lp-num-val" data-target="1700" data-suffix="+">0</div>
-        <div class="lp-num-label">закрытых проектов</div>
+
+      <div class="card practice-card reveal">
+        <div class="practice-num">02</div>
+        <div class="practice-title">Корпоративные конфликты</div>
+        <div class="practice-subtitle">Когда ваш бизнес забирают — тихо или открыто</div>
+        <div class="practice-text">Рейдерский захват. Размытие долей. Вывод активов партнёром. Мы&nbsp;возвращаем контроль и&nbsp;закрываем все входы.</div>
+        <div class="practice-stats">
+          <div class="practice-stat">
+            <span class="practice-stat-val">180+</span>
+            <span class="practice-stat-text">конфликтов разрешено</span>
+          </div>
+          <div class="practice-stat">
+            <span class="practice-stat-val">94%</span>
+            <span class="practice-stat-text">сохранение контроля</span>
+          </div>
+          <div class="practice-stat">
+            <span class="practice-stat-val">4.5 мес.</span>
+            <span class="practice-stat-text">средний срок</span>
+          </div>
+        </div>
+        <a href="#form" class="practice-link">Обсудить ситуацию</a>
       </div>
-      <div class="lp-num-item">
-        <div class="lp-num-val" data-target="42">0</div>
-        <div class="lp-num-label">специалиста в команде</div>
+
+      <div class="card practice-card reveal">
+        <div class="practice-num">03</div>
+        <div class="practice-title">Банкротство и&nbsp;субсидиарка</div>
+        <div class="practice-subtitle">Когда долги компании становятся вашими личными</div>
+        <div class="practice-text">Субсидиарная ответственность. Оспаривание сделок. Привлечение КДЛ. Мы&nbsp;строим защиту, которая отсекает личное имущество от&nbsp;корпоративных долгов.</div>
+        <div class="practice-stats">
+          <div class="practice-stat">
+            <span class="practice-stat-val">520+</span>
+            <span class="practice-stat-text">банкротных проектов</span>
+          </div>
+          <div class="practice-stat">
+            <span class="practice-stat-val">12.8 млрд ₽</span>
+            <span class="practice-stat-text">защищённые активы</span>
+          </div>
+          <div class="practice-stat">
+            <span class="practice-stat-val">73%</span>
+            <span class="practice-stat-text">полное снятие субсидиарки</span>
+          </div>
+        </div>
+        <a href="#form" class="practice-link">Обсудить ситуацию</a>
       </div>
-      <div class="lp-num-item">
-        <div class="lp-num-val" data-target="98.7" data-suffix=" млрд ₽" data-decimal="1">0</div>
-        <div class="lp-num-label">стоимость защищённых активов</div>
-      </div>
+
     </div>
-    <div class="lp-quote">«Мы не берём все дела. Мы берём те, которые можем выиграть.»</div>
   </div>
 </section>
 
 <!-- ════════════ PROCESS STEPS ════════════ -->
-<section class="lp-section lp-steps" id="process">
-  <div class="lp-wrap">
-    <div class="lp-sh">Процесс</div>
-    <h2 class="lp-title">Как устроена работа с нами</h2>
-    <div class="lp-step-list">
-      <div class="lp-step">
-        <div class="lp-step-num">01</div>
-        <div class="lp-step-body">
-          <div class="lp-step-title">Заявка</div>
-          <div class="lp-step-desc">Вы заполняете короткую форму. Это не обязательство — это запрос на рассмотрение.</div>
-        </div>
+<section class="section" id="process">
+  <div class="container">
+    <h2 class="section-title section-title-center reveal">Как это работает</h2>
+    <div class="steps-track reveal">
+      <div class="step-card">
+        <div class="step-num">1</div>
+        <div class="step-title">Заявка</div>
+        <div class="step-desc">Вы заполняете короткую форму. Это не&nbsp;обязательство — это запрос на&nbsp;рассмотрение.</div>
       </div>
-      <div class="lp-step">
-        <div class="lp-step-num">02</div>
-        <div class="lp-step-body">
-          <div class="lp-step-title">Первичный анализ</div>
-          <div class="lp-step-desc">Наша команда изучает ситуацию. Мы оцениваем, можем ли мы быть полезны.</div>
-        </div>
+      <div class="step-card">
+        <div class="step-num">2</div>
+        <div class="step-title">Анализ</div>
+        <div class="step-desc">Наша команда изучает ситуацию. Мы оцениваем, можем ли быть полезны.</div>
       </div>
-      <div class="lp-step">
-        <div class="lp-step-num">03</div>
-        <div class="lp-step-body">
-          <div class="lp-step-title">Закрытая встреча</div>
-          <div class="lp-step-desc">Если ситуация в нашем профиле — мы назначаем конфиденциальную встречу с ведущим экспертом.</div>
-        </div>
+      <div class="step-card">
+        <div class="step-num">3</div>
+        <div class="step-title">Встреча</div>
+        <div class="step-desc">Если ситуация в&nbsp;нашем профиле — назначаем конфиденциальную встречу с&nbsp;ведущим экспертом.</div>
       </div>
-      <div class="lp-step">
-        <div class="lp-step-num">04</div>
-        <div class="lp-step-body">
-          <div class="lp-step-title">Стратегия</div>
-          <div class="lp-step-desc">Мы формируем план действий с конкретными шагами, сроками и прогнозом результата.</div>
-        </div>
+      <div class="step-card">
+        <div class="step-num">4</div>
+        <div class="step-title">Стратегия</div>
+        <div class="step-desc">Формируем план действий с&nbsp;конкретными шагами, сроками и&nbsp;прогнозом результата.</div>
       </div>
-      <div class="lp-step">
-        <div class="lp-step-num">05</div>
-        <div class="lp-step-body">
-          <div class="lp-step-title">Управление ситуацией</div>
-          <div class="lp-step-desc">Мы ведём проект до результата. Один куратор. Полный контроль. Еженедельная отчётность.</div>
-        </div>
+      <div class="step-card">
+        <div class="step-num">5</div>
+        <div class="step-title">Управление</div>
+        <div class="step-desc">Ведём проект до результата. Один куратор. Полный контроль. Еженедельная отчётность.</div>
       </div>
     </div>
-    <div class="lp-note">
-      Мы принимаем не более 15 новых проектов в квартал. Это позволяет каждому клиенту получить внимание, которое невозможно в массовой практике.
+    <div class="quote-card reveal">
+      Мы не берём все дела. Мы берём те, которые можем выиграть.
     </div>
   </div>
 </section>
 
 <!-- ════════════ APPLICATION FORM ════════════ -->
-<section class="lp-section lp-form-section" id="form">
-  <div class="lp-wrap">
-    <div class="lp-form-grid">
+<section class="form-section" id="form">
+  <div class="container">
+    <div class="form-wrapper reveal">
       <div>
-        <h2 class="lp-form-title">Подать заявку на&nbsp;рассмотрение</h2>
-        <p class="lp-form-sub">Заполнение формы не является обязательством. Мы рассмотрим вашу ситуацию и свяжемся в течение 24 часов, если сможем быть полезны.</p>
-        <p class="lp-form-note">Конфиденциальность гарантирована. Данные защищены.</p>
+        <h2 class="form-title">Подать заявку на&nbsp;рассмотрение</h2>
+        <p class="form-sub">Заполнение формы не является обязательством. Мы рассмотрим вашу ситуацию и&nbsp;свяжемся в&nbsp;течение 24&nbsp;часов, если сможем быть полезны.</p>
+        <div class="form-note">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+          Конфиденциальность гарантирована. Данные защищены.
+        </div>
       </div>
       <div>
-        <form class="lp-form" id="lp-form">
-          <input type="text" class="lp-input" name="name" placeholder="Ваше имя" required>
-          <input type="text" class="lp-input" name="company" placeholder="Компания">
-          <input type="text" class="lp-input" name="contact" placeholder="Телефон или email" required>
-          <textarea class="lp-input" name="situation" rows="3" placeholder="Кратко опишите ситуацию"></textarea>
-          <button type="submit" class="lp-submit">Отправить заявку на рассмотрение</button>
+        <form class="form-fields" id="app-form">
+          <input type="text" class="input" name="name" placeholder="Ваше имя" required>
+          <input type="text" class="input" name="company" placeholder="Компания">
+          <input type="text" class="input" name="contact" placeholder="Телефон или email" required>
+          <textarea class="input" name="situation" rows="3" placeholder="Кратко опишите ситуацию"></textarea>
+          <button type="submit" class="submit-btn">Отправить заявку</button>
         </form>
-        <div class="lp-form-success" id="lp-form-success" style="display:none;">
-          <div class="lp-form-success-icon">&#10003;</div>
-          <div class="lp-form-success-title">Заявка принята</div>
-          <div class="lp-form-success-text">Мы свяжемся с вами в течение 24 часов.</div>
+        <div class="form-success" id="form-success">
+          <div class="form-success-check">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          </div>
+          <div class="form-success-title">Заявка принята</div>
+          <div class="form-success-text">Мы свяжемся с вами в течение 24 часов.</div>
         </div>
       </div>
     </div>
@@ -849,19 +889,19 @@ textarea.lp-input {
 </section>
 
 <!-- ════════════ FOOTER ════════════ -->
-<footer class="lp-footer">
-  <div class="lp-footer-left">
+<footer class="footer">
+  <div class="footer-left">
     <svg width="28" height="28" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <rect x="2" y="2" width="96" height="96" rx="6" fill="none" stroke="rgba(255,255,255,.15)" stroke-width="1.5"/>
-      <rect x="16" y="14" width="68" height="1.5" rx=".75" fill="#C8963E" opacity=".6"/>
-      <text x="30" y="64" text-anchor="middle" font-family="Georgia,serif" font-size="46" font-weight="700" fill="rgba(255,255,255,.6)">Г</text>
-      <rect x="49.5" y="28" width="1" height="48" rx=".5" fill="#C8963E" opacity=".4"/>
-      <text x="70" y="64" text-anchor="middle" font-family="Georgia,serif" font-size="46" font-weight="700" fill="rgba(255,255,255,.6)">П</text>
-      <rect x="16" y="84.5" width="68" height="1.5" rx=".75" fill="#C8963E" opacity=".6"/>
+      <rect x="2" y="2" width="96" height="96" rx="6" fill="none" stroke="rgba(255,255,255,.1)" stroke-width="1.5"/>
+      <rect x="16" y="14" width="68" height="1.5" rx=".75" fill="#C8963E" opacity=".5"/>
+      <text x="30" y="64" text-anchor="middle" font-family="Georgia,serif" font-size="46" font-weight="700" fill="rgba(255,255,255,.4)">Г</text>
+      <rect x="49.5" y="28" width="1" height="48" rx=".5" fill="#C8963E" opacity=".35"/>
+      <text x="70" y="64" text-anchor="middle" font-family="Georgia,serif" font-size="46" font-weight="700" fill="rgba(255,255,255,.4)">П</text>
+      <rect x="16" y="84.5" width="68" height="1.5" rx=".75" fill="#C8963E" opacity=".5"/>
     </svg>
-    <span class="lp-footer-text">&copy; 2002&ndash;2026 Гарант-Профит. Все права защищены.</span>
+    <span class="footer-text">&copy; 2002&ndash;2026 Гарант-Профит</span>
   </div>
-  <a href="#" class="lp-footer-icon" aria-label="Telegram">
+  <a href="#" class="footer-icon" aria-label="Telegram">
     <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M9.04 15.54l-.26 3.73c.37 0 .53-.16.73-.35l1.74-1.68 3.62 2.67c.66.37 1.13.18 1.31-.62l2.37-11.2c.21-1-.36-1.39-1.02-1.15L3.32 11.16c-.95.37-.93.92-.16 1.17l4.43 1.38 10.28-6.48c.48-.32.93-.14.56.18L9.04 15.54z"/></svg>
   </a>
 </footer>
@@ -871,80 +911,67 @@ textarea.lp-input {
   'use strict';
 
   // Sticky header
-  var header = document.getElementById('lp-header');
+  var header = document.getElementById('header');
   window.addEventListener('scroll', function() {
-    header.classList.toggle('scrolled', window.scrollY > 80);
+    header.classList.toggle('scrolled', window.scrollY > 60);
   }, { passive: true });
 
-  // Smooth scroll for anchor links
+  // Smooth scroll
   document.querySelectorAll('a[href^="#"]').forEach(function(a) {
     a.addEventListener('click', function(e) {
-      var target = document.querySelector(this.getAttribute('href'));
-      if (target) {
+      var t = document.querySelector(this.getAttribute('href'));
+      if (t) {
         e.preventDefault();
-        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        t.scrollIntoView({ behavior: 'smooth', block: 'start' });
       }
     });
   });
 
-  // Scroll-triggered section animations
-  var sections = document.querySelectorAll('.lp-section');
-  var observer = new IntersectionObserver(function(entries) {
+  // Scroll reveal
+  var reveals = document.querySelectorAll('.reveal');
+  var revealObs = new IntersectionObserver(function(entries) {
     entries.forEach(function(entry) {
       if (entry.isIntersecting) {
         entry.target.classList.add('visible');
       }
     });
-  }, { threshold: 0.1 });
-  sections.forEach(function(s) { observer.observe(s); });
+  }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+  reveals.forEach(function(el) { revealObs.observe(el); });
 
-  // Number counter animation
-  var numAnimated = false;
-  var numSection = document.getElementById('numbers');
-  var numObserver = new IntersectionObserver(function(entries) {
-    if (entries[0].isIntersecting && !numAnimated) {
-      numAnimated = true;
-      animateNumbers();
+  // CountUp
+  var counted = false;
+  var statsArea = document.querySelector('.hero-stats');
+  var countObs = new IntersectionObserver(function(entries) {
+    if (entries[0].isIntersecting && !counted) {
+      counted = true;
+      runCountUp();
     }
-  }, { threshold: 0.3 });
-  numObserver.observe(numSection);
+  }, { threshold: 0.4 });
+  countObs.observe(statsArea);
 
-  function animateNumbers() {
-    var els = document.querySelectorAll('[data-target]');
-    els.forEach(function(el) {
+  function runCountUp() {
+    document.querySelectorAll('[data-target]').forEach(function(el) {
       var target = parseFloat(el.dataset.target);
       var suffix = el.dataset.suffix || '';
-      var decimals = parseInt(el.dataset.decimal) || 0;
-      var duration = 2000;
+      var dec = parseInt(el.dataset.decimal) || 0;
+      var dur = 2000;
       var start = performance.now();
-
-      function update(now) {
-        var elapsed = now - start;
-        var progress = Math.min(elapsed / duration, 1);
-        // Ease out cubic
-        var eased = 1 - Math.pow(1 - progress, 3);
-        var current = eased * target;
-        if (decimals > 0) {
-          el.textContent = current.toFixed(decimals) + suffix;
-        } else {
-          el.textContent = Math.round(current) + suffix;
-        }
-        if (progress < 1) {
-          requestAnimationFrame(update);
-        }
-      }
-      requestAnimationFrame(update);
+      (function tick(now) {
+        var p = Math.min((now - start) / dur, 1);
+        var e = 1 - Math.pow(1 - p, 3);
+        var v = e * target;
+        el.innerHTML = (dec > 0 ? v.toFixed(dec) : Math.round(v)) + suffix;
+        if (p < 1) requestAnimationFrame(tick);
+      })(start);
     });
   }
 
-  // Form handling
-  var form = document.getElementById('lp-form');
-  var success = document.getElementById('lp-form-success');
+  // Form
+  var form = document.getElementById('app-form');
+  var success = document.getElementById('form-success');
   form.addEventListener('submit', function(e) {
     e.preventDefault();
-    var name = form.elements.name.value.trim();
-    var contact = form.elements.contact.value.trim();
-    if (!name || !contact) return;
+    if (!form.elements.name.value.trim() || !form.elements.contact.value.trim()) return;
     form.style.display = 'none';
     success.style.display = 'block';
   });
