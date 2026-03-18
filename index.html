@@ -1,0 +1,1465 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Экспертное заключение 1402/25RU — Гарант-Профит</title>
+<style>
+:root {
+  --navy: #0A1628;
+  --deep: #162544;
+  --steel: #2C4A6E;
+  --gold: #C8963E;
+  --gold-l: #D4AA5C;
+  --gold-p: #F0E0C0;
+  --white: #FFFFFF;
+  --off: #F5F3EF;
+  --wg: #8A8680;
+  --lg: #E8E4DF;
+  --char: #2D2B28;
+  --red: #9B2C2C;
+  --amber: #92400E;
+  --green: #276749;
+  --text: 740px;
+  --hpad: 40px;
+  --hf-pad: max(40px, calc(50vw - 460px));
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  background: var(--off);
+  color: var(--char);
+  font-size: 15px;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── Progress bar ── */
+#progress { position: fixed; top: 0; left: 0; height: 3px; background: var(--gold); z-index: 9999; width: 0; transition: width .15s; }
+
+/* ── Header ── */
+.header {
+  background: linear-gradient(160deg, var(--navy) 0%, var(--deep) 50%, var(--steel) 100%);
+  color: var(--white);
+  padding: 48px var(--hf-pad) 0;
+  max-height: 50vh;
+  overflow: hidden;
+  position: relative;
+}
+.header::after {
+  content: '';
+  position: absolute;
+  top: 0; right: 0;
+  width: 200px; height: 200px;
+  background: radial-gradient(circle at top right, rgba(200,150,62,.08), transparent 70%);
+}
+.header-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 32px;
+}
+.logo-area {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+.logo-text-sub {
+  font-family: 'American Typewriter', 'Courier New', serif;
+  font-size: 9px;
+  color: var(--gold-l);
+  letter-spacing: 3.5px;
+  text-transform: uppercase;
+  margin-top: 4px;
+}
+.logo-text-main {
+  font-family: 'American Typewriter', 'Courier New', serif;
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--white);
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  line-height: 1.15;
+  white-space: nowrap;
+}
+.conf-badge {
+  border: 1px solid var(--gold-l);
+  color: var(--gold-l);
+  font-size: 10px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: 5px 14px;
+  border-radius: 3px;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.header-title {
+  font-size: 28px;
+  font-weight: 300;
+  letter-spacing: .5px;
+  line-height: 1.3;
+  margin-bottom: 6px;
+}
+.header-subtitle {
+  font-size: 15px;
+  color: rgba(255,255,255,.6);
+  font-weight: 300;
+  max-width: 600px;
+  margin-bottom: 28px;
+}
+.header-meta {
+  background: rgba(0,0,0,.25);
+  margin: 0 calc(-1 * var(--hf-pad));
+  padding: 14px var(--hf-pad);
+  display: flex;
+  justify-content: center;
+  gap: 32px;
+  flex-wrap: wrap;
+  font-size: 12px;
+  color: rgba(255,255,255,.55);
+}
+.header-meta strong {
+  color: var(--gold-l);
+  font-weight: 600;
+  font-size: 11px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  display: block;
+  margin-bottom: 2px;
+}
+.header-meta span {
+  color: rgba(255,255,255,.85);
+}
+.header-meta .meta-sub {
+  display: block;
+  font-size: 11px;
+  color: rgba(255,255,255,.5);
+  margin-top: 1px;
+}
+
+/* ── Navigation ── */
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: var(--white);
+  border-bottom: 1px solid var(--lg);
+  display: flex;
+  justify-content: center;
+  box-shadow: 0 2px 8px rgba(10,22,40,.04);
+}
+.nav-btn {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 14px 24px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--steel);
+  cursor: pointer;
+  border: none;
+  background: none;
+  border-bottom: 3px solid transparent;
+  transition: all .2s;
+  white-space: nowrap;
+}
+.nav-btn:hover { color: var(--navy); background: rgba(200,150,62,.04); }
+.nav-btn.active {
+  color: var(--navy);
+  border-bottom-color: var(--gold);
+  background: rgba(200,150,62,.06);
+}
+.nav-btn svg { width: 18px; height: 18px; stroke: currentColor; fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+
+/* ── Sections ── */
+.section { display: none; padding: 40px var(--hpad); max-width: 920px; margin: 0 auto; }
+.section.active { display: block; }
+
+/* ── Animations ── */
+@keyframes fadeUp { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
+.section.active > * { animation: fadeUp .45s ease both; }
+.section.active > .a1 { animation-delay: .05s; }
+.section.active > .a2 { animation-delay: .12s; }
+.section.active > .a3 { animation-delay: .2s; }
+.section.active > .a4 { animation-delay: .28s; }
+.section.active > .a5 { animation-delay: .36s; }
+.section.active > .a6 { animation-delay: .44s; }
+
+/* ── Sub-heading ── */
+.sub-sh {
+  padding-left: 20px;
+  border-left: 3px solid var(--gold);
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--navy);
+  margin: 40px 0 20px;
+  line-height: 1.3;
+}
+.sub-sh:first-child { margin-top: 0; }
+
+/* ── Cards ── */
+.cd {
+  background: var(--white);
+  border-radius: 10px;
+  border: 1px solid var(--lg);
+  box-shadow: 0 2px 8px rgba(10,22,40,.04);
+  padding: 24px;
+  margin-bottom: 20px;
+}
+.cd-r { border-left: 3px solid var(--red); }
+.cd-n { border-left: 3px solid var(--amber); }
+.cd-g { border-left: 3px solid var(--green); }
+.cd-s { border-left: 3px solid var(--steel); }
+
+/* ── CBox (dark block) ── */
+.cbox {
+  background: linear-gradient(135deg, var(--navy), var(--deep));
+  color: var(--white);
+  border-radius: 10px;
+  padding: 28px 32px;
+  margin-bottom: 20px;
+  line-height: 1.75;
+}
+.cbox .hl { color: var(--gold-l); font-weight: 600; }
+.cbox ul { list-style: none; padding: 0; }
+.cbox ul li {
+  padding: 6px 0 6px 24px;
+  position: relative;
+  color: rgba(255,255,255,.88);
+}
+.cbox ul li::before {
+  content: '✓';
+  position: absolute;
+  left: 0;
+  color: var(--gold-l);
+  font-weight: 700;
+}
+
+/* ── Decision Panel ── */
+.decision {
+  border: 2px solid var(--gold);
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(200,150,62,.12);
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  overflow: hidden;
+  margin-bottom: 24px;
+}
+.decision-cell {
+  padding: 20px 16px;
+  text-align: center;
+  border-right: 1px solid var(--lg);
+}
+.decision-cell:last-child { border-right: none; }
+.decision-label {
+  font-size: 11px;
+  color: var(--wg);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 8px;
+  font-weight: 600;
+}
+.decision-value {
+  font-size: 26px;
+  font-weight: 700;
+  color: var(--navy);
+  line-height: 1.2;
+}
+.decision-value.red { color: var(--red); }
+.decision-value.green { color: var(--green); }
+.decision-value.amber { color: var(--amber); }
+.decision-sub {
+  font-size: 12px;
+  color: var(--wg);
+  margin-top: 4px;
+}
+
+/* ── Risk Summary ── */
+.risk-summary { background: var(--white); border-radius: 10px; border: 1px solid var(--lg); padding: 20px 24px; margin-bottom: 20px; }
+.rs-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--lg);
+  font-size: 14px;
+}
+.rs-item:last-child { border-bottom: none; }
+.rs-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  display: inline-block;
+  margin-right: 12px;
+  flex-shrink: 0;
+}
+.rs-dot.high { background: var(--red); }
+.rs-dot.med { background: var(--amber); }
+.rs-dot.mgd { background: var(--steel); }
+.rs-level {
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: .5px;
+  flex-shrink: 0;
+  padding: 3px 10px;
+  border-radius: 4px;
+}
+.rs-level.high { color: var(--red); background: rgba(155,44,44,.08); }
+.rs-level.med { color: var(--amber); background: rgba(146,64,14,.08); }
+.rs-level.mgd { color: var(--steel); background: rgba(44,74,110,.08); }
+
+/* ── Key Point ── */
+.key-point {
+  border-left: 2px solid var(--gold-p);
+  padding-left: 16px;
+  margin-bottom: 24px;
+  max-width: var(--text);
+}
+
+/* ── Body text ── */
+p.body { max-width: var(--text); margin-bottom: 14px; }
+
+/* ── Timeline ── */
+.tl { position: relative; padding-left: 36px; margin-bottom: 24px; }
+.tl::before {
+  content: '';
+  position: absolute;
+  left: 12px;
+  top: 8px;
+  bottom: 8px;
+  width: 2px;
+  background: linear-gradient(var(--gold), var(--lg));
+}
+.tl-item {
+  position: relative;
+  padding: 10px 0 18px;
+}
+.tl-item::before {
+  content: '';
+  position: absolute;
+  left: -30px;
+  top: 14px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: 2px solid var(--gold);
+  background: var(--white);
+}
+.tl-item.neg::before { border-color: var(--red); background: rgba(155,44,44,.12); }
+.tl-item.warn::before { border-color: var(--amber); background: rgba(146,64,14,.12); }
+.tl-item.key::before { border-color: var(--gold); background: rgba(200,150,62,.2); }
+.tl-item.info::before { border-color: var(--steel); background: rgba(44,74,110,.1); }
+.tl-date { font-size: 12px; font-weight: 600; color: var(--steel); margin-bottom: 3px; }
+.tl-text { font-size: 14px; color: var(--char); max-width: var(--text); }
+.tl-impact {
+  display: inline-block;
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: .5px;
+  padding: 2px 8px;
+  border-radius: 3px;
+  margin-top: 5px;
+}
+.tl-impact.neg { color: var(--red); background: rgba(155,44,44,.08); }
+.tl-impact.warn { color: var(--amber); background: rgba(146,64,14,.08); }
+.tl-impact.info { color: var(--steel); background: rgba(44,74,110,.08); }
+
+/* ── KEV (Key Evidence) ── */
+.kev {
+  background: linear-gradient(135deg, var(--navy), var(--deep));
+  border-radius: 10px;
+  padding: 28px 32px;
+  color: var(--white);
+  margin-bottom: 20px;
+  border-left: 4px solid var(--gold);
+}
+.kev-title {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 12px;
+  color: var(--gold-l);
+}
+
+/* ── Argument Map ── */
+.arg-map {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
+  margin-bottom: 28px;
+}
+.arg-node {
+  width: 100%;
+  max-width: 540px;
+  padding: 20px 24px;
+  border-radius: 10px;
+  text-align: center;
+  font-size: 14px;
+  line-height: 1.5;
+}
+.arg-node.law {
+  background: var(--navy);
+  color: var(--white);
+}
+.arg-node.fact {
+  background: var(--white);
+  border: 2px solid var(--red);
+  color: var(--char);
+}
+.arg-node.result {
+  background: var(--white);
+  border: 2px solid var(--green);
+  color: var(--char);
+}
+.arg-node-label {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  font-weight: 600;
+  margin-bottom: 6px;
+  opacity: .65;
+}
+.arg-arrow {
+  font-size: 24px;
+  color: var(--gold);
+  padding: 6px 0;
+}
+
+/* ── Article items ── */
+.ai-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+.ai {
+  background: var(--white);
+  border: 1px solid var(--lg);
+  border-radius: 8px;
+  padding: 18px 20px;
+}
+.ai-code {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--gold);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 4px;
+}
+.ai-name { font-size: 14px; font-weight: 600; color: var(--navy); margin-bottom: 6px; }
+.ai-desc { font-size: 13px; color: var(--wg); line-height: 1.5; }
+
+/* ── Tags ── */
+.tags { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 16px; }
+.tag {
+  font-size: 12px;
+  font-weight: 600;
+  padding: 4px 12px;
+  border-radius: 5px;
+  letter-spacing: .3px;
+}
+.tag-r { color: var(--red); background: rgba(155,44,44,.08); border: 1px solid rgba(155,44,44,.15); }
+.tag-n { color: var(--steel); background: rgba(44,74,110,.06); border: 1px solid rgba(44,74,110,.12); }
+
+/* ── Note ── */
+.note {
+  background: rgba(240,224,192,.3);
+  border-left: 3px solid var(--gold);
+  border-radius: 0 8px 8px 0;
+  padding: 16px 20px;
+  font-size: 13px;
+  color: var(--char);
+  margin-bottom: 20px;
+  max-width: var(--text);
+}
+
+/* ── Risk Cards ── */
+.risk-card {
+  background: var(--white);
+  border: 1px solid var(--lg);
+  border-radius: 10px;
+  margin-bottom: 16px;
+  overflow: hidden;
+}
+.risk-card-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 20px;
+  border-bottom: 1px solid var(--lg);
+}
+.risk-card-head h4 { font-size: 14px; font-weight: 600; color: var(--navy); }
+.risk-card-body {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+}
+.risk-card-col {
+  padding: 14px 20px;
+  font-size: 13px;
+  line-height: 1.55;
+}
+.risk-card-col:first-child { border-right: 1px solid var(--lg); }
+.risk-card-col-label {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--wg);
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+.rc-high { border-left: 4px solid var(--red); }
+.rc-med { border-left: 4px solid var(--amber); }
+.rc-mgd { border-left: 4px solid var(--steel); }
+
+/* ── Badges ── */
+.bdg {
+  display: inline-block;
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .5px;
+  padding: 3px 10px;
+  border-radius: 4px;
+}
+.bdg-h { color: var(--red); background: rgba(155,44,44,.1); }
+.bdg-s { color: var(--amber); background: rgba(146,64,14,.1); }
+.bdg-m { color: var(--steel); background: rgba(44,74,110,.1); }
+.bdg-l { color: var(--green); background: rgba(39,103,73,.1); }
+
+/* ── Outcome Bar ── */
+.outcome-bar-wrap { margin-bottom: 28px; }
+.outcome-bar {
+  height: 28px;
+  border-radius: 14px;
+  background: linear-gradient(90deg, var(--red) 0%, var(--amber) 40%, #b8860b 60%, var(--green) 100%);
+  position: relative;
+  margin-bottom: 8px;
+}
+.outcome-labels {
+  display: flex;
+  justify-content: space-between;
+  font-size: 11px;
+  color: var(--wg);
+}
+
+/* ── Strategy Cards ── */
+.sc {
+  background: var(--white);
+  border: 1px solid var(--lg);
+  border-radius: 10px;
+  padding: 24px;
+  margin-bottom: 16px;
+  position: relative;
+  overflow: hidden;
+}
+.sc.feat {
+  border: 2px solid var(--gold);
+  box-shadow: 0 4px 24px rgba(200,150,62,.15);
+}
+.sc-letter {
+  position: absolute;
+  top: -8px;
+  right: 12px;
+  font-size: 80px;
+  font-weight: 800;
+  color: var(--navy);
+  opacity: .05;
+  line-height: 1;
+}
+.sc-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 14px;
+}
+.sc-title { font-size: 16px; font-weight: 700; color: var(--navy); }
+.sc-prob { font-size: 20px; font-weight: 700; }
+.sc-prob.green { color: var(--green); }
+.sc-prob.amber { color: var(--amber); }
+.pbar { height: 6px; background: var(--lg); border-radius: 3px; margin-bottom: 16px; overflow: hidden; }
+.pfill { height: 100%; border-radius: 3px; }
+.pfill.green { background: var(--green); }
+.pfill.amber { background: var(--amber); }
+
+.sdg {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 16px;
+}
+.sdg-col-label {
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--wg);
+  margin-bottom: 6px;
+}
+.sdg-col { font-size: 13px; line-height: 1.55; }
+
+/* ── Steps ── */
+.stp {
+  background: var(--white);
+  border: 1px solid var(--lg);
+  border-radius: 10px;
+  padding: 20px 24px 20px 80px;
+  margin-bottom: 12px;
+  position: relative;
+  min-height: 80px;
+}
+.stp-num {
+  position: absolute;
+  left: 16px;
+  top: 12px;
+  font-size: 42px;
+  font-weight: 800;
+  color: var(--gold);
+  opacity: .4;
+  line-height: 1;
+}
+.stp-title { font-size: 15px; font-weight: 600; color: var(--navy); margin-bottom: 4px; }
+.stp-desc { font-size: 13px; color: var(--wg); line-height: 1.55; }
+
+/* ── Evidence table ── */
+.ev-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 24px;
+}
+.ev-table th {
+  text-align: left;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--wg);
+  font-weight: 600;
+  padding: 10px 16px;
+  border-bottom: 2px solid var(--lg);
+}
+.ev-table td {
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--lg);
+  font-size: 14px;
+  vertical-align: top;
+}
+.ev-table tr:last-child td { border-bottom: none; }
+
+/* ── Footer ── */
+.footer {
+  background: var(--navy);
+  padding: 20px var(--hf-pad) 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 12px;
+  color: rgba(255,255,255,.5);
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.footer-left {
+  font-size: 12px;
+  color: rgba(255,255,255,.5);
+  line-height: 1.6;
+}
+.footer-left a {
+  color: var(--gold-l);
+  text-decoration: none;
+  font-size: 11px;
+}
+.footer-left a:hover { text-decoration: underline; }
+.footer-right {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.footer-curator {
+  text-align: right;
+  line-height: 1.5;
+}
+.footer-curator-label {
+  font-size: 11px;
+  color: rgba(255,255,255,.45);
+  letter-spacing: .5px;
+}
+.footer-curator-name {
+  font-size: 13px;
+  color: rgba(255,255,255,.7);
+  font-weight: 600;
+}
+.footer-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 1px solid rgba(255,255,255,.2);
+  transition: all .2s;
+  text-decoration: none;
+}
+.footer-icon:hover {
+  border-color: var(--gold-l);
+  background: rgba(200,150,62,.12);
+}
+.footer-icon svg {
+  width: 16px;
+  height: 16px;
+  fill: none;
+  stroke: rgba(255,255,255,.6);
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.footer-icon:hover svg { stroke: var(--gold-l); }
+.footer-icon.tg svg { stroke: none; fill: rgba(255,255,255,.6); }
+.footer-icon.tg:hover svg { fill: var(--gold-l); }
+
+/* ── Mobile ── */
+@media (max-width: 768px) {
+  :root { --hpad: 24px; --hf-pad: 24px; }
+  .header { padding: 32px var(--hf-pad) 0; max-height: 70vh; }
+  .header-meta { margin: 0 calc(-1 * var(--hf-pad)); padding: 14px var(--hf-pad); gap: 16px; }
+  .header-top { flex-direction: column; gap: 16px; }
+  .header-title { font-size: 22px; }
+  .decision { grid-template-columns: 1fr 1fr; }
+  .nav {
+    position: fixed;
+    bottom: 0;
+    top: auto;
+    z-index: 200;
+    border-top: 1px solid var(--lg);
+    border-bottom: none;
+    width: 100%;
+    left: 0;
+    right: 0;
+  }
+  .nav-btn {
+    flex-direction: column;
+    padding: 8px 4px;
+    font-size: 10px;
+    gap: 3px;
+    flex: 1;
+    border-bottom: none;
+    border-top: 3px solid transparent;
+    min-width: 0;
+  }
+  .nav-btn.active { border-top-color: var(--gold); border-bottom-color: transparent; }
+  .section { padding: 24px var(--hpad); padding-bottom: 100px; }
+  .ai-grid { grid-template-columns: 1fr; }
+  .sdg { grid-template-columns: 1fr; }
+  .risk-card-body { grid-template-columns: 1fr; }
+  .risk-card-col:first-child { border-right: none; border-bottom: 1px solid var(--lg); }
+  .footer { padding: 20px var(--hf-pad) 90px; }
+  .arg-node { max-width: 100%; }
+}
+
+/* ── Print ── */
+@media print {
+  .nav, #progress { display: none !important; }
+  .section { display: block !important; padding: 20px 0; }
+  .cbox, .kev { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  body { background: white; }
+  .header { max-height: none; }
+}
+</style>
+</head>
+<body>
+
+<div id="progress"></div>
+
+<!-- ════════════ HEADER ════════════ -->
+<div class="header">
+  <div class="header-top">
+    <div class="logo-area">
+      <svg width="56" height="56" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect x="2" y="2" width="96" height="96" rx="6" fill="none" stroke="rgba(255,255,255,.2)" stroke-width="1.5"/>
+        <rect x="16" y="14" width="68" height="1.5" rx=".75" fill="#C8963E" opacity=".8"/>
+        <text x="30" y="64" text-anchor="middle" font-family="Georgia,serif" font-size="46" font-weight="700" fill="white">Г</text>
+        <rect x="49.5" y="28" width="1" height="48" rx=".5" fill="#C8963E" opacity=".6"/>
+        <text x="70" y="64" text-anchor="middle" font-family="Georgia,serif" font-size="46" font-weight="700" fill="white">П</text>
+        <rect x="16" y="84.5" width="68" height="1.5" rx=".75" fill="#C8963E" opacity=".8"/>
+      </svg>
+      <div>
+        <div class="logo-text-sub">Юридическое агентство</div>
+        <div class="logo-text-main">Гарант-Профит</div>
+      </div>
+    </div>
+    <div class="conf-badge">Конфиденциально</div>
+  </div>
+  <div class="header-title">Экспертное заключение</div>
+  <div class="header-subtitle">по делу о принудительной ликвидации брокерских позиций без предварительного направления Margin Call</div>
+  <div class="header-meta">
+    <div><strong>Клиент</strong><span>Концедалов С.И.</span></div>
+    <div>
+      <strong>Эксперт</strong>
+      <span>к.ю.н. Арутюнян Р.К.</span>
+      <span class="meta-sub">эксперт по законодательству РА</span>
+    </div>
+    <div><strong>Дата</strong><span>19 марта 2026</span></div>
+    <div><strong>Заключение</strong><span>1402/25RU</span></div>
+  </div>
+</div>
+
+<!-- ════════════ NAVIGATION ════════════ -->
+<nav class="nav" id="nav">
+  <button class="nav-btn active" data-tab="summary">
+    <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M8 12l2.5 2.5L16 9"/></svg>
+    Итог
+  </button>
+  <button class="nav-btn" data-tab="facts">
+    <!-- icon: chart/analysis style (swapped) -->
+    <svg viewBox="0 0 24 24"><path d="M2 20h20"/><path d="M5 20V10l4 4 4-8 4 4 3-6"/></svg>
+    Контекст
+  </button>
+  <button class="nav-btn" data-tab="analysis">
+    <!-- icon: grid/table style (swapped) -->
+    <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+    Анализ
+  </button>
+  <button class="nav-btn" data-tab="strategy">
+    <svg viewBox="0 0 24 24"><path d="M12 2l3 7h7l-5.5 4 2 7L12 16l-6.5 4 2-7L2 9h7z"/></svg>
+    Стратегия
+  </button>
+  <button class="nav-btn" data-tab="actions">
+    <svg viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><path d="M22 4L12 14.01l-3-3"/></svg>
+    Действия
+  </button>
+</nav>
+
+<!-- ════════════ I. ИТОГ ════════════ -->
+<div class="section active" id="summary">
+
+  <div class="decision a1">
+    <div class="decision-cell">
+      <div class="decision-label">Ущерб</div>
+      <div class="decision-value red">$327 386</div>
+      <div class="decision-sub">подтверждён брокером</div>
+    </div>
+    <div class="decision-cell">
+      <div class="decision-label">Шансы</div>
+      <div class="decision-value amber">50–60%</div>
+      <div class="decision-sub">полная или частичная</div>
+    </div>
+    <div class="decision-cell">
+      <div class="decision-label">Ожидаемый возврат</div>
+      <div class="decision-value green">$164–327K</div>
+      <div class="decision-sub">с учётом обоюдной вины</div>
+    </div>
+    <div class="decision-cell">
+      <div class="decision-label">Лучший путь</div>
+      <div class="decision-value" style="font-size:17px; color:var(--navy);">Комбинированная</div>
+      <div class="decision-sub">Примиритель + Арбитраж + Переговоры</div>
+    </div>
+  </div>
+
+  <div class="sub-sh a2">Ключевой вывод</div>
+  <div class="cbox a2">
+    <p>На основании всестороннего анализа договорной базы, внутренних регламентов брокера, законодательства и судебной практики РА, а также обычаев делового оборота установлено:</p>
+    <ul style="margin-top:12px;">
+      <li>Брокер <span class="hl">был обязан</span> направить Margin Call клиенту (раздел 6 Приложения 10 к Основным условиям)</li>
+      <li>Уведомление <span class="hl">направлено не было</span></li>
+      <li>Факт технического сбоя <span class="hl">неоднократно признан</span> самим брокером</li>
+      <li>Принудительная ликвидация позиций произведена <span class="hl">с нарушением</span> договорной процедуры</li>
+      <li>Клиент <span class="hl">располагал средствами</span> для довнесения, но не получил уведомления и был лишён возможности принять решение</li>
+    </ul>
+    <p style="margin-top:16px;">Требования Концедалова С.И. о компенсации убытков <span class="hl">имеют юридические основания</span>. Вероятность получения компенсации — <span class="hl">50–60%</span>.</p>
+  </div>
+
+  <div class="sub-sh a3">Почему позиция клиента является обоснованной</div>
+  <div class="cd cd-g a3">
+    <p class="body"><strong style="color:var(--green);">1. Нарушение закреплено в договоре.</strong> Раздел 6 Приложения 10 устанавливает порядок направления Margin Call четырьмя способами. Ни один из способов не был использован.</p>
+    <p class="body"><strong style="color:var(--green);">2. Брокер неоднократно признал технический сбой.</strong> В переписке службы поддержки указано: «По технической причине уведомление доставлено не было.» Впоследствии ситуация была квалифицирована самим брокером как «технический инцидент, который был оперативно устранён».</p>
+    <p class="body"><strong style="color:var(--green);">3. Убыток подтверждён документом брокера.</strong> Отчёт брокера за период 11–19.11.2025 фиксирует: P/L по закрытым сделкам –$327 385,83. Документ подписан директором ООО «Фридом Финанс Армения».</p>
+  </div>
+
+  <div class="sub-sh a4">Ключевое доказательство технического сбоя</div>
+  <div class="kev a4">
+    <div class="kev-title">⚡ Адресный технический сбой</div>
+    <p>Менеджер брокера видел Margin Call в системе Tradernet и переслал об этом скриншот клиенту. Клиент в тот же момент не видел этого уведомления, ответил что у него нет такой страницы.</p>
+    <p style="margin-top:12px;">Данный факт устанавливает: уведомление было сгенерировано системой, но <strong style="color:var(--gold-l);">не доставлено конкретному клиенту</strong>. Технический сбой носил адресный характер — система функционировала для других пользователей, но для счёта AM1810628 уведомление не было доставлено.</p>
+  </div>
+
+  <div class="sub-sh a5">Основные риски</div>
+  <div class="risk-summary a5">
+    <div class="rs-item">
+      <div><span class="rs-dot high"></span>П. 35.3 — «без дополнительного уведомления» (наиболее сильный аргумент брокера)</div>
+      <span class="rs-level high">Высокий</span>
+    </div>
+    <div class="rs-item">
+      <div><span class="rs-dot high"></span>Лингвистическое расхождение армянской и английской версий Приложения 10</div>
+      <span class="rs-level high">Высокий</span>
+    </div>
+    <div class="rs-item">
+      <div><span class="rs-dot high"></span>Обязанность клиента мониторить портфель (п. 35.7)</div>
+      <span class="rs-level high">Высокий</span>
+    </div>
+    <div class="rs-item">
+      <div><span class="rs-dot med"></span>Высокое кредитное плечо 5,36x — смешанная ответственность</div>
+      <span class="rs-level med">Средний</span>
+    </div>
+    <div class="rs-item">
+      <div><span class="rs-dot med"></span>Покупка акций через 50 мин. после последней продажи</div>
+      <span class="rs-level med">Средний</span>
+    </div>
+    <div class="rs-item">
+      <div><span class="rs-dot mgd"></span>Вопрос о неизбежности ликвидации — потребуется экспертиза</div>
+      <span class="rs-level mgd">Управляемый</span>
+    </div>
+    <div class="rs-item">
+      <div><span class="rs-dot med"></span>Принцип обоюдной вины — возможное снижение на 30–50%</div>
+      <span class="rs-level med">Средний</span>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════ II. КОНТЕКСТ ════════════ -->
+<div class="section" id="facts">
+
+  <div class="sub-sh a1">Стороны и предмет спора</div>
+  <div class="key-point a1">
+    <p class="body"><strong>Клиент:</strong> Концедалов Сергей Иванович, 08.06.1952 г.р., гражданин РФ, г. Омск, паспорт 77 0490093. Брокерский счёт AM1810628.</p>
+    <p class="body"><strong>Контрагент:</strong> ООО «Фридом Финанс Армения» (Freedom Finance Armenia LLC), лицензия ЦБ РА №НЭ0021, директор Овак Овакимян, г. Ереван, Мелик Адамян 2/2. Персональный менеджер — Коновалов Андрей Сергеевич.</p>
+    <p class="body">Договор заключён 29.09.2025 электронно через платформу Tradernet. Клиент акцептовал Основные условия бизнеса и все приложения, включая Приложение 10 (Правила маржинальных сделок).</p>
+    <p class="body"><strong>Предмет спора:</strong> Принудительная продажа 9 536 акций Nebius Group NV (NBIS.US, NYSE/NASDAQ) в период 12–19 ноября 2025 года без предварительного направления Margin Call, повлёкшая убытки в размере $327 385,83.</p>
+  </div>
+
+  <div class="sub-sh a2">Хронология</div>
+  <div class="tl a2">
+    <div class="tl-item info">
+      <div class="tl-date">29.09.2025</div>
+      <div class="tl-text">Заключение договора, открытие счёта AM1810628</div>
+    </div>
+    <div class="tl-item key">
+      <div class="tl-date">11.11.2025</div>
+      <div class="tl-text">Чистые активы $202 069; NBIS.US — 9 536 акций по $123,94; плечо ~5,36x</div>
+    </div>
+    <div class="tl-item neg">
+      <div class="tl-date">12.11, 20:10</div>
+      <div class="tl-text">Первая принудительная продажа: 2 600 акций по $93,98. Margin Call не направлен</div>
+      <div class="tl-impact neg">Убыток $77 921</div>
+    </div>
+    <div class="tl-item neg">
+      <div class="tl-date">13.11, 18:42–21:17</div>
+      <div class="tl-text">Четыре продажи: 4 640 акций, убыток ~$172 188. Клиент не уведомлён</div>
+      <div class="tl-impact neg">Убыток ~$172 188</div>
+    </div>
+    <div class="tl-item warn">
+      <div class="tl-date">13.11, 20:48</div>
+      <div class="tl-text">Риск-подразделение уведомляет менеджера. К этому моменту продано 75,9% позиции</div>
+      <div class="tl-impact warn">Слишком поздно</div>
+    </div>
+    <div class="tl-item warn">
+      <div class="tl-date">13.11, 20:50</div>
+      <div class="tl-text">Менеджер связывается с клиентом. Клиент узнаёт о продажах постфактум</div>
+    </div>
+    <div class="tl-item key">
+      <div class="tl-date">13.11, 21:25–21:35</div>
+      <div class="tl-text">Менеджер видит Margin Call в приложении. Клиент: «У меня нет такой странички»</div>
+      <div class="tl-impact warn">Адресный сбой</div>
+    </div>
+    <div class="tl-item neg">
+      <div class="tl-date">~14.11.2025</div>
+      <div class="tl-text">Поддержка: «по технической причине уведомление доставлено не было»</div>
+      <div class="tl-impact neg">Признание брокера</div>
+    </div>
+    <div class="tl-item neg">
+      <div class="tl-date">15–19.11.2025</div>
+      <div class="tl-text">Продолжение продаж: ещё 2 296 акций. Итого P/L: –$327 385,83</div>
+    </div>
+    <div class="tl-item info">
+      <div class="tl-date">26.12.2025</div>
+      <div class="tl-text">Жалоба клиента в Freedom Finance Armenia</div>
+    </div>
+    <div class="tl-item neg">
+      <div class="tl-date">23.01.2026</div>
+      <div class="tl-text">Официальный ответ брокера №230126-001 — отказ в компенсации</div>
+      <div class="tl-impact neg">Отказ</div>
+    </div>
+    <div class="tl-item info">
+      <div class="tl-date">~16.01.2026</div>
+      <div class="tl-text">Заявление Финансовому Примирителю (10 000 000 AMD)</div>
+    </div>
+    <div class="tl-item info">
+      <div class="tl-date">02.02.2026</div>
+      <div class="tl-text">Ответ ЦБ РА: рекомендация обратиться к Примирителю или в суд</div>
+    </div>
+    <div class="tl-item info">
+      <div class="tl-date">~26.02.2026</div>
+      <div class="tl-text">Обращение в Freedom Finance Global PLC (№24-02-26/50-1/L21)</div>
+    </div>
+  </div>
+
+  <div class="sub-sh a3">Платёжеспособность клиента</div>
+  <div class="cd a3">
+    <p class="body"><strong style="color:var(--navy);">Счета в группе Freedom Finance.</strong> Помимо счёта AM1810628 Концедалов имел ещё два счёта, а также счета в аффилированной структуре «Цифра Брокер», на которых находились свободные средства.</p>
+    <p class="body"><strong style="color:var(--navy);">Банковский счёт.</strong> Концедалов готов подтвердить банковской выпиской наличие суммы, превышающей необходимую для покрытия Margin Call.</p>
+    <p class="body"><strong style="color:var(--navy);">Межсчётные переводы.</strong> П. 18.4 Основных условий распространяется только на счета в рамках одного юрлица. Автоматическое списание со счетов «Цифра Брокер» без распоряжения клиента невозможно.</p>
+    <p class="body"><strong style="color:var(--navy);">Значение для дела.</strong> При своевременном получении Margin Call клиент имел реальную финансовую возможность довнести средства. Между первой продажей (12.11, 20:10) и массовой ликвидацией (13.11, 18:42) прошло более 22 часов — достаточно для перевода средств.</p>
+  </div>
+
+  <div class="sub-sh a4">Позиция брокера</div>
+  <div class="cd cd-r a4">
+    <p class="body">В ходе переписки и официальной корреспонденции брокер последовательно занимал несколько <strong>противоречивых позиций</strong>:</p>
+    <p class="body" style="margin-top:8px;">• Поддержка (1-й ответ): уведомление «не было своевременно направлено», но закрытие корректно<br>
+    • Поддержка (2-й ответ): ненаправление обусловлено «техническим инцидентом, который был оперативно устранён»<br>
+    • Поддержка (3-й ответ): «персональный менеджер уведомил» клиента<br>
+    • Официальный ответ №230126-001: Компания «не обязана уведомлять»</p>
+    <p class="body" style="margin-top:12px;">Дополнительно: в том же официальном ответе указано, что «неизвестно, о каких именно убытках идёт речь» — при наличии собственного подписанного отчёта с точной суммой –$327 385,83.</p>
+    <p class="body">При этом в ходе принудительных продаж Компания взимала полные торговые комиссии (более $1 000 за сделки по Stop Out), извлекая операционный доход из ситуации, вызванной собственным техническим сбоем.</p>
+  </div>
+
+  <div class="sub-sh a5">Позиция (требования) клиента</div>
+  <div class="cd cd-g a5">
+    <p class="body"><strong style="color:var(--navy);">Жалоба в Freedom Finance Armenia</strong> (26.12.2025): требование разобраться в ситуации с принудительной ликвидацией позиций без предварительного уведомления и компенсировать причинённые убытки.</p>
+    <p class="body"><strong style="color:var(--navy);">Жалоба-Требование директору</strong> (19.01.2026): требование полной компенсации убытков в размере $327 385,83, причинённых принудительной ликвидацией позиций с нарушением раздела 6 Приложения 10 к Основным условиям — без направления Margin Call ни одним из четырёх предусмотренных способов.</p>
+    <p class="body"><strong style="color:var(--navy);">Заявление Финансовому Примирителю</strong> (~16.01.2026): требование компенсации в размере 10 000 000 AMD (~$26 000) — максимальная сумма, рассматриваемая Примирителем. Основание — ненаправление Margin Call вследствие технического сбоя, признанного самим брокером.</p>
+    <p class="body"><strong style="color:var(--navy);">Обращение в Freedom Finance Global PLC</strong> (~26.02.2026, №24-02-26/50-1/L21): обращение к материнской компании (FRHC, NASDAQ) с изложением ситуации и предложением урегулирования спора до перехода в публичную плоскость.</p>
+  </div>
+</div>
+
+<!-- ════════════ III. АНАЛИЗ ════════════ -->
+<div class="section" id="analysis">
+
+  <div class="sub-sh a1">Логика нарушения</div>
+  <div class="arg-map a1">
+    <div class="arg-node law">
+      <div class="arg-node-label">Норма</div>
+      <strong>Раздел 6 Приложения 10:</strong> «the Company sends the Client a request» / «shall be sent» — Margin Call <em>обязателен</em>. Раздел 7: принудительная продажа допустима, если «Margin Call не исполняется» — предполагает предшествующее направление.
+    </div>
+    <div class="arg-arrow">↓</div>
+    <div class="arg-node fact">
+      <div class="arg-node-label">Факт</div>
+      Margin Call <strong>не был направлен</strong> ни одним из способов. Технический сбой признан брокером. Менеджер видел уведомление — клиент не видел. Система сгенерировала, но не доставила.
+    </div>
+    <div class="arg-arrow">↓</div>
+    <div class="arg-node result">
+      <div class="arg-node-label">Вывод</div>
+      Принудительная ликвидация произведена <strong>с нарушением</strong> договорной процедуры. Клиент лишён возможности довнести средства. Убыток $327 385,83 причинно связан с нарушением.
+    </div>
+  </div>
+
+  <div class="sub-sh a2">Лингвистическая оценка формулировок</div>
+  <div class="cd cd-n a2">
+    <p class="body"><strong style="color:var(--navy);">Английская версия</strong> раздела 6 использует формулировки «the Company sends the Client a request» и «The Margin Call shall be sent to the Client» — однозначно императивные конструкции.</p>
+    <p class="body"><strong style="color:var(--navy);">Армянская версия</strong> содержит расхождение: первое предложение использует изъявительное наклонение («Компания направляет»), однако при перечислении каналов — «может быть направлен», что допускает толкование как дискреционного полномочия.</p>
+    <p class="body"><strong style="color:var(--navy);">Экспертная оценка:</strong> «может быть направлен» относится к <em>выбору канала связи</em>, а не к решению о направлении как таковому. Обязанность направить Margin Call установлена первым предложением. Дискреция — в выборе канала, а не в решении уведомлять или нет.</p>
+    <p class="body">Данное толкование подтверждается последующим поведением брокера (ст. 500 ГК РА): система автоматически генерировала Margin Call, поддержка квалифицировала ненаправление как «технический инцидент» и произвела его «оперативное устранение». Если бы уведомление являлось дискрецией — необходимость «устранения» не возникала бы.</p>
+  </div>
+
+  <div class="sub-sh a2">Соотношение общей и специальной нормы</div>
+  <div class="cd cd-s a2">
+    <p class="body"><strong>П. 35.3 Основных условий</strong> (общая): «Компания вправе по своему усмотрению, без дополнительного уведомления, принять меры, направленные на защиту Клиента от отрицательного баланса.»</p>
+    <p class="body" style="margin-top:12px;"><strong>Раздел 6 Приложения 10</strong> (специальная): детально регулирует порядок Margin Call. П. 35.2 прямо устанавливает: маржинальные сделки осуществляются <em>в соответствии с Приложением 10</em>.</p>
+    <p class="body" style="margin-top:12px;">П. 35.8 дополнительно подтверждает: закрытие позиций «без <em>дальнейшего</em> уведомления» — слово «дальнейшего» прямо подразумевает, что первичное уведомление (Margin Call) предполагается.</p>
+  </div>
+
+  <div class="sub-sh a3">Тест ответственности (практика Кассационного суда РА)</div>
+  <div class="ai-grid a3">
+    <div class="ai" style="border-left: 3px solid var(--red);">
+      <div class="ai-code">Элемент 1</div>
+      <div class="ai-name">Противоправное поведение</div>
+      <div class="ai-desc">Ненаправление Margin Call при наличии договорной обязанности (раздел 6) и технической возможности (система сгенерировала уведомление, но не доставила). Принудительная ликвидация без соблюдения последовательности раздела 7.</div>
+    </div>
+    <div class="ai" style="border-left: 3px solid var(--red);">
+      <div class="ai-code">Элемент 2</div>
+      <div class="ai-name">Наличие ущерба</div>
+      <div class="ai-desc">Ущерб $327 385,83 подтверждён подписанным отчётом брокера. Дополнительный ущерб — разница между ценой принудительных продаж ($82–93) и ценой восстановления ($95,83 на 19.11.2025).</div>
+    </div>
+    <div class="ai" style="border-left: 3px solid var(--amber);">
+      <div class="ai-code">Элемент 3</div>
+      <div class="ai-name">Причинно-следственная связь</div>
+      <div class="ai-desc">Отсутствие Margin Call лишило клиента возможности довнести средства. Между первой продажей и массовой ликвидацией — 22 часа. Однако брокер будет оспаривать, утверждая неизбежность ликвидации. Потребуется финансово-экономическая экспертиза.</div>
+    </div>
+    <div class="ai" style="border-left: 3px solid var(--green);">
+      <div class="ai-code">Элемент 4</div>
+      <div class="ai-name">Вина</div>
+      <div class="ai-desc">Признание технического инцидента подтверждает вину. Техсбой собственной IT-системы — не форс-мажор (п. 36.1). Ответственность предпринимателя — ст. 417 ГК РА.</div>
+    </div>
+  </div>
+
+  <div class="sub-sh a4">Применимые нормы ГК РА</div>
+  <div class="ai-grid a4">
+    <div class="ai">
+      <div class="ai-code">Ст. 347</div>
+      <div class="ai-name">Возмещение убытков</div>
+      <div class="ai-desc">Лицо, право которого нарушено, вправе требовать полного возмещения причинённых убытков.</div>
+    </div>
+    <div class="ai">
+      <div class="ai-code">Ст. 417</div>
+      <div class="ai-name">Ответственность предпринимателя</div>
+      <div class="ai-desc">Ответственность наступает, если не доказана непреодолимая сила. Технический сбой собственной системы таковой не является.</div>
+    </div>
+    <div class="ai">
+      <div class="ai-code">Ст. 422</div>
+      <div class="ai-name">Просрочка кредитора</div>
+      <div class="ai-desc">Брокер обязан был предоставить Margin Call для возможности исполнения клиентом обязательства по довнесению средств.</div>
+    </div>
+    <div class="ai">
+      <div class="ai-code">Ст. 500</div>
+      <div class="ai-name">Толкование договора</div>
+      <div class="ai-desc">Последующее поведение сторон (создание системы автоуведомлений, признание сбоя, его исправление) — обязанность уведомления фактически признавалась обеими сторонами.</div>
+    </div>
+    <div class="ai">
+      <div class="ai-code">Ст. 10</div>
+      <div class="ai-name">Злоупотребление правом</div>
+      <div class="ai-desc">Неиспользование Margin Call при наличии технической возможности с перекладыванием убытков на клиента. Право на Stop Out — не основание для извлечения выгоды из собственной халатности.</div>
+    </div>
+    <div class="ai">
+      <div class="ai-code">Ст. 3</div>
+      <div class="ai-name">Принцип добросовестности</div>
+      <div class="ai-desc">Заявление об «неизвестности убытков» при наличии отчёта с суммой –$327 385,83, а также взимание комиссий при принудительных продажах, вызванных собственным сбоем.</div>
+    </div>
+  </div>
+
+  <div class="sub-sh a5">Отраслевое регулирование и Заявление о присоединении</div>
+  <div class="cd a5">
+    <p class="body"><strong style="color:var(--navy);">Закон РА «О рынке ценных бумаг»</strong> — обязанность действовать в интересах клиентов и соблюдать внутренние регламенты.</p>
+    <p class="body"><strong style="color:var(--navy);">Положение ЦБ РА 8/04</strong> — минимальные требования к процедуре рассмотрения жалоб. Срок ответа (10 рабочих дней) нарушен.</p>
+    <p class="body"><strong style="color:var(--navy);">Регламент о конфликте интересов (п. 4.1)</strong> — принцип «obligatory notification» обо всех операциях с активами клиентов.</p>
+    <p class="body"><strong style="color:var(--navy);">Политика выполнения поручений (Best Execution)</strong> — обязанность обеспечить лучшие условия. Продажа без уведомления на падающем рынке (по $82–93) при последующем восстановлении до $95,83 нарушает данный принцип.</p>
+    <p class="body" style="margin-top:16px;"><strong style="color:var(--navy);">Заявление о присоединении</strong> содержит: «…Компания не несёт ответственности… <em>за исключением случаев, когда Компания нарушила требования, установленные Условиями или законодательством РА</em>.» Ограничение ответственности прямо содержит исключение для нарушений Условий. Раздел 6 Приложения 10 — часть Условий. Условия нарушены.</p>
+  </div>
+
+  <div class="sub-sh a6">Риски и уязвимости позиции</div>
+
+  <div class="risk-card rc-high a6">
+    <div class="risk-card-head">
+      <h4>1. Пункт 35.3 — «без дополнительного уведомления»</h4>
+      <span class="bdg bdg-h">Высокий</span>
+    </div>
+    <div class="risk-card-body">
+      <div class="risk-card-col">
+        <div class="risk-card-col-label">Аргумент брокера</div>
+        Наиболее сильный аргумент. Формулировка прямо предоставляет право действовать без уведомления.
+      </div>
+      <div class="risk-card-col">
+        <div class="risk-card-col-label">Контраргумент</div>
+        Специальная норма (Приложение 10) имеет приоритет по ст. 441 ГК РА. Но исход зависит от позиции конкретного состава суда или арбитража.
+      </div>
+    </div>
+  </div>
+
+  <div class="risk-card rc-high a6">
+    <div class="risk-card-head">
+      <h4>2. Лингвистическое расхождение версий Приложения 10</h4>
+      <span class="bdg bdg-h">Высокий</span>
+    </div>
+    <div class="risk-card-body">
+      <div class="risk-card-col">
+        <div class="risk-card-col-label">Аргумент брокера</div>
+        Армянская версия допускает толкование Margin Call как дискреционного полномочия.
+      </div>
+      <div class="risk-card-col">
+        <div class="risk-card-col-label">Контраргумент</div>
+        Частично нейтрализуется аргументом о последующем поведении сторон (ст. 500 ГК РА) и доктриной злоупотребления правом (ст. 10 ГК РА).
+      </div>
+    </div>
+  </div>
+
+  <div class="risk-card rc-high a6">
+    <div class="risk-card-head">
+      <h4>3. Обязанность клиента мониторить портфель (п. 35.7)</h4>
+      <span class="bdg bdg-h">Высокий</span>
+    </div>
+    <div class="risk-card-body">
+      <div class="risk-card-col">
+        <div class="risk-card-col-label">Аргумент брокера</div>
+        «В обязанности Клиента входит постоянный контроль размера активов.» Серьёзный аргумент для применения обоюдной вины (ст. 395 ГК РА).
+      </div>
+      <div class="risk-card-col">
+        <div class="risk-card-col-label">Контраргумент</div>
+        Обязанность клиента не исключает встречной обязанности брокера, установленной специальной нормой.
+      </div>
+    </div>
+  </div>
+
+  <div class="risk-card rc-med a6">
+    <div class="risk-card-head">
+      <h4>4. Покупка акций после ликвидации</h4>
+      <span class="bdg bdg-s">Средний</span>
+    </div>
+    <div class="risk-card-body">
+      <div class="risk-card-col">
+        <div class="risk-card-col-label">Аргумент брокера</div>
+        19.11.2025 клиент приобрёл 1 369 акций по $95,83 через 50 мин. после последней продажи — принятие рыночного риска.
+      </div>
+      <div class="risk-card-col">
+        <div class="risk-card-col-label">Контраргумент</div>
+        Свидетельствует о компетенции и готовности управлять портфелем. Имеет ограниченную убедительность.
+      </div>
+    </div>
+  </div>
+
+  <div class="risk-card rc-med a6">
+    <div class="risk-card-head">
+      <h4>5. Высокое кредитное плечо (5,36x)</h4>
+      <span class="bdg bdg-s">Средний</span>
+    </div>
+    <div class="risk-card-body">
+      <div class="risk-card-col">
+        <div class="risk-card-col-label">Аргумент брокера</div>
+        Порог полной потери — снижение на ~18,7%. Фактическое падение NBIS.US ~13,7%. Суд может применить смешанную ответственность, снизив компенсацию на 30–50%.
+      </div>
+      <div class="risk-card-col">
+        <div class="risk-card-col-label">Контраргумент</div>
+        Плечо предоставлено самим брокером. Портфель ещё не достиг порога полной потери.
+      </div>
+    </div>
+  </div>
+
+  <div class="risk-card rc-mgd a6">
+    <div class="risk-card-head">
+      <h4>6. Вопрос о неизбежности ликвидации</h4>
+      <span class="bdg bdg-m">Управляемый</span>
+    </div>
+    <div class="risk-card-body">
+      <div class="risk-card-col">
+        <div class="risk-card-col-label">Аргумент брокера</div>
+        Ликвидация была неизбежной при данном уровне плеча и падении котировок.
+      </div>
+      <div class="risk-card-col">
+        <div class="risk-card-col-label">Контраргумент</div>
+        Требует финансово-экономической экспертизы с расчётом альтернативного сценария. 22 часа между первой и массовой продажами.
+      </div>
+    </div>
+  </div>
+
+  <div class="risk-card rc-med a6">
+    <div class="risk-card-head">
+      <h4>7. Применение принципа обоюдной вины</h4>
+      <span class="bdg bdg-s">Средний</span>
+    </div>
+    <div class="risk-card-body">
+      <div class="risk-card-col">
+        <div class="risk-card-col-label">Аргумент брокера</div>
+        С учётом п. 35.7, высокого плеча и покупки после ликвидации, существует вероятность снижения суммы компенсации на 30–50%.
+      </div>
+      <div class="risk-card-col">
+        <div class="risk-card-col-label">Контраргумент</div>
+        Это учтено в оценке вероятности. Размер снижения зависит от позиции суда или арбитража.
+      </div>
+    </div>
+  </div>
+
+  <div class="note a6">⚠ <strong>Ограничение:</strong> Расхождение между языковыми версиями Приложения 10 создаёт процессуальный риск. Исход зависит от позиции конкретного состава суда или арбитража. П. 35.3 остаётся наиболее сильным аргументом брокера.</div>
+</div>
+
+<!-- ════════════ IV. СТРАТЕГИЯ ════════════ -->
+<div class="section" id="strategy">
+
+  <div class="sub-sh a1">Диапазон исходов</div>
+  <div class="outcome-bar-wrap a4">
+    <div class="outcome-bar"></div>
+    <div class="outcome-labels">
+      <span>$0 — отказ</span>
+      <span>~$164K — смешанная вина</span>
+      <span>~$327K — полная</span>
+    </div>
+  </div>
+
+  <div class="sub-sh a4">Варианты</div>
+
+  <div class="sc a4">
+    <div class="sc-letter">А</div>
+    <div class="sc-head">
+      <div class="sc-title">А. Финансовый Примиритель</div>
+      <div class="sc-prob green">50–60%</div>
+    </div>
+    <div class="pbar"><div class="pfill green" style="width:55%"></div></div>
+    <div class="sdg">
+      <div><div class="sdg-col-label">Ваши расходы</div><div class="sdg-col" style="color:var(--green);font-weight:600;">Бесплатно</div></div>
+      <div><div class="sdg-col-label">Возможности</div><div class="sdg-col">До ~$26 000 (10 млн AMD). Применяет стандарты справедливости шире буквального текста договора. Не блокирует иные пути</div></div>
+      <div><div class="sdg-col-label">Издержки</div><div class="sdg-col">Лимит компенсации ограничен. Покрывает только часть ущерба</div></div>
+    </div>
+  </div>
+
+  <div class="sc a4">
+    <div class="sc-letter">Б</div>
+    <div class="sc-head">
+      <div class="sc-title">Б. Арбитраж «Оптимус Лекс»</div>
+      <div class="sc-prob amber">40–50%</div>
+    </div>
+    <div class="pbar"><div class="pfill amber" style="width:45%"></div></div>
+    <div class="sdg">
+      <div><div class="sdg-col-label">Ваши расходы</div><div class="sdg-col">~$4 580 (начальный взнос ~$916)</div></div>
+      <div><div class="sdg-col-label">Возможности</div><div class="sdg-col">Полная сумма $327 386. Рассмотрение 3–6 мес. Арбитры, специализирующиеся на коммерческих спорах</div></div>
+      <div><div class="sdg-col-label">Издержки</div><div class="sdg-col">Арбитражный сбор. Рассмотрение на основании письменных материалов</div></div>
+    </div>
+  </div>
+
+  <div class="sc a5">
+    <div class="sc-letter">В</div>
+    <div class="sc-head">
+      <div class="sc-title">В. Суд общей юрисдикции</div>
+      <div class="sc-prob amber">35–45%</div>
+    </div>
+    <div class="pbar"><div class="pfill amber" style="width:40%"></div></div>
+    <div class="sdg">
+      <div><div class="sdg-col-label">Ваши расходы</div><div class="sdg-col">Госпошлина + адвокат</div></div>
+      <div><div class="sdg-col-label">Возможности</div><div class="sdg-col">Полная сумма $327 386. Доступен наряду с арбитражем</div></div>
+      <div><div class="sdg-col-label">Издержки</div><div class="sdg-col">Длительное рассмотрение 12–18 мес</div></div>
+    </div>
+  </div>
+
+  <div class="sc a5">
+    <div class="sc-letter">Г</div>
+    <div class="sc-head">
+      <div class="sc-title">Г. Переговоры с FFGP</div>
+      <div class="sc-prob amber">25–35%</div>
+    </div>
+    <div class="pbar"><div class="pfill amber" style="width:30%"></div></div>
+    <div class="sdg">
+      <div><div class="sdg-col-label">Ваши расходы</div><div class="sdg-col">Минимальные</div></div>
+      <div><div class="sdg-col-label">Возможности</div><div class="sdg-col">$150–200K. Репутационный рычаг (FRHC, NASDAQ)</div></div>
+      <div><div class="sdg-col-label">Издержки</div><div class="sdg-col">Неопределённость. Зависит от воли материнской компании</div></div>
+    </div>
+  </div>
+
+  <div class="sc feat a5">
+    <div class="sc-letter">Д</div>
+    <div class="sc-head">
+      <div class="sc-title">Д. КОМБИНИРОВАННАЯ — рекомендуемая</div>
+      <div class="sc-prob green">50–60%</div>
+    </div>
+    <div class="pbar"><div class="pfill green" style="width:55%"></div></div>
+    <div class="sdg">
+      <div><div class="sdg-col-label">Ваши расходы</div><div class="sdg-col">~$916 начальный + ~$4 580 полный арбитражный сбор</div></div>
+      <div><div class="sdg-col-label">Возможности</div><div class="sdg-col">А + Б + Г параллельно. Максимальное покрытие. Частичная или полная компенсация</div></div>
+      <div><div class="sdg-col-label">Издержки</div><div class="sdg-col">Координация нескольких процессов. Риск обоюдной вины сохраняется</div></div>
+    </div>
+  </div>
+
+  <div class="note a5">Формулировка арбитражной оговорки не носит однозначно исключительного характера. Собственный Регламент рассмотрения жалоб брокера прямо указывает: «Вы всегда можете обратиться в суд.»</div>
+
+  <div class="note a5" style="margin-top:8px;"><strong>Примечание:</strong> Указанные вероятности учитывают риск снижения суммы компенсации при применении принципа обоюдной вины.</div>
+</div>
+
+<!-- ════════════ V. ДЕЙСТВИЯ ════════════ -->
+<div class="section" id="actions">
+
+  <div class="sub-sh a1">Экспертная оценка</div>
+  <div class="cd cd-s a1">
+    <p class="body">ООО «Фридом Финанс Армения» нарушило договорную процедуру, установленную разделом 6 Приложения 10, что привело к принудительной ликвидации позиций клиента без предоставления ему возможности довнести средства. Размер ущерба подтверждён документом брокера. Факт ненаправления уведомления неоднократно признан. Платёжеспособность клиента установлена.</p>
+    <p class="body">Позиция брокера не лишена оснований — п. 35.3 и лингвистические особенности армянской редакции создают пространство для контраргументации. Однако совокупность доказательств, включая признания самого брокера, адресный характер технического сбоя и установленную платёжеспособность клиента, формирует обоснованную позицию для судебной защиты.</p>
+  </div>
+
+  <div class="sub-sh a2">Рекомендация</div>
+  <div class="cd a2" style="border:2px solid var(--gold); box-shadow:0 4px 24px rgba(200,150,62,.12);">
+    <div style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:16px;align-items:center;margin-bottom:12px;">
+      <div>
+        <div style="font-size:11px;color:var(--wg);text-transform:uppercase;letter-spacing:1px;font-weight:600;">Стратегия</div>
+        <div style="font-size:18px;font-weight:700;color:var(--navy);">Комбинированная (Примиритель + Арбитраж + Переговоры)</div>
+      </div>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:20px;margin-top:16px;">
+      <div>
+        <div style="font-size:11px;color:var(--wg);text-transform:uppercase;letter-spacing:1px;font-weight:600;margin-bottom:4px;">Начальные расходы</div>
+        <div style="font-size:22px;font-weight:700;color:var(--navy);">~$916</div>
+        <div style="font-size:12px;color:var(--wg);">первый взнос в арбитраж</div>
+      </div>
+      <div>
+        <div style="font-size:11px;color:var(--wg);text-transform:uppercase;letter-spacing:1px;font-weight:600;margin-bottom:4px;">Ожидаемый возврат</div>
+        <div style="font-size:22px;font-weight:700;color:var(--green);">$164–327K</div>
+        <div style="font-size:12px;color:var(--wg);">частичная или полная</div>
+      </div>
+      <div>
+        <div style="font-size:11px;color:var(--wg);text-transform:uppercase;letter-spacing:1px;font-weight:600;margin-bottom:4px;">Вероятность</div>
+        <div style="font-size:22px;font-weight:700;color:var(--amber);">50–60%</div>
+        <div style="font-size:12px;color:var(--wg);">с учётом рисков</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sub-sh a3">Комбинированная стратегия</div>
+  <div class="cd a3">
+    <p class="body"><strong style="color:var(--navy);">Направление 1 — Финансовый Примиритель</strong> (инициировано): Не отзывать заявление. Дополнить доказательную базу. Лимит: до 10 млн AMD (~$26 000). Примиритель применяет стандарты справедливости шире буквального текста договора. Положительное решение усилит позицию при последующем рассмотрении.</p>
+    <p class="body"><strong style="color:var(--navy);">Направление 2 — Иск в арбитраж «Оптимус Лекс»</strong> ($327 386): Основной судебный путь. Сроки: 3–6 месяцев. Начальный взнос: ~$916. Ходатайство об истребовании серверных логов (Push/Email/SMS) и назначении финансово-экономической экспертизы.</p>
+    <p class="body"><strong style="color:var(--navy);">Направление 3 — Переговоры с Freedom Finance Global PLC:</strong> Обращение зарегистрировано (№24-02-26/50-1/L21, срок 60–90 дней).</p>
+    <p class="body"><strong style="color:var(--navy);">Направление 4 — Фиксация доказательной базы</strong> (приоритет): Нотариальное заверение всех электронных доказательств. Банковская выписка. Детализация звонков.</p>
+  </div>
+
+  <div class="sub-sh a4">Пошаговый план</div>
+
+  <div class="stp a4">
+    <div class="stp-num">01</div>
+    <div class="stp-title">Дополнить заявление у Примирителя</div>
+    <div class="stp-desc">Не отзывать заявление. Дополнить: раздел 6 Приложения 10, скриншоты адресного сбоя (Margin Call виден менеджеру, но не клиенту), п. 4.1 Регламента о конфликте интересов, доказательства платёжеспособности (банковская выписка, выписки по иным счетам).</div>
+  </div>
+
+  <div class="stp a4">
+    <div class="stp-num">02</div>
+    <div class="stp-title">Нотариальное заверение доказательств</div>
+    <div class="stp-desc">Заверить все скриншоты WhatsApp-переписки с менеджером, тикеты поддержки Tradernet, отчёт брокера. Сохранить и заверить голосовые сообщения менеджера Коновалова (содержат существенные признания).</div>
+  </div>
+
+  <div class="stp a5">
+    <div class="stp-num">03</div>
+    <div class="stp-title">Запрос детализации звонков</div>
+    <div class="stp-desc">Запросить у мобильного оператора детализацию входящих/исходящих звонков и SMS за 12–19 ноября 2025 — документальное подтверждение отсутствия телефонного уведомления.</div>
+  </div>
+
+  <div class="stp a5">
+    <div class="stp-num">04</div>
+    <div class="stp-title">Адвокатский запрос к брокеру</div>
+    <div class="stp-desc">Запросить: серверные логи системы уведомлений (Push/Email/SMS logs) за 12–19.11.2025 для установления момента генерации Margin Call; описание технического инцидента; приказы риск-менеджеров.</div>
+  </div>
+
+  <div class="stp a5">
+    <div class="stp-num">05</div>
+    <div class="stp-title">Подать иск в арбитраж «Оптимус Лекс»</div>
+    <div class="stp-desc">Иск на полную сумму $327 386. Правовые основания: раздел 6 Приложения 10 + п. 32.1 Основных условий + ст. 3, 10, 17, 347, 395, 417, 422, 500 ГК РА.</div>
+  </div>
+
+  <div class="stp a6">
+    <div class="stp-num">06</div>
+    <div class="stp-title">Ходатайства в арбитраже</div>
+    <div class="stp-desc">Об истребовании серверных логов системы уведомлений. О назначении финансово-экономической экспертизы: «Каков был бы размер убытков при своевременном направлении Margin Call 12.11.2025 и самостоятельном управлении позицией в период 12–19.11.2025?»</div>
+  </div>
+
+  <div class="stp a6">
+    <div class="stp-num">07</div>
+    <div class="stp-title">Переговоры с Freedom Finance Global PLC (параллельно)</div>
+    <div class="stp-desc">Инициирование переговоров с материнской компанией с учётом возможных репутационных последствий спора. Предложение урегулирования.</div>
+  </div>
+
+</div>
+
+<!-- ════════════ FOOTER ════════════ -->
+<div class="footer">
+  <div class="footer-left">
+    &copy; ЮА «Гарант-Профит»<br>
+    <a href="https://garantprofit-la.ru" target="_blank">garantprofit-la.ru</a>
+  </div>
+  <div class="footer-right">
+    <div class="footer-curator">
+      <div class="footer-curator-label">Куратор</div>
+      <div class="footer-curator-name">Емелин А.С.</div>
+    </div>
+  </div>
+</div>
+
+<script>
+// Tab switching
+document.querySelectorAll('.nav-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById(btn.dataset.tab).classList.add('active');
+    window.scrollTo({ top: document.querySelector('.nav').offsetTop, behavior: 'smooth' });
+  });
+});
+
+// Progress bar
+window.addEventListener('scroll', () => {
+  const h = document.documentElement.scrollHeight - window.innerHeight;
+  document.getElementById('progress').style.width = h > 0 ? (window.scrollY / h * 100) + '%' : '0%';
+});
+</script>
+
+</body>
+</html>
