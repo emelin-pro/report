@@ -3,27 +3,28 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Гарант-Профит — Закрытая юридическая практика</title>
-<meta name="description" content="Закрытая юридическая практика для собственников и топ-менеджеров. Налоговые проверки. Корпоративные конфликты. Банкротство и субсидиарная ответственность.">
+<title>Гарант-Профит — Антикризисное управление для бизнеса</title>
+<meta name="description" content="Закрытая антикризисная практика для владельцев и управленцев бизнеса. Защита активов. Сопровождение KPI. Россия и 10 юрисдикций.">
 <style>
 :root {
   --bg: #0a0a0a;
-  --bg-card: #1a1a1a;
-  --bg-card-hover: #222;
-  --bg-elevated: #252525;
-  --text-primary: #f5f5f5;
-  --text-secondary: #999;
-  --text-muted: #666;
+  --bg-card: #151515;
+  --bg-card-hover: #1c1c1c;
+  --bg-elevated: #1a1a1a;
+  --text-primary: #f0eeeb;
+  --text-secondary: #8a8680;
+  --text-muted: #555;
   --gold: #C8963E;
   --gold-l: #D4AA5C;
   --gold-p: #F0E0C0;
-  --border: rgba(255,255,255,.08);
-  --border-hover: rgba(200,150,62,.4);
+  --gold-dim: rgba(200,150,62,.12);
+  --border: rgba(255,255,255,.06);
+  --border-hover: rgba(200,150,62,.35);
   --radius: 24px;
   --radius-sm: 14px;
   --max-w: 1320px;
-  --pad: 40px;
-  --gap: 16px;
+  --pad: 48px;
+  --gap: 14px;
 }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -46,46 +47,63 @@ a { color: inherit; text-decoration: none; }
   margin: 0 auto;
   padding: 0 var(--pad);
 }
+.section { padding: 120px 0; }
 
-.section {
-  padding: 100px 0;
-}
-
-.section-title {
-  font-size: clamp(28px, 3.2vw, 42px);
+.section-label {
+  font-size: 11px;
   font-weight: 600;
-  letter-spacing: -.02em;
-  margin-bottom: 48px;
-  line-height: 1.15;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 16px;
 }
-
-.section-title-center {
-  text-align: center;
+.section-title {
+  font-size: clamp(28px, 3.2vw, 44px);
+  font-weight: 600;
+  letter-spacing: -.025em;
+  margin-bottom: 20px;
+  line-height: 1.12;
 }
+.section-subtitle {
+  font-size: 17px;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  max-width: 560px;
+  margin-bottom: 56px;
+}
+.section-title-center, .section-subtitle-center { text-align: center; }
+.section-subtitle-center { margin-left: auto; margin-right: auto; }
 
-/* ── Reveal Animation ── */
+/* ── Reveal ── */
 .reveal {
   opacity: 0;
-  transform: translateY(32px);
+  transform: translateY(28px);
   transition: opacity .7s cubic-bezier(.16,1,.3,1), transform .7s cubic-bezier(.16,1,.3,1);
 }
 .reveal.visible {
   opacity: 1;
   transform: translateY(0);
 }
+.reveal-delay-1 { transition-delay: .08s; }
+.reveal-delay-2 { transition-delay: .16s; }
+.reveal-delay-3 { transition-delay: .24s; }
 
-/* ── Card base ── */
+/* ── Card ── */
 .card {
   background: var(--bg-card);
   border: 1px solid var(--border);
   border-radius: var(--radius);
   padding: 32px;
-  transition: transform .35s cubic-bezier(.16,1,.3,1), border-color .35s, box-shadow .35s;
+  transition: transform .4s cubic-bezier(.16,1,.3,1), border-color .4s, box-shadow .4s;
 }
 .card:hover {
   transform: translateY(-4px);
   border-color: var(--border-hover);
-  box-shadow: 0 8px 40px rgba(200,150,62,.06);
+  box-shadow: 0 12px 48px rgba(200,150,62,.05);
+}
+.card-accent {
+  border-color: rgba(200,150,62,.2);
+  background: linear-gradient(160deg, rgba(200,150,62,.06) 0%, var(--bg-card) 50%);
 }
 
 /* ── Header ── */
@@ -101,9 +119,9 @@ a { color: inherit; text-decoration: none; }
   transition: background .35s, backdrop-filter .35s, box-shadow .35s;
 }
 .header.scrolled {
-  background: rgba(10,10,10,.85);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
+  background: rgba(10,10,10,.88);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
   box-shadow: 0 1px 0 var(--border);
 }
 .header-logo {
@@ -116,14 +134,35 @@ a { color: inherit; text-decoration: none; }
   font-weight: 700;
   letter-spacing: .3px;
 }
+.header-nav {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.header-login {
+  padding: 9px 22px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  transition: all .25s;
+  cursor: pointer;
+  background: none;
+}
+.header-login:hover {
+  color: var(--text-primary);
+  border-color: rgba(255,255,255,.15);
+  background: rgba(255,255,255,.04);
+}
 .header-cta {
-  padding: 10px 28px;
+  display: inline-block;
+  padding: 9px 24px;
   border: 1.5px solid var(--gold);
   border-radius: var(--radius-sm);
   font-size: 13px;
   font-weight: 600;
   color: var(--gold-l);
-  letter-spacing: .3px;
   transition: all .25s;
 }
 .header-cta:hover {
@@ -131,58 +170,145 @@ a { color: inherit; text-decoration: none; }
   color: var(--bg);
 }
 
+/* ── Modal ── */
+.modal-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,.7);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  z-index: 2000;
+  align-items: center;
+  justify-content: center;
+}
+.modal-overlay.open { display: flex; }
+.modal {
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 48px 40px;
+  width: 100%;
+  max-width: 400px;
+  position: relative;
+}
+.modal-close {
+  position: absolute;
+  top: 16px; right: 16px;
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  padding: 8px;
+  transition: color .2s;
+}
+.modal-close:hover { color: var(--text-primary); }
+.modal-close svg { width: 20px; height: 20px; }
+.modal-title {
+  font-size: 22px;
+  font-weight: 600;
+  margin-bottom: 8px;
+  letter-spacing: -.01em;
+}
+.modal-sub {
+  font-size: 14px;
+  color: var(--text-secondary);
+  margin-bottom: 28px;
+  line-height: 1.5;
+}
+.modal-input {
+  width: 100%;
+  padding: 13px 16px;
+  background: rgba(255,255,255,.04);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  color: var(--text-primary);
+  font-size: 14px;
+  font-family: inherit;
+  outline: none;
+  transition: border-color .25s, box-shadow .25s;
+  margin-bottom: 12px;
+}
+.modal-input::placeholder { color: var(--text-muted); }
+.modal-input:focus {
+  border-color: var(--gold);
+  box-shadow: 0 0 0 3px rgba(200,150,62,.1);
+}
+.modal-btn {
+  width: 100%;
+  padding: 14px;
+  background: var(--gold);
+  color: var(--bg);
+  font-size: 14px;
+  font-weight: 700;
+  border: none;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  font-family: inherit;
+  transition: background .25s;
+  margin-top: 4px;
+}
+.modal-btn:hover { background: var(--gold-l); }
+
 /* ── Hero ── */
 .hero {
-  min-height: max(70vh, 600px);
+  min-height: max(75vh, 640px);
   display: flex;
   align-items: center;
   padding-top: 72px;
   position: relative;
   overflow: hidden;
 }
+.hero::before {
+  content: '';
+  position: absolute;
+  top: -200px; right: -150px;
+  width: 700px; height: 700px;
+  background: radial-gradient(circle, rgba(200,150,62,.06) 0%, transparent 60%);
+  pointer-events: none;
+}
 .hero::after {
   content: '';
   position: absolute;
-  top: -100px; right: -100px;
+  bottom: -300px; left: -200px;
   width: 600px; height: 600px;
-  background: radial-gradient(circle, rgba(200,150,62,.07) 0%, transparent 65%);
+  background: radial-gradient(circle, rgba(200,150,62,.03) 0%, transparent 65%);
   pointer-events: none;
 }
-.hero-grid {
+.hero-inner {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 60px;
+  grid-template-columns: 1.15fr 1fr;
+  gap: 80px;
   align-items: center;
   width: 100%;
 }
-.hero-content {
-  max-width: 620px;
-}
-.hero-label {
-  display: inline-block;
-  font-size: 12px;
-  font-weight: 600;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  color: var(--gold);
-  margin-bottom: 24px;
-  padding: 6px 16px;
-  border: 1px solid rgba(200,150,62,.25);
-  border-radius: 40px;
-}
 .hero-title {
-  font-size: clamp(32px, 4.5vw, 56px);
+  font-size: clamp(34px, 4.5vw, 58px);
   font-weight: 700;
-  line-height: 1.1;
-  letter-spacing: -.03em;
-  margin-bottom: 20px;
+  line-height: 1.08;
+  letter-spacing: -.035em;
+  margin-bottom: 24px;
+}
+.hero-title em {
+  font-style: normal;
+  color: var(--gold);
 }
 .hero-sub {
   font-size: 17px;
   color: var(--text-secondary);
+  line-height: 1.65;
+  margin-bottom: 16px;
+  max-width: 500px;
+}
+.hero-geo {
+  font-size: 13px;
+  color: var(--text-muted);
+  margin-bottom: 40px;
   line-height: 1.6;
-  margin-bottom: 36px;
-  max-width: 480px;
+}
+.hero-geo strong {
+  color: var(--text-secondary);
+  font-weight: 500;
 }
 .hero-btn {
   display: inline-flex;
@@ -201,17 +327,15 @@ a { color: inherit; text-decoration: none; }
 .hero-btn:hover {
   background: var(--gold-l);
   transform: translateY(-2px);
-  box-shadow: 0 8px 32px rgba(200,150,62,.25);
+  box-shadow: 0 8px 32px rgba(200,150,62,.2);
 }
 .hero-btn svg {
   width: 18px; height: 18px;
   transition: transform .25s;
 }
-.hero-btn:hover svg {
-  transform: translateX(3px);
-}
+.hero-btn:hover svg { transform: translateX(3px); }
 
-/* Hero stat cards */
+/* Hero stats */
 .hero-stats {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -223,228 +347,306 @@ a { color: inherit; text-decoration: none; }
   border-radius: var(--radius);
   padding: 28px 24px;
   text-align: center;
+  transition: border-color .35s;
 }
+.hero-stat:hover { border-color: var(--border-hover); }
 .hero-stat-num {
-  font-size: 36px;
+  font-size: 38px;
   font-weight: 700;
-  color: var(--text-primary);
   line-height: 1.1;
   margin-bottom: 4px;
 }
 .hero-stat-label {
   font-size: 13px;
   color: var(--text-muted);
-  line-height: 1.3;
-}
-.hero-stat-sub {
-  font-size: 11px;
-  color: var(--text-muted);
-  margin-top: 2px;
-  opacity: .6;
+  line-height: 1.35;
 }
 
-/* ── Bento Grid: Privileges ── */
-.bento-grid {
+/* ── Audience Bento ── */
+.audience-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: 1fr 1fr;
   gap: var(--gap);
 }
-.bento-grid .card-wide {
-  grid-column: span 2;
-}
-.bento-grid .card-tall {
-  grid-row: span 2;
-}
-.card-icon {
-  width: 44px;
-  height: 44px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: rgba(200,150,62,.1);
-  border-radius: 12px;
-  margin-bottom: 20px;
-  color: var(--gold);
-  font-size: 20px;
-}
-.card-title {
-  font-size: 20px;
-  font-weight: 600;
-  margin-bottom: 10px;
-  letter-spacing: -.01em;
-  line-height: 1.25;
-}
-.card-text {
-  font-size: 15px;
-  color: var(--text-secondary);
-  line-height: 1.6;
-}
-.card-big-num {
-  font-size: 72px;
-  font-weight: 800;
-  color: var(--gold);
-  line-height: 1;
-  margin-top: 16px;
-  letter-spacing: -.04em;
-  opacity: .35;
-}
-.card-accent {
-  border-color: var(--gold);
-  background: linear-gradient(160deg, rgba(200,150,62,.08) 0%, var(--bg-card) 60%);
-}
-
-/* ── Practice Directions ── */
-.practice-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: var(--gap);
-}
-.practice-card {
+.audience-card {
+  padding: 40px 36px;
   display: flex;
   flex-direction: column;
 }
-.practice-num {
-  font-size: 13px;
+.audience-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
   font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
   color: var(--gold);
-  letter-spacing: 2px;
-  margin-bottom: 16px;
+  margin-bottom: 20px;
 }
-.practice-title {
-  font-size: 22px;
+.audience-tag::before {
+  content: '';
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: var(--gold);
+  opacity: .5;
+}
+.audience-title {
+  font-size: 26px;
   font-weight: 600;
-  margin-bottom: 6px;
-  line-height: 1.25;
-  letter-spacing: -.01em;
+  letter-spacing: -.02em;
+  margin-bottom: 12px;
+  line-height: 1.2;
 }
-.practice-subtitle {
+.audience-text {
+  font-size: 15px;
+  color: var(--text-secondary);
+  line-height: 1.65;
+  margin-bottom: 28px;
+  flex-grow: 1;
+}
+.audience-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.audience-list li {
   font-size: 14px;
-  color: var(--text-muted);
-  font-style: italic;
-  margin-bottom: 16px;
+  color: var(--text-secondary);
+  padding-left: 20px;
+  position: relative;
   line-height: 1.5;
 }
-.practice-text {
+.audience-list li::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 7px;
+  width: 6px; height: 6px;
+  border-radius: 1px;
+  background: var(--gold);
+  opacity: .6;
+  transform: rotate(45deg);
+}
+
+/* ── Services bento ── */
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--gap);
+}
+.service-card {
+  padding: 32px;
+}
+.service-card.wide { grid-column: span 2; }
+.service-tag {
+  display: inline-block;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  border-radius: 6px;
+  margin-bottom: 16px;
+}
+.service-tag.owners {
+  background: rgba(200,150,62,.1);
+  color: var(--gold);
+}
+.service-tag.managers {
+  background: rgba(44,74,110,.2);
+  color: #6b9fd4;
+}
+.service-tag.both {
+  background: rgba(255,255,255,.05);
+  color: var(--text-secondary);
+}
+.service-icon {
+  width: 44px; height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--gold-dim);
+  border-radius: 12px;
+  margin-bottom: 18px;
+  color: var(--gold);
+}
+.service-title {
+  font-size: 19px;
+  font-weight: 600;
+  margin-bottom: 8px;
+  letter-spacing: -.01em;
+  line-height: 1.25;
+}
+.service-text {
+  font-size: 14px;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+/* ── Industries ── */
+.industry-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--gap);
+}
+.industry-card {
+  padding: 28px 24px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+.industry-icon {
+  width: 40px; height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--gold);
+  opacity: .7;
+}
+.industry-name {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-secondary);
+}
+
+/* ── Lifecycle ── */
+.lifecycle-track {
+  display: flex;
+  gap: 2px;
+  border-radius: var(--radius);
+  overflow: hidden;
+  margin-top: 48px;
+}
+.lifecycle-stage {
+  flex: 1;
+  padding: 32px 20px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  text-align: center;
+  transition: all .35s;
+  cursor: default;
+}
+.lifecycle-stage:first-child { border-radius: var(--radius) 0 0 var(--radius); }
+.lifecycle-stage:last-child { border-radius: 0 var(--radius) var(--radius) 0; }
+.lifecycle-stage:hover {
+  background: var(--bg-card-hover);
+  border-color: var(--border-hover);
+}
+.lifecycle-stage-name {
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+.lifecycle-stage-desc {
+  font-size: 12px;
+  color: var(--text-muted);
+  line-height: 1.4;
+}
+.lifecycle-stage.active {
+  background: rgba(200,150,62,.06);
+  border-color: rgba(200,150,62,.3);
+}
+.lifecycle-stage.active .lifecycle-stage-name {
+  color: var(--gold-l);
+}
+
+/* ── Cases ── */
+.cases-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--gap);
+}
+.case-card {
+  padding: 36px 32px;
+  display: flex;
+  flex-direction: column;
+}
+.case-industry {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 14px;
+}
+.case-title {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 12px;
+  line-height: 1.3;
+  letter-spacing: -.01em;
+}
+.case-text {
   font-size: 14px;
   color: var(--text-secondary);
   line-height: 1.6;
   margin-bottom: 24px;
   flex-grow: 1;
 }
-.practice-stats {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  padding-top: 20px;
+.case-result {
+  padding-top: 16px;
   border-top: 1px solid var(--border);
-  margin-bottom: 20px;
 }
-.practice-stat {
-  display: flex;
-  align-items: baseline;
-  gap: 10px;
-}
-.practice-stat-val {
-  font-size: 18px;
-  font-weight: 700;
-  color: var(--gold-l);
-  white-space: nowrap;
-}
-.practice-stat-text {
-  font-size: 13px;
+.case-result-label {
+  font-size: 11px;
   color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 4px;
 }
-.practice-link {
-  font-size: 14px;
+.case-result-val {
+  font-size: 16px;
   font-weight: 600;
-  color: var(--gold);
-  transition: color .2s;
+  color: var(--gold-l);
 }
-.practice-link:hover { color: var(--gold-l); }
-.practice-link::after { content: ' \2192'; }
 
-/* ── Steps ── */
-.steps-track {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: var(--gap);
-  margin-bottom: 32px;
-  position: relative;
-}
-.steps-track::before {
-  content: '';
-  position: absolute;
-  top: 36px;
-  left: 60px;
-  right: 60px;
-  height: 2px;
-  background: linear-gradient(90deg, var(--gold), rgba(200,150,62,.15));
-  border-radius: 1px;
-}
-.step-card {
-  background: var(--bg-card);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  padding: 28px 20px;
-  text-align: center;
-  position: relative;
-  transition: transform .35s cubic-bezier(.16,1,.3,1), border-color .35s;
-}
-.step-card:hover {
-  transform: translateY(-4px);
-  border-color: var(--border-hover);
-}
-.step-num {
-  display: inline-flex;
+/* ── Ratings ── */
+.ratings-row {
+  display: flex;
   align-items: center;
   justify-content: center;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  background: rgba(200,150,62,.12);
-  color: var(--gold);
-  font-size: 16px;
-  font-weight: 700;
-  margin-bottom: 16px;
-  position: relative;
-  z-index: 1;
+  gap: 48px;
+  flex-wrap: wrap;
+  padding: 48px 0;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
 }
-.step-title {
-  font-size: 16px;
-  font-weight: 600;
-  margin-bottom: 6px;
+.rating-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  opacity: .4;
+  transition: opacity .3s;
 }
-.step-desc {
-  font-size: 13px;
-  color: var(--text-muted);
-  line-height: 1.5;
-}
-
-.quote-card {
-  background: var(--bg-card);
-  border: 1px solid var(--gold);
-  border-radius: var(--radius);
-  padding: 36px 48px;
-  text-align: center;
+.rating-item:hover { opacity: .7; }
+.rating-logo {
+  height: 28px;
+  display: flex;
+  align-items: center;
   font-size: 18px;
-  color: var(--gold-p);
-  font-weight: 400;
-  line-height: 1.6;
+  font-weight: 700;
+  letter-spacing: -.01em;
+  color: var(--text-primary);
+}
+.rating-year {
+  font-size: 11px;
+  color: var(--text-muted);
 }
 
 /* ── Form ── */
-.form-section {
-  padding: 100px 0;
-}
+.form-section { padding: 120px 0; }
 .form-wrapper {
   background: var(--bg-card);
   border: 1px solid var(--border);
-  border-top: 3px solid var(--gold);
   border-radius: var(--radius);
   padding: 56px;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 60px;
+  gap: 64px;
   align-items: start;
 }
 .form-title {
@@ -458,7 +660,7 @@ a { color: inherit; text-decoration: none; }
   font-size: 15px;
   color: var(--text-secondary);
   line-height: 1.65;
-  margin-bottom: 28px;
+  margin-bottom: 32px;
 }
 .form-note {
   display: flex;
@@ -480,7 +682,7 @@ a { color: inherit; text-decoration: none; }
 .input {
   width: 100%;
   padding: 14px 18px;
-  background: rgba(255,255,255,.04);
+  background: rgba(255,255,255,.03);
   border: 1px solid var(--border);
   border-radius: 12px;
   color: var(--text-primary);
@@ -492,12 +694,9 @@ a { color: inherit; text-decoration: none; }
 .input::placeholder { color: var(--text-muted); }
 .input:focus {
   border-color: var(--gold);
-  box-shadow: 0 0 0 3px rgba(200,150,62,.1);
+  box-shadow: 0 0 0 3px rgba(200,150,62,.08);
 }
-textarea.input {
-  resize: vertical;
-  min-height: 90px;
-}
+textarea.input { resize: vertical; min-height: 90px; }
 .submit-btn {
   width: 100%;
   padding: 16px 24px;
@@ -512,7 +711,6 @@ textarea.input {
   transition: all .25s;
 }
 .submit-btn:hover { background: var(--gold-l); }
-.submit-btn:disabled { opacity: .5; cursor: not-allowed; }
 
 .form-success {
   display: none;
@@ -522,7 +720,7 @@ textarea.input {
 .form-success-check {
   width: 56px; height: 56px;
   border-radius: 50%;
-  background: rgba(200,150,62,.12);
+  background: var(--gold-dim);
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -541,90 +739,114 @@ textarea.input {
 
 /* ── Footer ── */
 .footer {
-  padding: 32px var(--pad);
+  padding: 40px var(--pad) 48px;
   border-top: 1px solid var(--border);
+}
+.footer-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 32px;
+  margin-bottom: 32px;
+}
+.footer-brand {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.footer-brand-text {
+  font-size: 14px;
+  font-weight: 600;
+}
+.footer-contacts {
+  text-align: right;
+  font-size: 13px;
+  color: var(--text-secondary);
+  line-height: 1.7;
+}
+.footer-contacts a {
+  color: var(--text-secondary);
+  transition: color .2s;
+}
+.footer-contacts a:hover { color: var(--gold-l); }
+.footer-bottom {
   display: flex;
   justify-content: space-between;
   align-items: center;
   flex-wrap: wrap;
   gap: 16px;
+  padding-top: 24px;
+  border-top: 1px solid var(--border);
 }
-.footer-left {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-}
-.footer-text {
-  font-size: 13px;
+.footer-copy {
+  font-size: 12px;
   color: var(--text-muted);
 }
-.footer-icon {
+.footer-socials {
+  display: flex;
+  gap: 8px;
+}
+.footer-social {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 36px;
-  height: 36px;
+  width: 36px; height: 36px;
   border-radius: 50%;
   border: 1px solid var(--border);
   transition: all .25s;
 }
-.footer-icon:hover {
+.footer-social:hover {
   border-color: var(--gold);
-  background: rgba(200,150,62,.08);
+  background: rgba(200,150,62,.06);
 }
-.footer-icon svg {
+.footer-social svg {
   width: 16px; height: 16px;
   fill: var(--text-muted);
 }
-.footer-icon:hover svg { fill: var(--gold-l); }
+.footer-social:hover svg { fill: var(--gold-l); }
 
 /* ── Mobile ── */
-@media (max-width: 960px) {
-  .bento-grid { grid-template-columns: 1fr 1fr; }
-  .bento-grid .card-wide { grid-column: span 2; }
-  .practice-grid { grid-template-columns: 1fr; }
-  .steps-track {
-    grid-template-columns: 1fr;
-    gap: 12px;
-  }
-  .steps-track::before { display: none; }
+@media (max-width: 1100px) {
+  .services-grid { grid-template-columns: 1fr 1fr; }
+  .service-card.wide { grid-column: span 2; }
+  .cases-grid { grid-template-columns: 1fr; }
+  .industry-grid { grid-template-columns: repeat(4, 1fr); }
 }
 
 @media (max-width: 768px) {
-  :root { --pad: 20px; --gap: 12px; }
-  .section { padding: 64px 0; }
+  :root { --pad: 20px; --gap: 10px; }
+  .section { padding: 72px 0; }
   .hero { min-height: auto; padding-top: 100px; padding-bottom: 40px; }
-  .hero-grid {
-    grid-template-columns: 1fr;
-    gap: 40px;
-  }
-  .hero-title { font-size: 28px; }
+  .hero-inner { grid-template-columns: 1fr; gap: 40px; }
+  .hero-title { font-size: 30px; }
   .hero-sub { font-size: 15px; }
   .hero-stats { grid-template-columns: 1fr 1fr; }
   .hero-stat { padding: 20px 16px; }
   .hero-stat-num { font-size: 28px; }
-  .bento-grid {
-    grid-template-columns: 1fr;
-  }
-  .bento-grid .card-wide { grid-column: span 1; }
+  .audience-grid { grid-template-columns: 1fr; }
+  .services-grid { grid-template-columns: 1fr; }
+  .service-card.wide { grid-column: span 1; }
+  .industry-grid { grid-template-columns: 1fr 1fr; }
+  .lifecycle-track { flex-direction: column; gap: 0; }
+  .lifecycle-stage:first-child { border-radius: var(--radius) var(--radius) 0 0; }
+  .lifecycle-stage:last-child { border-radius: 0 0 var(--radius) var(--radius); }
+  .form-wrapper { grid-template-columns: 1fr; gap: 32px; padding: 32px 24px; }
+  .section-title { margin-bottom: 16px; }
   .card { padding: 24px; }
-  .form-wrapper {
-    grid-template-columns: 1fr;
-    gap: 32px;
-    padding: 32px 24px;
-  }
-  .section-title { margin-bottom: 32px; }
-  .header { padding: 0 20px; }
+  .header { padding: 0 20px; height: 64px; }
   .header-logo-text { font-size: 13px; }
-  .footer { padding: 24px 20px; }
+  .ratings-row { gap: 28px; padding: 32px 0; }
+  .footer-contacts { text-align: left; }
+  .modal { padding: 36px 28px; margin: 20px; }
 }
 
 /* ── Print ── */
 @media print {
-  .header { display: none !important; }
+  .header, .modal-overlay { display: none !important; }
   .reveal { opacity: 1 !important; transform: none !important; }
   body { background: white; color: #333; }
-  .card, .hero-stat, .step-card, .form-wrapper { border-color: #ddd; background: #fafafa; }
+  .card, .hero-stat, .form-wrapper { border-color: #ddd; background: #fafafa; }
 }
 </style>
 </head>
@@ -643,35 +865,51 @@ textarea.input {
     </svg>
     <span class="header-logo-text">Гарант-Профит</span>
   </a>
-  <a href="#form" class="header-cta">Оставить заявку</a>
+  <div class="header-nav">
+    <button class="header-login" id="login-btn">Личный кабинет</button>
+    <a href="#form" class="header-cta">Оставить заявку</a>
+  </div>
 </header>
 
+<!-- ════════════ LOGIN MODAL ════════════ -->
+<div class="modal-overlay" id="modal-overlay">
+  <div class="modal">
+    <button class="modal-close" id="modal-close">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+    </button>
+    <div class="modal-title">Личный кабинет</div>
+    <div class="modal-sub">Доступ для действующих клиентов агентства</div>
+    <input type="text" class="modal-input" placeholder="Логин или email">
+    <input type="password" class="modal-input" placeholder="Пароль">
+    <button class="modal-btn">Войти</button>
+  </div>
+</div>
+
 <!-- ════════════ HERO ════════════ -->
-<section class="hero section">
+<section class="hero">
   <div class="container">
-    <div class="hero-grid">
+    <div class="hero-inner">
       <div class="hero-content reveal">
-        <div class="hero-label">С 2002 года</div>
-        <h1 class="hero-title">Управляем ситуациями, в&nbsp;которых решается судьба бизнеса</h1>
-        <p class="hero-sub">Закрытая юридическая практика для собственников. Ограниченный приём. Персональное ведение каждого проекта.</p>
+        <h1 class="hero-title">Антикризисное управление для тех, кому есть <em>что терять</em></h1>
+        <p class="hero-sub">Закрытая практика для владельцев и&nbsp;управленцев бизнеса. Защита активов. Сопровождение критических решений. Работа по&nbsp;модели закрытого клуба.</p>
+        <div class="hero-geo"><strong>Россия</strong> &middot; Китай &middot; ОАЭ &middot; Турция &middot; Вьетнам &middot; Индонезия &middot; Таиланд &middot; Бразилия &middot; Казахстан &middot; Грузия &middot; Армения</div>
         <a href="#form" class="hero-btn">
-          Подать заявку на рассмотрение
+          Оставить заявку
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
         </a>
       </div>
-      <div class="hero-stats reveal" style="transition-delay:.15s">
+      <div class="hero-stats reveal reveal-delay-1">
         <div class="hero-stat">
           <div class="hero-stat-num" data-target="24">0</div>
           <div class="hero-stat-label">года на рынке</div>
-          <div class="hero-stat-sub">с 2002 года</div>
+        </div>
+        <div class="hero-stat">
+          <div class="hero-stat-num" data-target="11" data-suffix=" юрисдикций">0</div>
+          <div class="hero-stat-label">география работы</div>
         </div>
         <div class="hero-stat">
           <div class="hero-stat-num" data-target="1700" data-suffix="+">0</div>
           <div class="hero-stat-label">закрытых проектов</div>
-        </div>
-        <div class="hero-stat">
-          <div class="hero-stat-num" data-target="42">0</div>
-          <div class="hero-stat-label">специалистов</div>
         </div>
         <div class="hero-stat">
           <div class="hero-stat-num" data-target="98.7" data-suffix=" млрд&nbsp;₽" data-decimal="1">0</div>
@@ -682,205 +920,289 @@ textarea.input {
   </div>
 </section>
 
-<!-- ════════════ BENTO: PRIVILEGES ════════════ -->
-<section class="section" id="privileges">
+<!-- ════════════ AUDIENCE: OWNERS & MANAGERS ════════════ -->
+<section class="section" id="audience">
   <div class="container">
-    <h2 class="section-title section-title-center reveal">Что вы получаете</h2>
-    <div class="bento-grid">
+    <div class="section-label reveal">Для кого</div>
+    <h2 class="section-title reveal">Две аудитории. Разные задачи.<br>Одна система решений.</h2>
+    <div class="section-subtitle reveal">Мы различаем интересы тех, кто владеет бизнесом, и тех, кто им управляет. Потому что инструменты, метрики и&nbsp;риски у них разные.</div>
+    <div class="audience-grid">
+      <div class="card audience-card card-accent reveal">
+        <div class="audience-tag">Владельцам</div>
+        <div class="audience-title">Защита активов и&nbsp;контроля</div>
+        <div class="audience-text">Акционерам, учредителям, инвесторам — когда на кону стоит не KPI, а&nbsp;личное имущество, доля в&nbsp;бизнесе или свобода.</div>
+        <ul class="audience-list">
+          <li>Защита от субсидиарной ответственности</li>
+          <li>Структурирование и вывод активов</li>
+          <li>Корпоративные конфликты и размытие долей</li>
+          <li>Налоговые претензии и уголовные риски</li>
+          <li>Банкротство — управляемое, а не стихийное</li>
+        </ul>
+      </div>
+      <div class="card audience-card reveal reveal-delay-1">
+        <div class="audience-tag">Управленцам</div>
+        <div class="audience-title">Инструменты для выполнения KPI</div>
+        <div class="audience-text">Генеральным директорам, коммерческим директорам, директорам по развитию — когда задача стоит, а&nbsp;ресурсов внутри не хватает.</div>
+        <ul class="audience-list">
+          <li>Антикризисная реструктуризация</li>
+          <li>Сопровождение сделок M&A</li>
+          <li>Оптимизация юридической функции</li>
+          <li>Управление регуляторными рисками</li>
+          <li>Due diligence контрагентов и партнёров</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
 
-      <div class="card card-wide card-accent reveal">
-        <div class="card-icon">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+<!-- ════════════ SERVICES BENTO ════════════ -->
+<section class="section" id="services">
+  <div class="container">
+    <div class="section-label reveal">Направления</div>
+    <h2 class="section-title reveal">Что мы делаем</h2>
+    <div class="section-subtitle reveal">Антикризисная практика полного цикла. От&nbsp;диагностики ситуации до закрытия проекта с&nbsp;зафиксированным результатом.</div>
+    <div class="services-grid">
+
+      <div class="card service-card wide reveal">
+        <span class="service-tag owners">Владельцам</span>
+        <div class="service-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
         </div>
-        <div class="card-title">Персональный куратор</div>
-        <div class="card-text">Один куратор на весь проект. Доступен 24/7. Знает каждую деталь вашей ситуации. Вы&nbsp;общаетесь с&nbsp;человеком, который принимает решения, а&nbsp;не&nbsp;с&nbsp;колл-центром.</div>
+        <div class="service-title">Защита активов и&nbsp;собственности</div>
+        <div class="service-text">Превентивная защита и&nbsp;экстренное реагирование. Структурирование владения, налоговое планирование, защита от&nbsp;субсидиарки и&nbsp;уголовных рисков. Работа в&nbsp;11 юрисдикциях.</div>
       </div>
 
-      <div class="card reveal">
-        <div class="card-icon">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+      <div class="card service-card reveal reveal-delay-1">
+        <span class="service-tag owners">Владельцам</span>
+        <div class="service-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
         </div>
-        <div class="card-title">Конфиденциальность</div>
-        <div class="card-text">Все коммуникации защищены. NDA с&nbsp;первой встречи. Закрытый контур работы.</div>
+        <div class="service-title">Корпоративные конфликты</div>
+        <div class="service-text">Рейдерство, выход партнёра, размытие доли. Возвращаем контроль и&nbsp;закрываем входы.</div>
       </div>
 
-      <div class="card reveal">
-        <div class="card-icon">
+      <div class="card service-card reveal reveal-delay-1">
+        <span class="service-tag managers">Управленцам</span>
+        <div class="service-icon">
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
         </div>
-        <div class="card-title">Стратегия, не шаблон</div>
-        <div class="card-text">Каждый проект — индивидуальный план с&nbsp;прогнозами, сроками и&nbsp;сценариями.</div>
+        <div class="service-title">Антикризисная реструктуризация</div>
+        <div class="service-text">Финансовое оздоровление, реструктуризация долга, переговоры с&nbsp;кредиторами.</div>
       </div>
 
-      <div class="card reveal">
-        <div class="card-icon">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+      <div class="card service-card reveal">
+        <span class="service-tag both">Всем</span>
+        <div class="service-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/><line x1="12" y1="12" x2="12" y2="16"/></svg>
         </div>
-        <div class="card-title">Еженедельная отчётность</div>
-        <div class="card-text">Полный контроль на каждом этапе. Отчёт каждую неделю. Никаких сюрпризов.</div>
+        <div class="service-title">Сопровождение сделок</div>
+        <div class="service-text">M&A, joint ventures, due diligence. Структурирование сделок с&nbsp;минимизацией рисков.</div>
       </div>
 
-      <div class="card reveal" style="display:flex;flex-direction:column;justify-content:space-between;">
-        <div>
-          <div class="card-icon">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-          </div>
-          <div class="card-title">Ограниченный приём</div>
-          <div class="card-text">Не более 15 новых проектов в&nbsp;квартал. Внимание, невозможное в&nbsp;массовой практике.</div>
+      <div class="card service-card reveal reveal-delay-1">
+        <span class="service-tag owners">Владельцам</span>
+        <div class="service-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 3v18h18"/><path d="m19 9-5 5-4-4-3 3"/></svg>
         </div>
-        <div class="card-big-num">15</div>
+        <div class="service-title">Банкротство</div>
+        <div class="service-text">Контролируемое банкротство, защита КДЛ, оспаривание сделок. Отсекаем личное от&nbsp;корпоративного.</div>
       </div>
 
-      <div class="card card-wide card-accent reveal">
-        <div class="card-icon">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+      <div class="card service-card wide reveal">
+        <span class="service-tag managers">Управленцам</span>
+        <div class="service-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
         </div>
-        <div class="card-title">Результат, не процесс</div>
-        <div class="card-text">Мы ведём проект до результата. Не&nbsp;консультируем — управляем ситуацией. Один куратор. Полный контроль. Вы&nbsp;получаете не&nbsp;юридическую услугу, а&nbsp;решение проблемы.</div>
+        <div class="service-title">Операционная юридическая поддержка</div>
+        <div class="service-text">Аутсорсинг юридической функции для компаний, которым нужна экспертиза уровня in-house, но&nbsp;без содержания штата. Регуляторика, комплаенс, договорная работа, претензии и&nbsp;суды — закрываем как внешняя команда, работающая на&nbsp;ваш KPI.</div>
       </div>
 
     </div>
   </div>
 </section>
 
-<!-- ════════════ PRACTICE DIRECTIONS ════════════ -->
-<section class="section" id="practice">
+<!-- ════════════ INDUSTRIES & LIFECYCLE ════════════ -->
+<section class="section" id="industries">
   <div class="container">
-    <h2 class="section-title reveal">Три типа ситуаций,<br>в которых мы работаем</h2>
-    <div class="practice-grid">
+    <div class="section-label reveal">Отрасли и стадии</div>
+    <h2 class="section-title reveal">Работаем с&nbsp;бизнесом любого масштаба</h2>
+    <div class="section-subtitle reveal">Отраслевая экспертиза позволяет нам видеть специфику вашего рынка и&nbsp;не&nbsp;тратить время на&nbsp;погружение.</div>
 
-      <div class="card practice-card reveal">
-        <div class="practice-num">01</div>
-        <div class="practice-title">Налоговые проверки</div>
-        <div class="practice-subtitle">Когда государство решило посчитать ваши деньги заново</div>
-        <div class="practice-text">Выездная проверка. Доначисления. Блокировка счетов. Уголовная перспектива. Мы входим в&nbsp;ситуацию до того, как она станет необратимой.</div>
-        <div class="practice-stats">
-          <div class="practice-stat">
-            <span class="practice-stat-val">340+</span>
-            <span class="practice-stat-text">налоговых проектов</span>
-          </div>
-          <div class="practice-stat">
-            <span class="practice-stat-val">87%</span>
-            <span class="practice-stat-text">снижение доначислений</span>
-          </div>
-          <div class="practice-stat">
-            <span class="practice-stat-val">0</span>
-            <span class="practice-stat-text">возбуждённых дел</span>
-          </div>
+    <div class="industry-grid reveal">
+      <div class="card industry-card">
+        <div class="industry-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M2 20h20"/><path d="M5 20V8l4-3v15"/><path d="M9 20V5l4-3v18"/><path d="M13 20V4"/><path d="M17 20V8l4 3v9"/></svg>
         </div>
-        <a href="#form" class="practice-link">Обсудить ситуацию</a>
+        <div class="industry-name">Производство</div>
       </div>
-
-      <div class="card practice-card reveal">
-        <div class="practice-num">02</div>
-        <div class="practice-title">Корпоративные конфликты</div>
-        <div class="practice-subtitle">Когда ваш бизнес забирают — тихо или открыто</div>
-        <div class="practice-text">Рейдерский захват. Размытие долей. Вывод активов партнёром. Мы&nbsp;возвращаем контроль и&nbsp;закрываем все входы.</div>
-        <div class="practice-stats">
-          <div class="practice-stat">
-            <span class="practice-stat-val">180+</span>
-            <span class="practice-stat-text">конфликтов разрешено</span>
-          </div>
-          <div class="practice-stat">
-            <span class="practice-stat-val">94%</span>
-            <span class="practice-stat-text">сохранение контроля</span>
-          </div>
-          <div class="practice-stat">
-            <span class="practice-stat-val">4.5 мес.</span>
-            <span class="practice-stat-text">средний срок</span>
-          </div>
+      <div class="card industry-card">
+        <div class="industry-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><rect x="3" y="8" width="18" height="12" rx="1"/><path d="M10 8V6a2 2 0 0 1 4 0v2"/><path d="M3 12h18"/></svg>
         </div>
-        <a href="#form" class="practice-link">Обсудить ситуацию</a>
+        <div class="industry-name">Ритейл и&nbsp;e-com</div>
       </div>
-
-      <div class="card practice-card reveal">
-        <div class="practice-num">03</div>
-        <div class="practice-title">Банкротство и&nbsp;субсидиарка</div>
-        <div class="practice-subtitle">Когда долги компании становятся вашими личными</div>
-        <div class="practice-text">Субсидиарная ответственность. Оспаривание сделок. Привлечение КДЛ. Мы&nbsp;строим защиту, которая отсекает личное имущество от&nbsp;корпоративных долгов.</div>
-        <div class="practice-stats">
-          <div class="practice-stat">
-            <span class="practice-stat-val">520+</span>
-            <span class="practice-stat-text">банкротных проектов</span>
-          </div>
-          <div class="practice-stat">
-            <span class="practice-stat-val">12.8 млрд ₽</span>
-            <span class="practice-stat-text">защищённые активы</span>
-          </div>
-          <div class="practice-stat">
-            <span class="practice-stat-val">73%</span>
-            <span class="practice-stat-text">полное снятие субсидиарки</span>
-          </div>
+      <div class="card industry-card">
+        <div class="industry-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M4 21V8l8-5 8 5v13"/><path d="M9 21v-6h6v6"/><path d="M4 10h16"/></svg>
         </div>
-        <a href="#form" class="practice-link">Обсудить ситуацию</a>
+        <div class="industry-name">Строительство</div>
       </div>
+      <div class="card industry-card">
+        <div class="industry-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8"/><path d="M12 17v4"/></svg>
+        </div>
+        <div class="industry-name">IT и&nbsp;услуги</div>
+      </div>
+      <div class="card industry-card">
+        <div class="industry-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M12 2v4"/><path d="M12 18v4"/><circle cx="12" cy="12" r="6"/><path d="M2 12h4"/><path d="M18 12h4"/></svg>
+        </div>
+        <div class="industry-name">Энергетика</div>
+      </div>
+      <div class="card industry-card">
+        <div class="industry-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M12 3c-1.2 0-2.4.6-3 1.7A3.6 3.6 0 0 0 4.6 9c-1 .6-1.7 1.8-1.5 3.2a3.5 3.5 0 0 0 2 5l.3.1h13.2a3.5 3.5 0 0 0 2.3-5.1 3.5 3.5 0 0 0-1.5-3.2A3.6 3.6 0 0 0 15 4.7 3.8 3.8 0 0 0 12 3z"/><path d="M12 12v6"/></svg>
+        </div>
+        <div class="industry-name">Агро</div>
+      </div>
+      <div class="card industry-card">
+        <div class="industry-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M18 8h2a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1h2"/><path d="M8 8V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v3"/><path d="M10 12h4"/></svg>
+        </div>
+        <div class="industry-name">Логистика</div>
+      </div>
+      <div class="card industry-card">
+        <div class="industry-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M12 22a7 7 0 0 0 7-7c0-2-1-3.9-3-5.5s-3.5-4-4-6.5c-.5 2.5-2 4.9-4 6.5C6 11.1 5 13 5 15a7 7 0 0 0 7 7z"/></svg>
+        </div>
+        <div class="industry-name">Фарма</div>
+      </div>
+    </div>
 
+    <div class="lifecycle-track reveal">
+      <div class="lifecycle-stage">
+        <div class="lifecycle-stage-name">Зарождение</div>
+        <div class="lifecycle-stage-desc">Структурирование, риски</div>
+      </div>
+      <div class="lifecycle-stage">
+        <div class="lifecycle-stage-name">Рост</div>
+        <div class="lifecycle-stage-desc">Сделки, партнёрства</div>
+      </div>
+      <div class="lifecycle-stage active">
+        <div class="lifecycle-stage-name">Зрелость</div>
+        <div class="lifecycle-stage-desc">Защита, оптимизация</div>
+      </div>
+      <div class="lifecycle-stage active">
+        <div class="lifecycle-stage-name">Спад</div>
+        <div class="lifecycle-stage-desc">Реструктуризация</div>
+      </div>
+      <div class="lifecycle-stage">
+        <div class="lifecycle-stage-name">Ликвидация</div>
+        <div class="lifecycle-stage-desc">Банкротство, закрытие</div>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- ════════════ PROCESS STEPS ════════════ -->
-<section class="section" id="process">
+<!-- ════════════ CASES ════════════ -->
+<section class="section" id="cases">
   <div class="container">
-    <h2 class="section-title section-title-center reveal">Как это работает</h2>
-    <div class="steps-track reveal">
-      <div class="step-card">
-        <div class="step-num">1</div>
-        <div class="step-title">Заявка</div>
-        <div class="step-desc">Вы заполняете короткую форму. Это не&nbsp;обязательство — это запрос на&nbsp;рассмотрение.</div>
+    <div class="section-label reveal">Практика</div>
+    <h2 class="section-title reveal">Ситуации, которые мы&nbsp;закрыли</h2>
+    <div class="section-subtitle reveal">Обезличенные кейсы из&nbsp;реальной практики. Каждый начинался с&nbsp;ситуации, знакомой нашим клиентам.</div>
+    <div class="cases-grid">
+
+      <div class="card case-card reveal">
+        <div class="case-industry">Производство &middot; Владелец</div>
+        <div class="case-title">Выездная проверка с&nbsp;доначислением 340&nbsp;млн&nbsp;₽</div>
+        <div class="case-text">Собственник производственного холдинга получил акт выездной проверки. Налоговая квалифицировала цепочку поставок как схему дробления. Параллельно инициировалась доследственная проверка. Мы вошли на&nbsp;стадии возражений, перестроили доказательную базу и&nbsp;вели коммуникацию с&nbsp;инспекцией и&nbsp;следствием одновременно.</div>
+        <div class="case-result">
+          <div class="case-result-label">Результат</div>
+          <div class="case-result-val">Доначисления снижены до 41 млн ₽. Уголовное дело не возбуждено.</div>
+        </div>
       </div>
-      <div class="step-card">
-        <div class="step-num">2</div>
-        <div class="step-title">Анализ</div>
-        <div class="step-desc">Наша команда изучает ситуацию. Мы оцениваем, можем ли быть полезны.</div>
+
+      <div class="card case-card reveal reveal-delay-1">
+        <div class="case-industry">Ритейл &middot; Управленец</div>
+        <div class="case-title">Генеральный директор под угрозой субсидиарки на&nbsp;780&nbsp;млн&nbsp;₽</div>
+        <div class="case-text">Генеральный директор торговой сети, назначенный за&nbsp;два года до&nbsp;банкротства, оказался основным ответчиком по&nbsp;субсидиарной ответственности. Предыдущий менеджмент вывел активы, а&nbsp;долги остались. Конкурсный управляющий подал заявление на&nbsp;всех КДЛ. Мы выстроили линию защиты, отделяющую действия клиента от&nbsp;действий предшественников.</div>
+        <div class="case-result">
+          <div class="case-result-label">Результат</div>
+          <div class="case-result-val">Полное снятие субсидиарной ответственности. Срок: 7 месяцев.</div>
+        </div>
       </div>
-      <div class="step-card">
-        <div class="step-num">3</div>
-        <div class="step-title">Встреча</div>
-        <div class="step-desc">Если ситуация в&nbsp;нашем профиле — назначаем конфиденциальную встречу с&nbsp;ведущим экспертом.</div>
+
+      <div class="card case-card reveal reveal-delay-2">
+        <div class="case-industry">Строительство &middot; Владелец</div>
+        <div class="case-title">Партнёр вывел 60% активов через аффилированные структуры</div>
+        <div class="case-text">Один из&nbsp;двух совладельцев строительной компании обнаружил, что партнёр за&nbsp;полтора года создал параллельную структуру, перевёл ключевые контракты и&nbsp;переоформил технику. К&nbsp;моменту обращения к&nbsp;нам формально компания уже была пустой. Мы запустили одновременно корпоративный спор, обеспечительные меры и&nbsp;уголовное производство.</div>
+        <div class="case-result">
+          <div class="case-result-label">Результат</div>
+          <div class="case-result-val">Возврат активов. Выкуп доли партнёра. Срок: 11 месяцев.</div>
+        </div>
       </div>
-      <div class="step-card">
-        <div class="step-num">4</div>
-        <div class="step-title">Стратегия</div>
-        <div class="step-desc">Формируем план действий с&nbsp;конкретными шагами, сроками и&nbsp;прогнозом результата.</div>
-      </div>
-      <div class="step-card">
-        <div class="step-num">5</div>
-        <div class="step-title">Управление</div>
-        <div class="step-desc">Ведём проект до результата. Один куратор. Полный контроль. Еженедельная отчётность.</div>
-      </div>
-    </div>
-    <div class="quote-card reveal">
-      Мы не берём все дела. Мы берём те, которые можем выиграть.
+
     </div>
   </div>
 </section>
 
-<!-- ════════════ APPLICATION FORM ════════════ -->
+<!-- ════════════ RATINGS ════════════ -->
+<section class="section" id="ratings" style="padding-top:0;">
+  <div class="container">
+    <div class="ratings-row reveal">
+      <div class="rating-item">
+        <div class="rating-logo">Право.ru-300</div>
+        <div class="rating-year">2023, 2024</div>
+      </div>
+      <div class="rating-item">
+        <div class="rating-logo">Chambers</div>
+        <div class="rating-year">Russia</div>
+      </div>
+      <div class="rating-item">
+        <div class="rating-logo">Legal 500</div>
+        <div class="rating-year">EMEA</div>
+      </div>
+      <div class="rating-item">
+        <div class="rating-logo">RAEX</div>
+        <div class="rating-year">600</div>
+      </div>
+      <div class="rating-item">
+        <div class="rating-logo">Коммерсантъ</div>
+        <div class="rating-year">Лучшие юрфирмы</div>
+      </div>
+      <div class="rating-item">
+        <div class="rating-logo">Best Lawyers</div>
+        <div class="rating-year">Russia</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════ FORM ════════════ -->
 <section class="form-section" id="form">
   <div class="container">
     <div class="form-wrapper reveal">
       <div>
-        <h2 class="form-title">Подать заявку на&nbsp;рассмотрение</h2>
-        <p class="form-sub">Заполнение формы не является обязательством. Мы рассмотрим вашу ситуацию и&nbsp;свяжемся в&nbsp;течение 24&nbsp;часов, если сможем быть полезны.</p>
+        <h2 class="form-title">Если вы здесь, значит ситуация требует внимания</h2>
+        <p class="form-sub">Расскажите кратко, что происходит. Мы&nbsp;изучим ситуацию и&nbsp;свяжемся, если сможем быть полезны. Это не обязательство — это начало разговора.</p>
         <div class="form-note">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-          Конфиденциальность гарантирована. Данные защищены.
+          Конфиденциальность гарантирована
         </div>
       </div>
       <div>
         <form class="form-fields" id="app-form">
-          <input type="text" class="input" name="name" placeholder="Ваше имя" required>
-          <input type="text" class="input" name="company" placeholder="Компания">
+          <input type="text" class="input" name="name" placeholder="Имя" required>
+          <input type="text" class="input" name="company" placeholder="Компания и должность">
           <input type="text" class="input" name="contact" placeholder="Телефон или email" required>
-          <textarea class="input" name="situation" rows="3" placeholder="Кратко опишите ситуацию"></textarea>
-          <button type="submit" class="submit-btn">Отправить заявку</button>
+          <textarea class="input" name="situation" rows="3" placeholder="Опишите ситуацию"></textarea>
+          <button type="submit" class="submit-btn">Отправить</button>
         </form>
         <div class="form-success" id="form-success">
           <div class="form-success-check">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
           </div>
-          <div class="form-success-title">Заявка принята</div>
+          <div class="form-success-title">Принято</div>
           <div class="form-success-text">Мы свяжемся с вами в течение 24 часов.</div>
         </div>
       </div>
@@ -890,20 +1212,33 @@ textarea.input {
 
 <!-- ════════════ FOOTER ════════════ -->
 <footer class="footer">
-  <div class="footer-left">
-    <svg width="28" height="28" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <rect x="2" y="2" width="96" height="96" rx="6" fill="none" stroke="rgba(255,255,255,.1)" stroke-width="1.5"/>
-      <rect x="16" y="14" width="68" height="1.5" rx=".75" fill="#C8963E" opacity=".5"/>
-      <text x="30" y="64" text-anchor="middle" font-family="Georgia,serif" font-size="46" font-weight="700" fill="rgba(255,255,255,.4)">Г</text>
-      <rect x="49.5" y="28" width="1" height="48" rx=".5" fill="#C8963E" opacity=".35"/>
-      <text x="70" y="64" text-anchor="middle" font-family="Georgia,serif" font-size="46" font-weight="700" fill="rgba(255,255,255,.4)">П</text>
-      <rect x="16" y="84.5" width="68" height="1.5" rx=".75" fill="#C8963E" opacity=".5"/>
-    </svg>
-    <span class="footer-text">&copy; 2002&ndash;2026 Гарант-Профит</span>
+  <div class="container">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <svg width="32" height="32" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="2" y="2" width="96" height="96" rx="6" fill="none" stroke="rgba(255,255,255,.1)" stroke-width="1.5"/>
+          <rect x="16" y="14" width="68" height="1.5" rx=".75" fill="#C8963E" opacity=".5"/>
+          <text x="30" y="64" text-anchor="middle" font-family="Georgia,serif" font-size="46" font-weight="700" fill="rgba(255,255,255,.4)">Г</text>
+          <rect x="49.5" y="28" width="1" height="48" rx=".5" fill="#C8963E" opacity=".35"/>
+          <text x="70" y="64" text-anchor="middle" font-family="Georgia,serif" font-size="46" font-weight="700" fill="rgba(255,255,255,.4)">П</text>
+          <rect x="16" y="84.5" width="68" height="1.5" rx=".75" fill="#C8963E" opacity=".5"/>
+        </svg>
+        <span class="footer-brand-text">Гарант-Профит</span>
+      </div>
+      <div class="footer-contacts">
+        123112, Москва, Пресненская&nbsp;наб., д.&nbsp;12, 37&nbsp;этаж<br>
+        <a href="tel:+79771473887">+7 977 147-38-87</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-copy">&copy; 2002&ndash;2026 Юридическое агентство &laquo;Гарант-Профит&raquo;</div>
+      <div class="footer-socials">
+        <a href="#" class="footer-social" aria-label="Telegram">
+          <svg viewBox="0 0 24 24"><path d="M9.04 15.54l-.26 3.73c.37 0 .53-.16.73-.35l1.74-1.68 3.62 2.67c.66.37 1.13.18 1.31-.62l2.37-11.2c.21-1-.36-1.39-1.02-1.15L3.32 11.16c-.95.37-.93.92-.16 1.17l4.43 1.38 10.28-6.48c.48-.32.93-.14.56.18L9.04 15.54z"/></svg>
+        </a>
+      </div>
+    </div>
   </div>
-  <a href="#" class="footer-icon" aria-label="Telegram">
-    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M9.04 15.54l-.26 3.73c.37 0 .53-.16.73-.35l1.74-1.68 3.62 2.67c.66.37 1.13.18 1.31-.62l2.37-11.2c.21-1-.36-1.39-1.02-1.15L3.32 11.16c-.95.37-.93.92-.16 1.17l4.43 1.38 10.28-6.48c.48-.32.93-.14.56.18L9.04 15.54z"/></svg>
-  </a>
 </footer>
 
 <script>
@@ -965,6 +1300,24 @@ textarea.input {
       })(start);
     });
   }
+
+  // Login modal
+  var overlay = document.getElementById('modal-overlay');
+  var loginBtn = document.getElementById('login-btn');
+  var closeBtn = document.getElementById('modal-close');
+
+  loginBtn.addEventListener('click', function() {
+    overlay.classList.add('open');
+  });
+  closeBtn.addEventListener('click', function() {
+    overlay.classList.remove('open');
+  });
+  overlay.addEventListener('click', function(e) {
+    if (e.target === overlay) overlay.classList.remove('open');
+  });
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') overlay.classList.remove('open');
+  });
 
   // Form
   var form = document.getElementById('app-form');
