@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Контакты — Гарант-Профит</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- ═══ NAVBAR ═══ -->
+<nav class="navbar">
+  <div class="navbar__inner">
+    <a href="home.html" class="navbar__logo">
+      <svg viewBox="0 0 40 40" fill="none"><rect width="40" height="40" rx="8" fill="#C8963E"/><path d="M12 28V12h6.5c3.5 0 5.5 2 5.5 5s-2 5-5.5 5H16v6h-4zm4-10h2.2c1.4 0 2-0.7 2-1.8s-0.6-1.7-2-1.7H16v3.5z" fill="#0A1628"/></svg>
+      <span class="navbar__logo-text">Гарант-Профит<span class="navbar__logo-sub">Legal Agency</span></span>
+    </a>
+    <div class="navbar__menu">
+      <a href="services.html" class="navbar__link">Услуги</a>
+      <a href="cases.html" class="navbar__link">Кейсы</a>
+      <a href="jurisdictions.html" class="navbar__link">Юрисдикции</a>
+      <a href="team.html" class="navbar__link">Команда</a>
+      <a href="about.html" class="navbar__link">О нас</a>
+      <a href="contacts.html" class="navbar__link" style="color:#fff">Контакты</a>
+    </div>
+    <div class="navbar__actions">
+      <a href="#" class="navbar__login"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="8" cy="5" r="3"/><path d="M2.5 14c0-3 2.5-5 5.5-5s5.5 2 5.5 5"/></svg>Вход</a>
+    </div>
+    <button class="navbar__burger" aria-label="Меню"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<!-- ═══ PAGE HEADER ═══ -->
+<section class="page-header">
+  <div class="container">
+    <div class="section__subtitle" style="color:var(--gold)">Контакты</div>
+    <h1>Свяжитесь с нами</h1>
+    <p class="page-header__desc">Расскажите о вашем вопросе — мы ответим в течение 24 часов.</p>
+  </div>
+</section>
+
+<!-- ═══ CONTACTS ═══ -->
+<section class="section">
+  <div class="container">
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:48px;">
+
+      <!-- Form -->
+      <div>
+        <h3 style="margin-bottom:24px;">Заявка на консультацию</h3>
+        <form id="access-form" style="display:flex; flex-direction:column; gap:16px;">
+          <div>
+            <label class="modal__label">Имя</label>
+            <input type="text" class="modal__input" placeholder="Ваше имя" required>
+          </div>
+          <div>
+            <label class="modal__label">Email</label>
+            <input type="email" class="modal__input" placeholder="your@email.com" required>
+          </div>
+          <div>
+            <label class="modal__label">Телефон</label>
+            <input type="tel" class="modal__input" placeholder="+7 (___) ___-__-__">
+          </div>
+          <div>
+            <label class="modal__label">Направление</label>
+            <select class="modal__input" style="appearance:auto;">
+              <option value="">Выберите направление</option>
+              <option>Корпоративное право и M&A</option>
+              <option>Налоговое планирование</option>
+              <option>Арбитраж и споры</option>
+              <option>Финансовое право</option>
+              <option>Интеллектуальная собственность</option>
+              <option>Недвижимость</option>
+              <option>Наследственное планирование</option>
+              <option>Иммиграционное право</option>
+              <option>Банкротство</option>
+              <option>Санкционное право</option>
+              <option>Другое</option>
+            </select>
+          </div>
+          <div>
+            <label class="modal__label">Описание вопроса</label>
+            <textarea class="modal__input" rows="4" placeholder="Кратко опишите вашу ситуацию..." style="resize:vertical;"></textarea>
+          </div>
+          <div style="font-size:12px; color:var(--warm-gray); line-height:1.5;">
+            Нажимая кнопку, вы соглашаетесь с политикой конфиденциальности. Все обращения защищены адвокатской тайной.
+          </div>
+          <button type="submit" class="btn btn--primary" style="align-self:flex-start;">Отправить заявку</button>
+        </form>
+      </div>
+
+      <!-- Info -->
+      <div>
+        <h3 style="margin-bottom:24px;">Контактная информация</h3>
+
+        <div style="display:flex; flex-direction:column; gap:24px; margin-bottom:48px;">
+          <div style="display:flex; gap:16px; align-items:flex-start;">
+            <div style="width:44px; height:44px; background:rgba(200,150,62,.1); border-radius:10px; display:flex; align-items:center; justify-content:center; flex-shrink:0; color:var(--gold);">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            </div>
+            <div>
+              <div style="font-weight:600; margin-bottom:4px;">Офис в Москве</div>
+              <div style="font-size:14px; color:var(--warm-gray); line-height:1.6;">Пресненская наб., 12<br>Башня «Федерация», этаж 46<br>123112, Москва, Россия</div>
+            </div>
+          </div>
+
+          <div style="display:flex; gap:16px; align-items:flex-start;">
+            <div style="width:44px; height:44px; background:rgba(200,150,62,.1); border-radius:10px; display:flex; align-items:center; justify-content:center; flex-shrink:0; color:var(--gold);">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            </div>
+            <div>
+              <div style="font-weight:600; margin-bottom:4px;">Email</div>
+              <a href="mailto:info@garantprofit-la.ru" style="font-size:14px; color:var(--gold);">info@garantprofit-la.ru</a>
+            </div>
+          </div>
+
+          <div style="display:flex; gap:16px; align-items:flex-start;">
+            <div style="width:44px; height:44px; background:rgba(200,150,62,.1); border-radius:10px; display:flex; align-items:center; justify-content:center; flex-shrink:0; color:var(--gold);">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+            </div>
+            <div>
+              <div style="font-weight:600; margin-bottom:4px;">Телефон</div>
+              <div style="font-size:14px; color:var(--warm-gray);">+7 (495) 123-45-67</div>
+              <div style="font-size:12px; color:var(--warm-gray); margin-top:2px;">Пн-Пт: 09:00 — 20:00</div>
+            </div>
+          </div>
+
+          <div style="display:flex; gap:16px; align-items:flex-start;">
+            <div style="width:44px; height:44px; background:rgba(200,150,62,.1); border-radius:10px; display:flex; align-items:center; justify-content:center; flex-shrink:0; color:var(--gold);">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69.01-.03.01-.14-.07-.2-.08-.06-.19-.04-.27-.02-.12.03-1.99 1.27-5.62 3.72-.53.36-1.01.54-1.44.53-.47-.01-1.38-.27-2.06-.49-.83-.27-1.49-.42-1.43-.88.03-.24.37-.49 1.02-.75 3.99-1.74 6.65-2.89 7.99-3.44 3.81-1.58 4.6-1.86 5.12-1.87.11 0 .37.03.54.17.14.12.18.28.2.47-.01.06.01.24 0 .37z"/></svg>
+            </div>
+            <div>
+              <div style="font-weight:600; margin-bottom:4px;">Telegram</div>
+              <div style="font-size:14px; color:var(--warm-gray);">Для оперативной связи и защищённых коммуникаций</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Additional offices -->
+        <h4 style="margin-bottom:16px; font-size:16px;">Представительства</h4>
+        <div style="display:flex; flex-direction:column; gap:12px;">
+          <div style="background:rgba(44,74,110,.04); border:1px solid var(--light-gray); border-radius:8px; padding:16px;">
+            <div style="font-weight:500; font-size:14px; margin-bottom:2px;">Ереван, Армения</div>
+            <div style="font-size:13px; color:var(--warm-gray);">ул. Абовяна, 1/1 — Арбитраж, финансовое право</div>
+          </div>
+          <div style="background:rgba(44,74,110,.04); border:1px solid var(--light-gray); border-radius:8px; padding:16px;">
+            <div style="font-weight:500; font-size:14px; margin-bottom:2px;">Лимассол, Кипр</div>
+            <div style="font-size:13px; color:var(--warm-gray);">Партнёрский офис — Международное структурирование</div>
+          </div>
+          <div style="background:rgba(44,74,110,.04); border:1px solid var(--light-gray); border-radius:8px; padding:16px;">
+            <div style="font-weight:500; font-size:14px; margin-bottom:2px;">Дубай, ОАЭ</div>
+            <div style="font-size:13px; color:var(--warm-gray);">DIFC — Ближневосточная практика</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══ FOOTER ═══ -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer__inner">
+      <div class="footer__brand">
+        <div class="footer__logo">
+          <svg viewBox="0 0 32 32" fill="none"><rect width="32" height="32" rx="6" fill="#C8963E"/><path d="M10 24V10h5c2.8 0 4.5 1.6 4.5 4s-1.7 4-4.5 4H13v6h-3zm3-8h1.8c1.1 0 1.6-.6 1.6-1.5s-.5-1.3-1.6-1.3H13v2.8z" fill="#0A1628"/></svg>
+          <span class="footer__logo-name">Гарант-Профит</span>
+        </div>
+        <div class="footer__address">Москва, Пресненская наб., 12<br>Башня «Федерация», этаж 46</div>
+      </div>
+      <div class="footer__links">
+        <a href="services.html" class="footer__link">Услуги</a>
+        <a href="cases.html" class="footer__link">Кейсы</a>
+        <a href="about.html" class="footer__link">О компании</a>
+        <a href="contacts.html" class="footer__link">Контакты</a>
+      </div>
+      <div class="footer__contacts">
+        <a href="mailto:info@garantprofit-la.ru" class="footer__email">info@garantprofit-la.ru</a>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <span>&copy; 2025 ЮА «Гарант-Профит». Все права защищены.</span>
+      <span>garantprofit-la.ru</span>
+    </div>
+  </div>
+</footer>
+
+<div class="modal-overlay">
+  <div class="modal" style="position:relative">
+    <button class="modal__close" aria-label="Закрыть"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg></button>
+    <div class="modal__title">Личный кабинет</div>
+    <div class="modal__subtitle">Войдите для доступа к документам</div>
+    <form>
+      <div class="modal__field"><label class="modal__label">Email</label><input type="email" class="modal__input" placeholder="your@email.com"></div>
+      <div class="modal__field"><label class="modal__label">Пароль</label><input type="password" class="modal__input" placeholder="Введите пароль"></div>
+      <button type="submit" class="btn btn--primary modal__submit">Войти</button>
+    </form>
+  </div>
+</div>
+
+<script src="js/main.js"></script>
+</body>
+</html>

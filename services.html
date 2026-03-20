@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Услуги — Гарант-Профит</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- ═══ NAVBAR ═══ -->
+<nav class="navbar">
+  <div class="navbar__inner">
+    <a href="home.html" class="navbar__logo">
+      <svg viewBox="0 0 40 40" fill="none"><rect width="40" height="40" rx="8" fill="#C8963E"/><path d="M12 28V12h6.5c3.5 0 5.5 2 5.5 5s-2 5-5.5 5H16v6h-4zm4-10h2.2c1.4 0 2-0.7 2-1.8s-0.6-1.7-2-1.7H16v3.5z" fill="#0A1628"/></svg>
+      <span class="navbar__logo-text">Гарант-Профит<span class="navbar__logo-sub">Legal Agency</span></span>
+    </a>
+    <div class="navbar__menu">
+      <a href="services.html" class="navbar__link" style="color:#fff">Услуги</a>
+      <a href="cases.html" class="navbar__link">Кейсы</a>
+      <a href="jurisdictions.html" class="navbar__link">Юрисдикции</a>
+      <a href="team.html" class="navbar__link">Команда</a>
+      <a href="about.html" class="navbar__link">О нас</a>
+      <a href="contacts.html" class="navbar__link">Контакты</a>
+    </div>
+    <div class="navbar__actions">
+      <a href="#" class="navbar__login"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="8" cy="5" r="3"/><path d="M2.5 14c0-3 2.5-5 5.5-5s5.5 2 5.5 5"/></svg>Вход</a>
+    </div>
+    <button class="navbar__burger" aria-label="Меню"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<!-- ═══ PAGE HEADER ═══ -->
+<section class="page-header">
+  <div class="container">
+    <div class="section__subtitle" style="color:var(--gold)">Практики</div>
+    <h1>Наши услуги</h1>
+    <p class="page-header__desc">12 направлений юридической практики для бизнеса и частных клиентов. Каждое направление ведёт партнёр с профильной экспертизой.</p>
+  </div>
+</section>
+
+<!-- ═══ SERVICES LIST ═══ -->
+<section class="section">
+  <div class="container">
+    <div class="filters">
+      <button class="filter-btn active" data-filter="all">Все</button>
+      <button class="filter-btn" data-filter="business">Бизнес</button>
+      <button class="filter-btn" data-filter="private">Частные лица</button>
+      <button class="filter-btn" data-filter="international">Международное</button>
+    </div>
+
+    <div style="display:grid; grid-template-columns: repeat(3, 1fr); gap: 24px;">
+
+      <div class="service-card" data-tags="business,international" style="flex:none">
+        <div class="service-card__number">01</div>
+        <div class="service-card__title">Корпоративное право и M&A</div>
+        <div class="service-card__desc">Сопровождение сделок слияний и поглощений, реструктуризация бизнеса, корпоративные конфликты, создание холдинговых структур.</div>
+        <div class="service-card__tags"><span class="tag">Бизнес</span><span class="tag tag--gold">M&A</span></div>
+      </div>
+
+      <div class="service-card" data-tags="business,international" style="flex:none">
+        <div class="service-card__number">02</div>
+        <div class="service-card__title">Налоговое планирование и compliance</div>
+        <div class="service-card__desc">Оптимизация налоговой нагрузки, международное налоговое структурирование, трансфертное ценообразование, сопровождение проверок.</div>
+        <div class="service-card__tags"><span class="tag">Налоги</span><span class="tag tag--gold">Compliance</span></div>
+      </div>
+
+      <div class="service-card" data-tags="business,private,international" style="flex:none">
+        <div class="service-card__number">03</div>
+        <div class="service-card__title">Арбитраж и судебные споры</div>
+        <div class="service-card__desc">Представительство в международных арбитражах (ICC, LCIA, HKIAC), коммерческие споры, исполнение иностранных судебных решений.</div>
+        <div class="service-card__tags"><span class="tag">Споры</span><span class="tag tag--gold">Арбитраж</span></div>
+      </div>
+
+      <div class="service-card" data-tags="private,international" style="flex:none">
+        <div class="service-card__number">04</div>
+        <div class="service-card__title">Финансовое право и инвестиции</div>
+        <div class="service-card__desc">Споры с брокерами, защита прав инвесторов, банковское регулирование, лицензирование финансовой деятельности, margin call споры.</div>
+        <div class="service-card__tags"><span class="tag">Финансы</span><span class="tag tag--gold">Инвестиции</span></div>
+      </div>
+
+      <div class="service-card" data-tags="business,international" style="flex:none">
+        <div class="service-card__number">05</div>
+        <div class="service-card__title">Интеллектуальная собственность</div>
+        <div class="service-card__desc">Регистрация товарных знаков и патентов в РФ и за рубежом, лицензионные договоры, защита авторских прав, IT-право.</div>
+        <div class="service-card__tags"><span class="tag">IP</span><span class="tag tag--gold">Патенты</span></div>
+      </div>
+
+      <div class="service-card" data-tags="business,private" style="flex:none">
+        <div class="service-card__number">06</div>
+        <div class="service-card__title">Недвижимость и строительство</div>
+        <div class="service-card__desc">Структурирование сделок с коммерческой и жилой недвижимостью, due diligence объектов, девелоперские проекты, арендные споры.</div>
+        <div class="service-card__tags"><span class="tag">Недвижимость</span></div>
+      </div>
+
+      <div class="service-card" data-tags="private" style="flex:none">
+        <div class="service-card__number">07</div>
+        <div class="service-card__title">Наследственное планирование</div>
+        <div class="service-card__desc">Структурирование наследства, семейные трасты, завещания и наследственные споры, международное наследование.</div>
+        <div class="service-card__tags"><span class="tag">Частные лица</span><span class="tag tag--gold">Наследство</span></div>
+      </div>
+
+      <div class="service-card" data-tags="private,international" style="flex:none">
+        <div class="service-card__number">08</div>
+        <div class="service-card__title">Иммиграционное право</div>
+        <div class="service-card__desc">ВНЖ и гражданство через инвестиции, рабочие визы, программы Golden Visa, сопровождение релокации бизнеса.</div>
+        <div class="service-card__tags"><span class="tag">Иммиграция</span><span class="tag tag--gold">ВНЖ</span></div>
+      </div>
+
+      <div class="service-card" data-tags="business" style="flex:none">
+        <div class="service-card__number">09</div>
+        <div class="service-card__title">Антимонопольное право</div>
+        <div class="service-card__desc">Сопровождение сделок перед ФАС, защита в антимонопольных расследованиях, compliance-программы, картельные дела.</div>
+        <div class="service-card__tags"><span class="tag">Бизнес</span><span class="tag tag--gold">ФАС</span></div>
+      </div>
+
+      <div class="service-card" data-tags="business" style="flex:none">
+        <div class="service-card__number">10</div>
+        <div class="service-card__title">Банкротство и реструктуризация</div>
+        <div class="service-card__desc">Защита интересов кредиторов и должников, оспаривание сделок, субсидиарная ответственность, финансовое оздоровление.</div>
+        <div class="service-card__tags"><span class="tag">Банкротство</span></div>
+      </div>
+
+      <div class="service-card" data-tags="business,private" style="flex:none">
+        <div class="service-card__number">11</div>
+        <div class="service-card__title">Уголовное право (экономические преступления)</div>
+        <div class="service-card__desc">Защита по делам о мошенничестве, уклонении от уплаты налогов, легализации, коррупционным составам.</div>
+        <div class="service-card__tags"><span class="tag">Уголовное</span><span class="tag tag--gold">Экономическое</span></div>
+      </div>
+
+      <div class="service-card" data-tags="business,international" style="flex:none">
+        <div class="service-card__number">12</div>
+        <div class="service-card__title">Санкционное право</div>
+        <div class="service-card__desc">Анализ санкционных рисков, делистинг, обход ограничений в рамках закона, compliance с санкционными режимами.</div>
+        <div class="service-card__tags"><span class="tag">Санкции</span><span class="tag tag--gold">Международное</span></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══ CTA ═══ -->
+<section class="access" style="padding:80px 0">
+  <div class="container" style="text-align:center">
+    <h2 style="color:#fff; margin-bottom:16px">Нужна консультация?</h2>
+    <p class="section__description" style="margin:0 auto 32px; color:rgba(255,255,255,.5)">Расскажите о вашем вопросе — мы предложим оптимальное решение.</p>
+    <a href="contacts.html" class="btn btn--primary btn--lg">Связаться с нами</a>
+  </div>
+</section>
+
+<!-- ═══ FOOTER ═══ -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer__inner">
+      <div class="footer__brand">
+        <div class="footer__logo">
+          <svg viewBox="0 0 32 32" fill="none"><rect width="32" height="32" rx="6" fill="#C8963E"/><path d="M10 24V10h5c2.8 0 4.5 1.6 4.5 4s-1.7 4-4.5 4H13v6h-3zm3-8h1.8c1.1 0 1.6-.6 1.6-1.5s-.5-1.3-1.6-1.3H13v2.8z" fill="#0A1628"/></svg>
+          <span class="footer__logo-name">Гарант-Профит</span>
+        </div>
+        <div class="footer__address">Москва, Пресненская наб., 12<br>Башня «Федерация», этаж 46</div>
+      </div>
+      <div class="footer__links">
+        <a href="services.html" class="footer__link">Услуги</a>
+        <a href="cases.html" class="footer__link">Кейсы</a>
+        <a href="about.html" class="footer__link">О компании</a>
+        <a href="contacts.html" class="footer__link">Контакты</a>
+      </div>
+      <div class="footer__contacts">
+        <a href="mailto:info@garantprofit-la.ru" class="footer__email">info@garantprofit-la.ru</a>
+        <div class="footer__socials">
+          <a href="#" class="footer__social" aria-label="Telegram"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69.01-.03.01-.14-.07-.2-.08-.06-.19-.04-.27-.02-.12.03-1.99 1.27-5.62 3.72-.53.36-1.01.54-1.44.53-.47-.01-1.38-.27-2.06-.49-.83-.27-1.49-.42-1.43-.88.03-.24.37-.49 1.02-.75 3.99-1.74 6.65-2.89 7.99-3.44 3.81-1.58 4.6-1.86 5.12-1.87.11 0 .37.03.54.17.14.12.18.28.2.47-.01.06.01.24 0 .37z"/></svg></a>
+          <a href="#" class="footer__social" aria-label="WhatsApp"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.47 14.38c-.29-.15-1.71-.84-1.98-.94-.27-.1-.46-.15-.66.15s-.76.94-.93 1.13-.34.22-.63.07c-.29-.14-1.22-.45-2.32-1.43-.86-.77-1.44-1.71-1.61-2-.17-.29-.02-.45.13-.59.13-.13.29-.34.44-.51.14-.17.19-.29.29-.49.1-.2.05-.37-.02-.51-.08-.15-.66-1.59-.9-2.18-.24-.57-.48-.5-.66-.5h-.56c-.2 0-.51.07-.78.37-.27.29-1.02 1-1.02 2.44s1.05 2.83 1.19 3.02c.15.2 2.06 3.14 4.99 4.41.7.3 1.24.48 1.66.62.7.22 1.34.19 1.84.12.56-.08 1.71-.7 1.95-1.38.24-.67.24-1.25.17-1.37-.08-.13-.27-.2-.56-.35zM12.05 21.8c-1.86 0-3.69-.5-5.28-1.44l-.38-.22-3.93 1.03 1.05-3.83-.25-.39C2.18 15.4 1.62 13.47 1.62 11.5 1.62 6.26 5.88 2 11.12 2c2.53 0 4.91.99 6.7 2.78a9.42 9.42 0 012.78 6.7c0 5.24-4.27 9.5-9.5 9.5l-.05-.18z"/></svg></a>
+        </div>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <span>&copy; 2025 ЮА «Гарант-Профит». Все права защищены.</span>
+      <span>garantprofit-la.ru</span>
+    </div>
+  </div>
+</footer>
+
+<!-- ═══ LOGIN MODAL ═══ -->
+<div class="modal-overlay">
+  <div class="modal" style="position:relative">
+    <button class="modal__close" aria-label="Закрыть"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg></button>
+    <div class="modal__title">Личный кабинет</div>
+    <div class="modal__subtitle">Войдите для доступа к документам</div>
+    <form>
+      <div class="modal__field"><label class="modal__label">Email</label><input type="email" class="modal__input" placeholder="your@email.com"></div>
+      <div class="modal__field"><label class="modal__label">Пароль</label><input type="password" class="modal__input" placeholder="Введите пароль"></div>
+      <button type="submit" class="btn btn--primary modal__submit">Войти</button>
+    </form>
+  </div>
+</div>
+
+<script src="js/main.js"></script>
+</body>
+</html>
