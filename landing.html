@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Гарант-Профит — Антикризисное управление для бизнеса</title>
-<meta name="description" content="Закрытая антикризисная практика для владельцев и управленцев бизнеса. Защита активов. Сопровождение KPI. Россия и 10 юрисдикций.">
+<title>Гарант-Профит — Юридическая поддержка управленческих решений</title>
+<meta name="description" content="Юридическое агентство для управленцев бизнеса. Налоговые споры, субсидиарная ответственность, корпоративные конфликты. С 2002 года.">
 <style>
 :root {
   --bg: #0a0a0a;
@@ -20,15 +20,11 @@
   --gold-dim: rgba(200,150,62,.12);
   --border: rgba(255,255,255,.06);
   --border-hover: rgba(200,150,62,.35);
-  --radius: 24px;
-  --radius-sm: 14px;
-  --max-w: 1320px;
-  --pad: 48px;
-  --gap: 14px;
+  --radius: 6px;
+  --max-w: 1400px;
+  --pad: 56px;
 }
-
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
 body {
   font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
   background: var(--bg);
@@ -38,821 +34,519 @@ body {
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
 }
-
 a { color: inherit; text-decoration: none; }
-
-/* ── Layout ── */
-.container {
-  max-width: var(--max-w);
-  margin: 0 auto;
-  padding: 0 var(--pad);
-}
-.section { padding: 120px 0; }
-
-.section-label {
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 2.5px;
-  text-transform: uppercase;
-  color: var(--gold);
-  margin-bottom: 16px;
-}
-.section-title {
-  font-size: clamp(28px, 3.2vw, 44px);
-  font-weight: 600;
-  letter-spacing: -.025em;
-  margin-bottom: 20px;
-  line-height: 1.12;
-}
-.section-subtitle {
-  font-size: 17px;
-  color: var(--text-secondary);
-  line-height: 1.6;
-  max-width: 560px;
-  margin-bottom: 56px;
-}
-.section-title-center, .section-subtitle-center { text-align: center; }
-.section-subtitle-center { margin-left: auto; margin-right: auto; }
-
-/* ── Reveal ── */
-.reveal {
-  opacity: 0;
-  transform: translateY(28px);
-  transition: opacity .7s cubic-bezier(.16,1,.3,1), transform .7s cubic-bezier(.16,1,.3,1);
-}
-.reveal.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-.reveal-delay-1 { transition-delay: .08s; }
-.reveal-delay-2 { transition-delay: .16s; }
-.reveal-delay-3 { transition-delay: .24s; }
-
-/* ── Card ── */
-.card {
-  background: var(--bg-card);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  padding: 32px;
-  transition: transform .4s cubic-bezier(.16,1,.3,1), border-color .4s, box-shadow .4s;
-}
-.card:hover {
-  transform: translateY(-4px);
-  border-color: var(--border-hover);
-  box-shadow: 0 12px 48px rgba(200,150,62,.05);
-}
-.card-accent {
-  border-color: rgba(200,150,62,.2);
-  background: linear-gradient(160deg, rgba(200,150,62,.06) 0%, var(--bg-card) 50%);
-}
 
 /* ── Header ── */
 .header {
-  position: fixed;
-  top: 0; left: 0; right: 0;
-  height: 72px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 var(--pad);
-  z-index: 1000;
-  transition: background .35s, backdrop-filter .35s, box-shadow .35s;
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 var(--pad); height: 68px;
+  background: transparent;
+  transition: background .4s ease, box-shadow .4s ease;
 }
 .header.scrolled {
-  background: rgba(10,10,10,.88);
-  backdrop-filter: blur(24px);
-  -webkit-backdrop-filter: blur(24px);
+  background: rgba(10,10,10,.92);
+  backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
   box-shadow: 0 1px 0 var(--border);
 }
 .header-logo {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-}
-.header-logo-text {
-  font-size: 15px;
-  font-weight: 700;
-  letter-spacing: .3px;
-}
-.header-nav {
-  display: flex;
-  align-items: center;
-  gap: 8px;
+  display: flex; align-items: center; gap: 12px;
+  font-size: 16px; font-weight: 600; letter-spacing: .3px;
 }
 .header-login {
-  padding: 9px 22px;
-  font-size: 13px;
-  font-weight: 500;
-  color: var(--text-secondary);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-sm);
-  transition: all .25s;
-  cursor: pointer;
-  background: none;
+  background: none; border: 1px solid rgba(255,255,255,.15);
+  color: var(--text-primary); padding: 8px 22px;
+  border-radius: var(--radius); font-size: 13px; font-weight: 500;
+  cursor: pointer; transition: all .25s ease;
 }
 .header-login:hover {
-  color: var(--text-primary);
-  border-color: rgba(255,255,255,.15);
-  background: rgba(255,255,255,.04);
+  border-color: var(--gold); color: var(--gold);
 }
-.header-cta {
-  display: inline-block;
-  padding: 9px 24px;
-  border: 1.5px solid var(--gold);
-  border-radius: var(--radius-sm);
-  font-size: 13px;
-  font-weight: 600;
-  color: var(--gold-l);
-  transition: all .25s;
+
+/* ── Hero ── */
+.hero {
+  position: relative; min-height: 85vh;
+  display: flex; align-items: flex-end; padding: 0 var(--pad) 80px;
+  overflow: hidden;
 }
-.header-cta:hover {
-  background: var(--gold);
-  color: var(--bg);
+.hero-grid {
+  position: absolute; inset: 0; z-index: 0;
+  display: grid; grid-template-columns: repeat(6, 1fr); grid-template-rows: repeat(3, 1fr);
+  gap: 6px; padding: 68px 20px 20px; opacity: .18;
+}
+.hero-grid-item {
+  border-radius: 4px; display: flex; align-items: flex-end;
+  padding: 10px; font-size: 10px; color: rgba(255,255,255,.4);
+  font-weight: 500; text-transform: uppercase; letter-spacing: .5px;
+}
+.hero-overlay {
+  position: absolute; inset: 0; z-index: 1;
+  background:
+    linear-gradient(to top, var(--bg) 0%, rgba(10,10,10,.85) 40%, rgba(10,10,10,.4) 100%),
+    radial-gradient(ellipse at 70% 20%, transparent 40%, var(--bg) 85%);
+}
+.hero-content { position: relative; z-index: 2; max-width: 680px; }
+.hero-tag {
+  display: inline-block; font-size: 11px; font-weight: 700;
+  letter-spacing: 3px; color: var(--gold); margin-bottom: 18px;
+  text-transform: uppercase;
+}
+.hero-title {
+  font-size: clamp(32px, 4.5vw, 52px); font-weight: 700;
+  line-height: 1.15; margin-bottom: 16px; letter-spacing: -.5px;
+}
+.hero-subtitle {
+  font-size: 18px; color: var(--text-secondary);
+  line-height: 1.6; margin-bottom: 32px; max-width: 520px;
+}
+.hero-btns { display: flex; gap: 14px; flex-wrap: wrap; }
+.btn-gold {
+  background: var(--gold); color: #0a0a0a; border: none;
+  padding: 14px 36px; border-radius: var(--radius);
+  font-size: 15px; font-weight: 700; cursor: pointer;
+  transition: all .25s ease; letter-spacing: .3px;
+}
+.btn-gold:hover { background: var(--gold-l); transform: translateY(-1px); }
+.btn-ghost {
+  background: rgba(255,255,255,.08); color: var(--text-primary);
+  border: 1px solid rgba(255,255,255,.15);
+  padding: 14px 36px; border-radius: var(--radius);
+  font-size: 15px; font-weight: 600; cursor: pointer;
+  transition: all .25s ease;
+}
+.btn-ghost:hover { background: rgba(255,255,255,.14); border-color: rgba(255,255,255,.3); }
+
+/* ── Cases Row ── */
+.cases-section { padding: 60px 0 80px; position: relative; }
+.cases-header {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 var(--pad); margin-bottom: 24px;
+}
+.cases-title { font-size: 22px; font-weight: 700; }
+.row-wrapper { position: relative; padding: 0 var(--pad); }
+.row-container {
+  display: flex; gap: 8px; overflow-x: hidden;
+  padding: 40px 0 60px; scroll-behavior: smooth;
+}
+.row-arrow {
+  position: absolute; top: 50%; transform: translateY(-50%);
+  width: 48px; height: 48px; z-index: 5;
+  background: rgba(20,20,20,.85); border: 1px solid rgba(255,255,255,.1);
+  border-radius: 50%; display: flex; align-items: center; justify-content: center;
+  cursor: pointer; color: #fff; font-size: 20px;
+  transition: all .25s ease; opacity: 0;
+}
+.row-wrapper:hover .row-arrow { opacity: 1; }
+.row-arrow:hover { background: rgba(40,40,40,.95); border-color: var(--gold); }
+.row-arrow--left { left: 20px; }
+.row-arrow--right { right: 20px; }
+
+/* ── Card Base ── */
+.card {
+  flex: 0 0 calc((100% - 7 * 8px) / 8);
+  aspect-ratio: 16/10; border-radius: var(--radius);
+  position: relative; overflow: visible; cursor: pointer;
+  transition: transform 350ms ease, z-index 0ms 350ms;
+}
+.card-inner {
+  width: 100%; height: 100%; border-radius: var(--radius);
+  position: relative; overflow: hidden;
+  transition: box-shadow 350ms ease, border-radius 350ms ease;
+}
+.card-image {
+  position: absolute; inset: 0;
+  display: flex; align-items: center; justify-content: center;
+}
+.card-image svg { width: 48px; height: 48px; opacity: .25; }
+.card-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,.85) 0%, transparent 60%);
+}
+.card-content {
+  position: absolute; bottom: 0; left: 0; right: 0;
+  padding: 14px; z-index: 1;
+}
+.card-industry {
+  font-size: 9px; font-weight: 700; letter-spacing: 1.5px;
+  text-transform: uppercase; color: rgba(255,255,255,.5); margin-bottom: 6px;
+}
+.card-title {
+  font-size: 13px; font-weight: 600; line-height: 1.35;
+  display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.card-status {
+  display: flex; align-items: center; gap: 5px;
+  font-size: 10px; color: var(--gold-l); margin-top: 6px;
+}
+.card-status::before {
+  content: ''; width: 6px; height: 6px;
+  background: var(--gold); border-radius: 50%;
+}
+
+/* ── Card Info Panel (hover) ── */
+.card-info {
+  position: absolute; top: 100%; left: 0; right: 0;
+  background: var(--bg-card);
+  border-radius: 0 0 var(--radius) var(--radius);
+  max-height: 0; opacity: 0; overflow: hidden;
+  transition: max-height 280ms ease 180ms, opacity 250ms ease 220ms;
+  padding: 0 14px; z-index: 2;
+}
+.card-tags {
+  display: flex; gap: 10px; flex-wrap: wrap;
+  padding-top: 12px; margin-bottom: 8px;
+}
+.card-tag {
+  font-size: 10px; color: var(--text-secondary);
+  display: flex; align-items: center; gap: 4px;
+}
+.card-tag::before {
+  content: ''; width: 4px; height: 4px;
+  background: var(--gold); border-radius: 50%;
+}
+.card-preview {
+  font-size: 12px; color: var(--text-secondary); line-height: 1.5;
+  display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical;
+  overflow: hidden; margin-bottom: 10px;
+}
+.card-result {
+  background: rgba(200,150,62,.06);
+  border-left: 3px solid var(--gold);
+  padding: 8px 12px; border-radius: 0 6px 6px 0;
+  font-size: 12px; font-weight: 600; color: var(--gold-l);
+  margin-bottom: 12px;
+}
+.card-more {
+  display: inline-flex; align-items: center; gap: 6px;
+  border: 1px solid rgba(255,255,255,.15); background: none;
+  color: var(--text-primary); padding: 7px 16px;
+  border-radius: var(--radius); font-size: 11px; font-weight: 600;
+  cursor: pointer; transition: all .2s ease; margin-bottom: 14px;
+}
+.card-more:hover { border-color: var(--gold); color: var(--gold); }
+
+/* ── Card Hover ── */
+@media (hover: hover) {
+  .row-container:hover .card {
+    transform: translateX(-25%);
+    transition: transform 350ms ease;
+  }
+  .row-container .card:hover {
+    transform: scale(1.45);
+    z-index: 10;
+    transition: transform 350ms ease, z-index 0ms 0ms;
+  }
+  .row-container .card:hover ~ .card {
+    transform: translateX(25%);
+  }
+  .row-container .card:first-child:hover { transform-origin: left center; transform: scale(1.45); }
+  .row-container .card:last-child:hover { transform-origin: right center; transform: scale(1.45); }
+  .card:hover .card-inner {
+    box-shadow: 0 12px 48px rgba(0,0,0,.7);
+    border-radius: var(--radius) var(--radius) 0 0;
+  }
+  .card:hover .card-info {
+    max-height: 280px; opacity: 1;
+    box-shadow: 0 12px 48px rgba(0,0,0,.7);
+  }
 }
 
 /* ── Modal ── */
 .modal-overlay {
-  display: none;
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,.7);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  z-index: 2000;
-  align-items: center;
-  justify-content: center;
+  position: fixed; inset: 0; z-index: 2000;
+  background: rgba(0,0,0,.75);
+  backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+  display: flex; align-items: flex-start; justify-content: center;
+  padding: 40px 20px; overflow-y: auto;
+  opacity: 0; pointer-events: none;
+  transition: opacity .3s ease;
 }
-.modal-overlay.open { display: flex; }
+.modal-overlay.active { opacity: 1; pointer-events: all; }
 .modal {
-  background: var(--bg-elevated);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  padding: 48px 40px;
-  width: 100%;
-  max-width: 400px;
-  position: relative;
+  background: var(--bg-card); border-radius: 12px;
+  max-width: 850px; width: 100%; position: relative;
+  transform: scale(.92) translateY(24px);
+  transition: transform .4s cubic-bezier(.16,1,.3,1);
+  margin: 20px 0;
 }
+.modal-overlay.active .modal { transform: scale(1) translateY(0); }
 .modal-close {
-  position: absolute;
-  top: 16px; right: 16px;
-  background: none;
-  border: none;
-  color: var(--text-muted);
-  cursor: pointer;
-  padding: 8px;
-  transition: color .2s;
+  position: absolute; top: 16px; right: 16px; z-index: 10;
+  width: 36px; height: 36px; border-radius: 50%;
+  background: rgba(0,0,0,.6); border: none;
+  color: #fff; cursor: pointer; display: flex;
+  align-items: center; justify-content: center;
+  transition: background .2s;
 }
-.modal-close:hover { color: var(--text-primary); }
-.modal-close svg { width: 20px; height: 20px; }
+.modal-close:hover { background: rgba(0,0,0,.8); }
+.modal-hero {
+  height: 280px; border-radius: 12px 12px 0 0;
+  position: relative; overflow: hidden;
+  display: flex; flex-direction: column;
+  justify-content: flex-end; padding: 32px;
+}
+.modal-hero-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(to top, rgba(21,21,21,1) 0%, rgba(21,21,21,.6) 50%, transparent 100%);
+}
+.modal-hero-content { position: relative; z-index: 1; }
+.modal-tags {
+  font-size: 11px; font-weight: 700; letter-spacing: 2px;
+  text-transform: uppercase; color: var(--gold-l); margin-bottom: 10px;
+}
 .modal-title {
-  font-size: 22px;
-  font-weight: 600;
-  margin-bottom: 8px;
-  letter-spacing: -.01em;
+  font-size: 28px; font-weight: 700; line-height: 1.25; margin-bottom: 10px;
 }
-.modal-sub {
-  font-size: 14px;
-  color: var(--text-secondary);
-  margin-bottom: 28px;
-  line-height: 1.5;
+.modal-meta {
+  font-size: 13px; color: var(--text-secondary);
+  display: flex; gap: 16px;
 }
-.modal-input {
-  width: 100%;
-  padding: 13px 16px;
-  background: rgba(255,255,255,.04);
-  border: 1px solid var(--border);
-  border-radius: 12px;
+.modal-body { padding: 32px; }
+.modal-section { margin-bottom: 28px; }
+.modal-section h3 {
+  font-size: 16px; font-weight: 700; margin-bottom: 12px;
   color: var(--text-primary);
-  font-size: 14px;
-  font-family: inherit;
-  outline: none;
-  transition: border-color .25s, box-shadow .25s;
-  margin-bottom: 12px;
 }
-.modal-input::placeholder { color: var(--text-muted); }
-.modal-input:focus {
-  border-color: var(--gold);
-  box-shadow: 0 0 0 3px rgba(200,150,62,.1);
-}
-.modal-btn {
-  width: 100%;
-  padding: 14px;
-  background: var(--gold);
-  color: var(--bg);
-  font-size: 14px;
-  font-weight: 700;
-  border: none;
-  border-radius: var(--radius-sm);
-  cursor: pointer;
-  font-family: inherit;
-  transition: background .25s;
-  margin-top: 4px;
-}
-.modal-btn:hover { background: var(--gold-l); }
-
-/* ── Hero ── */
-.hero {
-  min-height: max(75vh, 640px);
-  display: flex;
-  align-items: center;
-  padding-top: 72px;
-  position: relative;
-  overflow: hidden;
-}
-.hero::before {
-  content: '';
-  position: absolute;
-  top: -200px; right: -150px;
-  width: 700px; height: 700px;
-  background: radial-gradient(circle, rgba(200,150,62,.06) 0%, transparent 60%);
-  pointer-events: none;
-}
-.hero::after {
-  content: '';
-  position: absolute;
-  bottom: -300px; left: -200px;
-  width: 600px; height: 600px;
-  background: radial-gradient(circle, rgba(200,150,62,.03) 0%, transparent 65%);
-  pointer-events: none;
-}
-.hero-inner {
-  display: grid;
-  grid-template-columns: 1.15fr 1fr;
-  gap: 80px;
-  align-items: center;
-  width: 100%;
-}
-.hero-title {
-  font-size: clamp(34px, 4.5vw, 58px);
-  font-weight: 700;
-  line-height: 1.08;
-  letter-spacing: -.035em;
-  margin-bottom: 24px;
-}
-.hero-title em {
-  font-style: normal;
-  color: var(--gold);
-}
-.hero-sub {
-  font-size: 17px;
-  color: var(--text-secondary);
-  line-height: 1.65;
-  margin-bottom: 16px;
-  max-width: 500px;
-}
-.hero-geo {
-  font-size: 13px;
-  color: var(--text-muted);
-  margin-bottom: 40px;
-  line-height: 1.6;
-}
-.hero-geo strong {
-  color: var(--text-secondary);
-  font-weight: 500;
-}
-.hero-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  padding: 16px 36px;
-  background: var(--gold);
-  color: var(--bg);
-  font-size: 15px;
-  font-weight: 700;
-  border-radius: var(--radius-sm);
-  border: none;
-  cursor: pointer;
-  transition: all .25s;
-}
-.hero-btn:hover {
-  background: var(--gold-l);
-  transform: translateY(-2px);
-  box-shadow: 0 8px 32px rgba(200,150,62,.2);
-}
-.hero-btn svg {
-  width: 18px; height: 18px;
-  transition: transform .25s;
-}
-.hero-btn:hover svg { transform: translateX(3px); }
-
-/* Hero stats */
-.hero-stats {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: var(--gap);
-}
-.hero-stat {
-  background: var(--bg-card);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  padding: 28px 24px;
-  text-align: center;
-  transition: border-color .35s;
-}
-.hero-stat:hover { border-color: var(--border-hover); }
-.hero-stat-num {
-  font-size: 38px;
-  font-weight: 700;
-  line-height: 1.1;
-  margin-bottom: 4px;
-}
-.hero-stat-label {
-  font-size: 13px;
-  color: var(--text-muted);
-  line-height: 1.35;
-}
-
-/* ── Audience Bento ── */
-.audience-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: var(--gap);
-}
-.audience-card {
-  padding: 40px 36px;
-  display: flex;
-  flex-direction: column;
-}
-.audience-tag {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 1.5px;
-  text-transform: uppercase;
-  color: var(--gold);
-  margin-bottom: 20px;
-}
-.audience-tag::before {
-  content: '';
-  width: 8px; height: 8px;
-  border-radius: 50%;
-  background: var(--gold);
-  opacity: .5;
-}
-.audience-title {
-  font-size: 26px;
-  font-weight: 600;
-  letter-spacing: -.02em;
-  margin-bottom: 12px;
-  line-height: 1.2;
-}
-.audience-text {
-  font-size: 15px;
-  color: var(--text-secondary);
-  line-height: 1.65;
-  margin-bottom: 28px;
-  flex-grow: 1;
-}
-.audience-list {
-  list-style: none;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-.audience-list li {
-  font-size: 14px;
-  color: var(--text-secondary);
-  padding-left: 20px;
-  position: relative;
-  line-height: 1.5;
-}
-.audience-list li::before {
-  content: '';
-  position: absolute;
-  left: 0; top: 7px;
-  width: 6px; height: 6px;
-  border-radius: 1px;
-  background: var(--gold);
-  opacity: .6;
-  transform: rotate(45deg);
-}
-
-/* ── Services bento ── */
-.services-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: var(--gap);
-}
-.service-card {
-  padding: 32px;
-}
-.service-card.wide { grid-column: span 2; }
-.service-tag {
-  display: inline-block;
-  font-size: 10px;
-  font-weight: 700;
-  letter-spacing: 1.5px;
-  text-transform: uppercase;
-  padding: 4px 10px;
-  border-radius: 6px;
-  margin-bottom: 16px;
-}
-.service-tag.owners {
-  background: rgba(200,150,62,.1);
-  color: var(--gold);
-}
-.service-tag.managers {
-  background: rgba(44,74,110,.2);
-  color: #6b9fd4;
-}
-.service-tag.both {
-  background: rgba(255,255,255,.05);
-  color: var(--text-secondary);
-}
-.service-icon {
-  width: 44px; height: 44px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: var(--gold-dim);
-  border-radius: 12px;
-  margin-bottom: 18px;
-  color: var(--gold);
-}
-.service-title {
-  font-size: 19px;
-  font-weight: 600;
+.modal-section p {
+  font-size: 14px; color: var(--text-secondary); line-height: 1.7;
   margin-bottom: 8px;
-  letter-spacing: -.01em;
-  line-height: 1.25;
 }
-.service-text {
-  font-size: 14px;
-  color: var(--text-secondary);
-  line-height: 1.6;
+.modal-actions { list-style: none; padding: 0; }
+.modal-actions li {
+  font-size: 14px; color: var(--text-secondary); line-height: 1.7;
+  padding: 4px 0 4px 18px; position: relative;
 }
-
-/* ── Industries ── */
-.industry-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: var(--gap);
+.modal-actions li::before {
+  content: ''; position: absolute; left: 0; top: 12px;
+  width: 6px; height: 6px; background: var(--gold);
+  border-radius: 50%;
 }
-.industry-card {
-  padding: 28px 24px;
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 12px;
-}
-.industry-icon {
-  width: 40px; height: 40px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--gold);
-  opacity: .7;
-}
-.industry-name {
-  font-size: 14px;
-  font-weight: 500;
-  color: var(--text-secondary);
-}
-
-/* ── Lifecycle ── */
-.lifecycle-track {
-  display: flex;
-  gap: 2px;
-  border-radius: var(--radius);
-  overflow: hidden;
-  margin-top: 48px;
-}
-.lifecycle-stage {
-  flex: 1;
-  padding: 32px 20px;
-  background: var(--bg-card);
-  border: 1px solid var(--border);
-  text-align: center;
-  transition: all .35s;
-  cursor: default;
-}
-.lifecycle-stage:first-child { border-radius: var(--radius) 0 0 var(--radius); }
-.lifecycle-stage:last-child { border-radius: 0 var(--radius) var(--radius) 0; }
-.lifecycle-stage:hover {
-  background: var(--bg-card-hover);
-  border-color: var(--border-hover);
-}
-.lifecycle-stage-name {
-  font-size: 14px;
-  font-weight: 600;
-  margin-bottom: 6px;
-}
-.lifecycle-stage-desc {
-  font-size: 12px;
-  color: var(--text-muted);
-  line-height: 1.4;
-}
-.lifecycle-stage.active {
+.modal-result-box {
   background: rgba(200,150,62,.06);
-  border-color: rgba(200,150,62,.3);
+  border-left: 4px solid var(--gold);
+  padding: 20px 24px; border-radius: 0 10px 10px 0;
 }
-.lifecycle-stage.active .lifecycle-stage-name {
-  color: var(--gold-l);
+.modal-result-box p {
+  font-size: 15px; font-weight: 600; color: var(--gold-l);
+  margin-bottom: 4px; line-height: 1.6;
 }
-
-/* ── Cases ── */
-.cases-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: var(--gap);
+.modal-similar { padding: 0 32px 32px; }
+.modal-similar h3 { font-size: 16px; font-weight: 700; margin-bottom: 16px; }
+.modal-similar-row {
+  display: flex; gap: 10px; overflow-x: auto;
 }
-.case-card {
-  padding: 36px 32px;
-  display: flex;
-  flex-direction: column;
+.modal-similar-card {
+  flex: 0 0 180px; aspect-ratio: 16/10;
+  border-radius: var(--radius); position: relative;
+  overflow: hidden; cursor: pointer;
+  transition: transform .2s ease;
 }
-.case-industry {
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 1.5px;
-  text-transform: uppercase;
-  color: var(--text-muted);
-  margin-bottom: 14px;
-}
-.case-title {
-  font-size: 18px;
-  font-weight: 600;
-  margin-bottom: 12px;
-  line-height: 1.3;
-  letter-spacing: -.01em;
-}
-.case-text {
-  font-size: 14px;
-  color: var(--text-secondary);
-  line-height: 1.6;
-  margin-bottom: 24px;
-  flex-grow: 1;
-}
-.case-result {
-  padding-top: 16px;
-  border-top: 1px solid var(--border);
-}
-.case-result-label {
-  font-size: 11px;
-  color: var(--text-muted);
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  margin-bottom: 4px;
-}
-.case-result-val {
-  font-size: 16px;
-  font-weight: 600;
-  color: var(--gold-l);
-}
+.modal-similar-card:hover { transform: scale(1.05); }
 
 /* ── Ratings ── */
-.ratings-row {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 48px;
-  flex-wrap: wrap;
-  padding: 48px 0;
+.ratings {
+  padding: 40px var(--pad);
   border-top: 1px solid var(--border);
   border-bottom: 1px solid var(--border);
 }
-.rating-item {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 8px;
-  opacity: .4;
-  transition: opacity .3s;
+.ratings-row {
+  display: flex; align-items: center; justify-content: center;
+  gap: 48px; flex-wrap: wrap; max-width: var(--max-w); margin: 0 auto;
 }
-.rating-item:hover { opacity: .7; }
 .rating-logo {
-  height: 28px;
-  display: flex;
-  align-items: center;
-  font-size: 18px;
-  font-weight: 700;
-  letter-spacing: -.01em;
-  color: var(--text-primary);
+  font-size: 14px; font-weight: 600; color: var(--text-muted);
+  letter-spacing: .5px; opacity: .5;
+  transition: opacity .3s ease;
 }
-.rating-year {
-  font-size: 11px;
-  color: var(--text-muted);
-}
+.rating-logo:hover { opacity: 1; }
 
-/* ── Form ── */
-.form-section { padding: 120px 0; }
-.form-wrapper {
-  background: var(--bg-card);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  padding: 56px;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 64px;
-  align-items: start;
+/* ── Reasons ── */
+.reasons { padding: 100px var(--pad); }
+.reasons-inner { max-width: var(--max-w); margin: 0 auto; }
+.reasons-title {
+  font-size: 32px; font-weight: 700; text-align: center;
+  margin-bottom: 56px;
 }
-.form-title {
-  font-size: clamp(24px, 2.5vw, 32px);
-  font-weight: 600;
-  margin-bottom: 16px;
-  letter-spacing: -.02em;
-  line-height: 1.2;
+.reasons-grid {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
 }
-.form-sub {
-  font-size: 15px;
-  color: var(--text-secondary);
-  line-height: 1.65;
-  margin-bottom: 32px;
+.reason-card {
+  background: var(--bg-card); border-radius: 12px;
+  padding: 36px 28px; border: 1px solid var(--border);
+  transition: border-color .3s ease, transform .3s ease;
 }
-.form-note {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  font-size: 13px;
-  color: var(--text-muted);
-}
-.form-note svg {
-  width: 16px; height: 16px;
+.reason-card:hover { border-color: var(--border-hover); transform: translateY(-4px); }
+.reason-icon {
+  width: 48px; height: 48px; margin-bottom: 20px;
   color: var(--gold);
-  flex-shrink: 0;
 }
-.form-fields {
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
+.reason-card h3 {
+  font-size: 17px; font-weight: 700; margin-bottom: 10px;
+  line-height: 1.3;
 }
-.input {
-  width: 100%;
-  padding: 14px 18px;
-  background: rgba(255,255,255,.03);
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  color: var(--text-primary);
-  font-size: 14px;
-  font-family: inherit;
-  outline: none;
-  transition: border-color .25s, box-shadow .25s;
+.reason-card p {
+  font-size: 14px; color: var(--text-secondary); line-height: 1.6;
 }
-.input::placeholder { color: var(--text-muted); }
-.input:focus {
-  border-color: var(--gold);
-  box-shadow: 0 0 0 3px rgba(200,150,62,.08);
-}
-textarea.input { resize: vertical; min-height: 90px; }
-.submit-btn {
-  width: 100%;
-  padding: 16px 24px;
-  background: var(--gold);
-  color: var(--bg);
-  font-size: 15px;
-  font-weight: 700;
-  border: none;
-  border-radius: var(--radius-sm);
-  cursor: pointer;
-  font-family: inherit;
-  transition: all .25s;
-}
-.submit-btn:hover { background: var(--gold-l); }
 
-.form-success {
-  display: none;
-  text-align: center;
-  padding: 48px 20px;
+/* ── FAQ ── */
+.faq { padding: 80px var(--pad) 100px; }
+.faq-inner { max-width: 780px; margin: 0 auto; }
+.faq-title {
+  font-size: 32px; font-weight: 700; text-align: center;
+  margin-bottom: 48px;
 }
-.form-success-check {
-  width: 56px; height: 56px;
-  border-radius: 50%;
-  background: var(--gold-dim);
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 20px;
+.faq-item {
+  border-bottom: 1px solid var(--border);
 }
-.form-success-check svg { width: 28px; height: 28px; color: var(--gold); }
-.form-success-title {
-  font-size: 22px;
-  font-weight: 600;
-  margin-bottom: 8px;
+.faq-question {
+  width: 100%; background: none; border: none;
+  color: var(--text-primary); text-align: left;
+  padding: 22px 40px 22px 0; font-size: 16px; font-weight: 600;
+  cursor: pointer; position: relative; line-height: 1.4;
 }
-.form-success-text {
-  font-size: 15px;
-  color: var(--text-secondary);
+.faq-question::after {
+  content: '+'; position: absolute; right: 0; top: 50%;
+  transform: translateY(-50%); font-size: 22px; font-weight: 300;
+  color: var(--text-muted); transition: transform .3s ease, color .3s ease;
+}
+.faq-item.active .faq-question::after {
+  content: '−'; color: var(--gold);
+}
+.faq-answer {
+  max-height: 0; overflow: hidden;
+  transition: max-height .35s ease, padding .35s ease;
+}
+.faq-answer-inner {
+  padding: 0 0 22px;
+  font-size: 14px; color: var(--text-secondary); line-height: 1.7;
+}
+.faq-item.active .faq-answer { max-height: 300px; }
+.faq-cta {
+  text-align: center; margin-top: 56px;
+}
+
+/* ── Login Modal ── */
+.login-overlay {
+  position: fixed; inset: 0; z-index: 3000;
+  background: rgba(0,0,0,.7);
+  backdrop-filter: blur(8px);
+  display: flex; align-items: center; justify-content: center;
+  opacity: 0; pointer-events: none;
+  transition: opacity .3s ease;
+}
+.login-overlay.active { opacity: 1; pointer-events: all; }
+.login-modal {
+  background: var(--bg-elevated); border-radius: 12px;
+  padding: 40px; width: 380px; max-width: 90vw;
+  border: 1px solid var(--border);
+  transform: scale(.92); transition: transform .35s cubic-bezier(.16,1,.3,1);
+}
+.login-overlay.active .login-modal { transform: scale(1); }
+.login-modal h2 {
+  font-size: 22px; font-weight: 700; margin-bottom: 8px; text-align: center;
+}
+.login-modal p {
+  font-size: 13px; color: var(--text-secondary); text-align: center; margin-bottom: 28px;
+}
+.login-field {
+  width: 100%; background: var(--bg); border: 1px solid var(--border);
+  color: var(--text-primary); padding: 12px 16px;
+  border-radius: var(--radius); font-size: 14px; margin-bottom: 14px;
+  outline: none; transition: border-color .2s;
+}
+.login-field:focus { border-color: var(--gold); }
+.login-submit {
+  width: 100%; padding: 13px; background: var(--gold);
+  color: #0a0a0a; border: none; border-radius: var(--radius);
+  font-size: 15px; font-weight: 700; cursor: pointer;
+  transition: background .2s;
+}
+.login-submit:hover { background: var(--gold-l); }
+.login-close {
+  position: absolute; top: 14px; right: 14px;
+  background: none; border: none; color: var(--text-muted);
+  font-size: 22px; cursor: pointer;
 }
 
 /* ── Footer ── */
 .footer {
-  padding: 40px var(--pad) 48px;
+  padding: 60px var(--pad);
   border-top: 1px solid var(--border);
 }
-.footer-top {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  flex-wrap: wrap;
-  gap: 32px;
-  margin-bottom: 32px;
+.footer-inner {
+  max-width: var(--max-w); margin: 0 auto;
+  display: grid; grid-template-columns: 1fr 1fr 1fr;
+  gap: 40px;
 }
-.footer-brand {
-  display: flex;
-  align-items: center;
-  gap: 14px;
+.footer-brand { display: flex; align-items: center; gap: 10px; margin-bottom: 16px; }
+.footer-brand span { font-size: 15px; font-weight: 600; }
+.footer-contacts p {
+  font-size: 13px; color: var(--text-secondary); line-height: 1.8;
 }
-.footer-brand-text {
-  font-size: 14px;
-  font-weight: 600;
-}
-.footer-contacts {
-  text-align: right;
-  font-size: 13px;
-  color: var(--text-secondary);
-  line-height: 1.7;
-}
-.footer-contacts a {
-  color: var(--text-secondary);
+.footer-contacts a { transition: color .2s; }
+.footer-contacts a:hover { color: var(--gold); }
+.footer-links { list-style: none; }
+.footer-links li { margin-bottom: 10px; }
+.footer-links a {
+  font-size: 13px; color: var(--text-secondary);
   transition: color .2s;
 }
-.footer-contacts a:hover { color: var(--gold-l); }
-.footer-bottom {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 16px;
-  padding-top: 24px;
-  border-top: 1px solid var(--border);
-}
-.footer-copy {
-  font-size: 12px;
-  color: var(--text-muted);
-}
-.footer-socials {
-  display: flex;
-  gap: 8px;
+.footer-links a:hover { color: var(--gold); }
+.footer-social-row {
+  display: flex; gap: 14px; margin-top: 16px;
 }
 .footer-social {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 36px; height: 36px;
-  border-radius: 50%;
-  border: 1px solid var(--border);
-  transition: all .25s;
+  width: 38px; height: 38px; border-radius: 50%;
+  background: rgba(255,255,255,.05); border: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: center;
+  transition: all .2s; cursor: pointer;
 }
-.footer-social:hover {
-  border-color: var(--gold);
-  background: rgba(200,150,62,.06);
+.footer-social:hover { border-color: var(--gold); }
+.footer-social svg { width: 16px; height: 16px; fill: var(--text-secondary); }
+.footer-social:hover svg { fill: var(--gold); }
+.footer-copy {
+  max-width: var(--max-w); margin: 32px auto 0;
+  padding-top: 24px; border-top: 1px solid var(--border);
+  font-size: 12px; color: var(--text-muted); text-align: center;
 }
-.footer-social svg {
-  width: 16px; height: 16px;
-  fill: var(--text-muted);
-}
-.footer-social:hover svg { fill: var(--gold-l); }
 
-/* ── Mobile ── */
+/* ── Reveal animation ── */
+.reveal { opacity: 0; transform: translateY(30px); transition: opacity .7s ease, transform .7s ease; }
+.reveal.visible { opacity: 1; transform: translateY(0); }
+
+/* ── Responsive ── */
 @media (max-width: 1100px) {
-  .services-grid { grid-template-columns: 1fr 1fr; }
-  .service-card.wide { grid-column: span 2; }
-  .cases-grid { grid-template-columns: 1fr; }
-  .industry-grid { grid-template-columns: repeat(4, 1fr); }
+  .card { flex: 0 0 calc((100% - 5*8px)/6); }
+  .reasons-grid { grid-template-columns: repeat(2, 1fr); }
 }
-
 @media (max-width: 768px) {
-  :root { --pad: 20px; --gap: 10px; }
-  .section { padding: 72px 0; }
-  .hero { min-height: auto; padding-top: 100px; padding-bottom: 40px; }
-  .hero-inner { grid-template-columns: 1fr; gap: 40px; }
-  .hero-title { font-size: 30px; }
-  .hero-sub { font-size: 15px; }
-  .hero-stats { grid-template-columns: 1fr 1fr; }
-  .hero-stat { padding: 20px 16px; }
-  .hero-stat-num { font-size: 28px; }
-  .audience-grid { grid-template-columns: 1fr; }
-  .services-grid { grid-template-columns: 1fr; }
-  .service-card.wide { grid-column: span 1; }
-  .industry-grid { grid-template-columns: 1fr 1fr; }
-  .lifecycle-track { flex-direction: column; gap: 0; }
-  .lifecycle-stage:first-child { border-radius: var(--radius) var(--radius) 0 0; }
-  .lifecycle-stage:last-child { border-radius: 0 0 var(--radius) var(--radius); }
-  .form-wrapper { grid-template-columns: 1fr; gap: 32px; padding: 32px 24px; }
-  .section-title { margin-bottom: 16px; }
-  .card { padding: 24px; }
-  .header { padding: 0 20px; height: 64px; }
-  .header-logo-text { font-size: 13px; }
-  .ratings-row { gap: 28px; padding: 32px 0; }
-  .footer-contacts { text-align: left; }
-  .modal { padding: 36px 28px; margin: 20px; }
-}
-
-/* ── Print ── */
-@media print {
-  .header, .modal-overlay { display: none !important; }
-  .reveal { opacity: 1 !important; transform: none !important; }
-  body { background: white; color: #333; }
-  .card, .hero-stat, .form-wrapper { border-color: #ddd; background: #fafafa; }
+  :root { --pad: 20px; }
+  .header { height: 56px; padding: 0 20px; }
+  .hero { min-height: 75vh; padding-bottom: 60px; }
+  .hero-grid { display: none; }
+  .hero-title { font-size: 28px; }
+  .hero-subtitle { font-size: 15px; }
+  .row-container {
+    overflow-x: auto; -webkit-overflow-scrolling: touch;
+    scroll-snap-type: x mandatory; padding: 20px 0 40px;
+  }
+  .card { flex: 0 0 70vw; scroll-snap-align: start; }
+  .row-arrow { display: none; }
+  .reasons-grid { grid-template-columns: 1fr; }
+  .footer-inner { grid-template-columns: 1fr; gap: 32px; }
+  .modal { border-radius: 0; max-width: 100%; }
+  .modal-overlay { padding: 0; }
+  .modal-hero { height: 200px; }
+  .modal-close { width: 44px; height: 44px; }
+  .ratings-row { gap: 24px; }
 }
 </style>
 </head>
 <body>
 
-<!-- ════════════ HEADER ════════════ -->
+<!-- Header -->
 <header class="header" id="header">
   <a href="#" class="header-logo">
     <svg width="38" height="38" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -863,472 +557,462 @@ textarea.input { resize: vertical; min-height: 90px; }
       <text x="70" y="64" text-anchor="middle" font-family="Georgia,serif" font-size="46" font-weight="700" fill="white">П</text>
       <rect x="16" y="84.5" width="68" height="1.5" rx=".75" fill="#C8963E" opacity=".8"/>
     </svg>
-    <span class="header-logo-text">Гарант-Профит</span>
+    <span>Гарант-Профит</span>
   </a>
-  <div class="header-nav">
-    <button class="header-login" id="login-btn">Личный кабинет</button>
-    <a href="#form" class="header-cta">Оставить заявку</a>
-  </div>
+  <button class="header-login" id="login-btn">Личный кабинет</button>
 </header>
 
-<!-- ════════════ LOGIN MODAL ════════════ -->
-<div class="modal-overlay" id="modal-overlay">
-  <div class="modal">
-    <button class="modal-close" id="modal-close">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
-    </button>
-    <div class="modal-title">Личный кабинет</div>
-    <div class="modal-sub">Доступ для действующих клиентов агентства</div>
-    <input type="text" class="modal-input" placeholder="Логин или email">
-    <input type="password" class="modal-input" placeholder="Пароль">
-    <button class="modal-btn">Войти</button>
-  </div>
-</div>
-
-<!-- ════════════ HERO ════════════ -->
+<!-- Hero -->
 <section class="hero">
-  <div class="container">
-    <div class="hero-inner">
-      <div class="hero-content reveal">
-        <h1 class="hero-title">Антикризисное управление для тех, кому есть <em>что терять</em></h1>
-        <p class="hero-sub">Закрытая практика для владельцев и&nbsp;управленцев бизнеса. Защита активов. Сопровождение критических решений. Работа по&nbsp;модели закрытого клуба.</p>
-        <div class="hero-geo"><strong>Россия</strong> &middot; Китай &middot; ОАЭ &middot; Турция &middot; Вьетнам &middot; Индонезия &middot; Таиланд &middot; Бразилия &middot; Казахстан &middot; Грузия &middot; Армения</div>
-        <a href="#form" class="hero-btn">
-          Оставить заявку
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
-        </a>
+  <div class="hero-grid" id="hero-grid"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <div class="hero-tag">С 2002 года</div>
+    <h1 class="hero-title">Юридическая поддержка управленческих решений</h1>
+    <p class="hero-subtitle">В спорах с гос.органами, кредиторами, сотрудниками, акционерами</p>
+    <div class="hero-btns">
+      <button class="btn-gold" onclick="document.getElementById('cta-bottom').scrollIntoView({behavior:'smooth'})">Стать клиентом</button>
+      <button class="btn-ghost" onclick="document.getElementById('cases').scrollIntoView({behavior:'smooth'})">Подробнее</button>
+    </div>
+  </div>
+</section>
+
+<!-- Cases Row -->
+<section class="cases-section" id="cases">
+  <div class="cases-header">
+    <h2 class="cases-title">Наши кейсы</h2>
+  </div>
+  <div class="row-wrapper">
+    <button class="row-arrow row-arrow--left" id="arrow-left">&#8249;</button>
+    <div class="row-container" id="row-container"></div>
+    <button class="row-arrow row-arrow--right" id="arrow-right">&#8250;</button>
+  </div>
+</section>
+
+<!-- Ratings -->
+<section class="ratings reveal">
+  <div class="ratings-row">
+    <div class="rating-logo">Право.ru-300</div>
+    <div class="rating-logo">Chambers</div>
+    <div class="rating-logo">Legal 500</div>
+    <div class="rating-logo">RAEX</div>
+    <div class="rating-logo">Коммерсантъ</div>
+    <div class="rating-logo">Best Lawyers</div>
+  </div>
+</section>
+
+<!-- Reasons -->
+<section class="reasons reveal">
+  <div class="reasons-inner">
+    <h2 class="reasons-title">Причины стать клиентом</h2>
+    <div class="reasons-grid">
+      <div class="reason-card">
+        <svg class="reason-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+          <circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/>
+        </svg>
+        <h3>Результат, а не процесс</h3>
+        <p>Мы не продаём часы юристов. Мы берём ответственность за исход дела и работаем на конкретный результат.</p>
       </div>
-      <div class="hero-stats reveal reveal-delay-1">
-        <div class="hero-stat">
-          <div class="hero-stat-num" data-target="24">0</div>
-          <div class="hero-stat-label">года на рынке</div>
-        </div>
-        <div class="hero-stat">
-          <div class="hero-stat-num" data-target="11" data-suffix=" юрисдикций">0</div>
-          <div class="hero-stat-label">география работы</div>
-        </div>
-        <div class="hero-stat">
-          <div class="hero-stat-num" data-target="1700" data-suffix="+">0</div>
-          <div class="hero-stat-label">закрытых проектов</div>
-        </div>
-        <div class="hero-stat">
-          <div class="hero-stat-num" data-target="98.7" data-suffix=" млрд&nbsp;₽" data-decimal="1">0</div>
-          <div class="hero-stat-label">защищённых активов</div>
-        </div>
+      <div class="reason-card">
+        <svg class="reason-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+          <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+        </svg>
+        <h3>Конфиденциальность без компромиссов</h3>
+        <p>Адвокатская тайна. Закрытая практика. Ваш кейс знают только те, кто над ним работает.</p>
+      </div>
+      <div class="reason-card">
+        <svg class="reason-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+          <path d="M3 21h18"/><path d="M5 21V7l7-4 7 4v14"/><path d="M9 21v-6h6v6"/>
+        </svg>
+        <h3>Опыт с 2002 года</h3>
+        <p>24 года практики в высоких ставках. Налоговые споры, субсидиарка, корпоративные конфликты — мы видели всё.</p>
+      </div>
+      <div class="reason-card">
+        <svg class="reason-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+          <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/>
+        </svg>
+        <h3>Один звонок — и мы в деле</h3>
+        <p>Никаких анкет и тендеров. Позвоните, опишите ситуацию — и мы скажем, чем можем помочь.</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ════════════ AUDIENCE: OWNERS & MANAGERS ════════════ -->
-<section class="section" id="audience">
-  <div class="container">
-    <div class="section-label reveal">Для кого</div>
-    <h2 class="section-title reveal">Две аудитории. Разные задачи.<br>Одна система решений.</h2>
-    <div class="section-subtitle reveal">Мы различаем интересы тех, кто владеет бизнесом, и тех, кто им управляет. Потому что инструменты, метрики и&nbsp;риски у них разные.</div>
-    <div class="audience-grid">
-      <div class="card audience-card card-accent reveal">
-        <div class="audience-tag">Владельцам</div>
-        <div class="audience-title">Защита активов и&nbsp;контроля</div>
-        <div class="audience-text">Акционерам, учредителям, инвесторам — когда на кону стоит не KPI, а&nbsp;личное имущество, доля в&nbsp;бизнесе или свобода.</div>
-        <ul class="audience-list">
-          <li>Защита от субсидиарной ответственности</li>
-          <li>Структурирование и вывод активов</li>
-          <li>Корпоративные конфликты и размытие долей</li>
-          <li>Налоговые претензии и уголовные риски</li>
-          <li>Банкротство — управляемое, а не стихийное</li>
-        </ul>
-      </div>
-      <div class="card audience-card reveal reveal-delay-1">
-        <div class="audience-tag">Управленцам</div>
-        <div class="audience-title">Инструменты для выполнения KPI</div>
-        <div class="audience-text">Генеральным директорам, коммерческим директорам, директорам по развитию — когда задача стоит, а&nbsp;ресурсов внутри не хватает.</div>
-        <ul class="audience-list">
-          <li>Антикризисная реструктуризация</li>
-          <li>Сопровождение сделок M&A</li>
-          <li>Оптимизация юридической функции</li>
-          <li>Управление регуляторными рисками</li>
-          <li>Due diligence контрагентов и партнёров</li>
-        </ul>
-      </div>
+<!-- FAQ -->
+<section class="faq reveal">
+  <div class="faq-inner">
+    <h2 class="faq-title">Ответы на существенные вопросы</h2>
+    <div class="faq-item">
+      <button class="faq-question">Чем вы отличаетесь от обычной юридической фирмы?</button>
+      <div class="faq-answer"><div class="faq-answer-inner">Мы не юридический конвейер. Гарант-Профит — это закрытая практика для управленцев, где каждый кейс ведёт старший партнёр. Мы работаем на результат, а не на количество биллинговых часов. Наша специализация — ситуации с высокими ставками: налоговые споры, субсидиарная ответственность, корпоративные конфликты.</div></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-question">Какие гарантии результата вы даёте?</button>
+      <div class="faq-answer"><div class="faq-answer-inner">Мы не обещаем 100% результат — это было бы нечестно. Но мы берёмся только за те дела, где видим реальные шансы на успех. Наша статистика: в 87% случаев мы добиваемся существенного улучшения позиции клиента. Перед началом работы вы получаете честную оценку перспектив и рисков.</div></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-question">Как обеспечивается конфиденциальность?</button>
+      <div class="faq-answer"><div class="faq-answer-inner">Все юристы практики имеют статус адвоката — это даёт законодательную защиту адвокатской тайны. Информация о клиентах не передаётся третьим лицам. Мы используем защищённые каналы связи и хранения документов. Даже внутри команды доступ к материалам кейса имеют только непосредственные исполнители.</div></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-question">Работаете ли вы с делами, которые уже в процессе?</button>
+      <div class="faq-answer"><div class="faq-answer-inner">Да, мы регулярно подключаемся к делам на любой стадии — от предпроверочного анализа до кассации. Часто к нам обращаются, когда предыдущие юристы не справились. Мы проводим аудит текущей ситуации и предлагаем стратегию, которая учитывает уже допущенные ошибки.</div></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-question">Нужно ли мне лично участвовать в процессе?</button>
+      <div class="faq-answer"><div class="faq-answer-inner">Минимально. Мы понимаем, что у управленцев нет времени на погружение в юридические детали. Ваше участие — это стратегические решения и предоставление информации. Всю юридическую работу, коммуникацию с контрагентами и госорганами мы берём на себя.</div></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-question">Можно ли подключиться, если у нас уже есть юристы?</button>
+      <div class="faq-answer"><div class="faq-answer-inner">Да, мы часто работаем совместно с штатными юристами или другими внешними консультантами. Мы можем выступать как «юристы для юристов» — усилить команду экспертизой в сложных вопросах, взять на себя стратегию или конкретное направление.</div></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-question">Работаете ли вы по уголовным рискам?</button>
+      <div class="faq-answer"><div class="faq-answer-inner">Да. Уголовные риски часто сопутствуют налоговым и корпоративным спорам. Мы работаем на стыке: предотвращаем возбуждение дел, защищаем на стадии доследственной проверки, обеспечиваем защиту при взаимодействии со следственными органами. В нашей команде — адвокаты с опытом в экономических составах.</div></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-question">Есть ли опыт с госконтрактами?</button>
+      <div class="faq-answer"><div class="faq-answer-inner">Да, мы сопровождаем споры, связанные с государственными и муниципальными контрактами: от оспаривания результатов проверок до защиты при обвинениях в нецелевом использовании бюджетных средств. Работаем как со стороны подрядчика, так и со стороны заказчика.</div></div>
+    </div>
+    <div class="faq-cta" id="cta-bottom">
+      <button class="btn-gold" onclick="document.getElementById('login-overlay').classList.add('active');document.body.style.overflow='hidden'">Стать клиентом</button>
     </div>
   </div>
 </section>
 
-<!-- ════════════ SERVICES BENTO ════════════ -->
-<section class="section" id="services">
-  <div class="container">
-    <div class="section-label reveal">Направления</div>
-    <h2 class="section-title reveal">Что мы делаем</h2>
-    <div class="section-subtitle reveal">Антикризисная практика полного цикла. От&nbsp;диагностики ситуации до закрытия проекта с&nbsp;зафиксированным результатом.</div>
-    <div class="services-grid">
-
-      <div class="card service-card wide reveal">
-        <span class="service-tag owners">Владельцам</span>
-        <div class="service-icon">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-        </div>
-        <div class="service-title">Защита активов и&nbsp;собственности</div>
-        <div class="service-text">Превентивная защита и&nbsp;экстренное реагирование. Структурирование владения, налоговое планирование, защита от&nbsp;субсидиарки и&nbsp;уголовных рисков. Работа в&nbsp;11 юрисдикциях.</div>
-      </div>
-
-      <div class="card service-card reveal reveal-delay-1">
-        <span class="service-tag owners">Владельцам</span>
-        <div class="service-icon">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-        </div>
-        <div class="service-title">Корпоративные конфликты</div>
-        <div class="service-text">Рейдерство, выход партнёра, размытие доли. Возвращаем контроль и&nbsp;закрываем входы.</div>
-      </div>
-
-      <div class="card service-card reveal reveal-delay-1">
-        <span class="service-tag managers">Управленцам</span>
-        <div class="service-icon">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
-        </div>
-        <div class="service-title">Антикризисная реструктуризация</div>
-        <div class="service-text">Финансовое оздоровление, реструктуризация долга, переговоры с&nbsp;кредиторами.</div>
-      </div>
-
-      <div class="card service-card reveal">
-        <span class="service-tag both">Всем</span>
-        <div class="service-icon">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/><line x1="12" y1="12" x2="12" y2="16"/></svg>
-        </div>
-        <div class="service-title">Сопровождение сделок</div>
-        <div class="service-text">M&A, joint ventures, due diligence. Структурирование сделок с&nbsp;минимизацией рисков.</div>
-      </div>
-
-      <div class="card service-card reveal reveal-delay-1">
-        <span class="service-tag owners">Владельцам</span>
-        <div class="service-icon">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 3v18h18"/><path d="m19 9-5 5-4-4-3 3"/></svg>
-        </div>
-        <div class="service-title">Банкротство</div>
-        <div class="service-text">Контролируемое банкротство, защита КДЛ, оспаривание сделок. Отсекаем личное от&nbsp;корпоративного.</div>
-      </div>
-
-      <div class="card service-card wide reveal">
-        <span class="service-tag managers">Управленцам</span>
-        <div class="service-icon">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
-        </div>
-        <div class="service-title">Операционная юридическая поддержка</div>
-        <div class="service-text">Аутсорсинг юридической функции для компаний, которым нужна экспертиза уровня in-house, но&nbsp;без содержания штата. Регуляторика, комплаенс, договорная работа, претензии и&nbsp;суды — закрываем как внешняя команда, работающая на&nbsp;ваш KPI.</div>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<!-- ════════════ INDUSTRIES & LIFECYCLE ════════════ -->
-<section class="section" id="industries">
-  <div class="container">
-    <div class="section-label reveal">Отрасли и стадии</div>
-    <h2 class="section-title reveal">Работаем с&nbsp;бизнесом любого масштаба</h2>
-    <div class="section-subtitle reveal">Отраслевая экспертиза позволяет нам видеть специфику вашего рынка и&nbsp;не&nbsp;тратить время на&nbsp;погружение.</div>
-
-    <div class="industry-grid reveal">
-      <div class="card industry-card">
-        <div class="industry-icon">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M2 20h20"/><path d="M5 20V8l4-3v15"/><path d="M9 20V5l4-3v18"/><path d="M13 20V4"/><path d="M17 20V8l4 3v9"/></svg>
-        </div>
-        <div class="industry-name">Производство</div>
-      </div>
-      <div class="card industry-card">
-        <div class="industry-icon">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><rect x="3" y="8" width="18" height="12" rx="1"/><path d="M10 8V6a2 2 0 0 1 4 0v2"/><path d="M3 12h18"/></svg>
-        </div>
-        <div class="industry-name">Ритейл и&nbsp;e-com</div>
-      </div>
-      <div class="card industry-card">
-        <div class="industry-icon">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M4 21V8l8-5 8 5v13"/><path d="M9 21v-6h6v6"/><path d="M4 10h16"/></svg>
-        </div>
-        <div class="industry-name">Строительство</div>
-      </div>
-      <div class="card industry-card">
-        <div class="industry-icon">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8"/><path d="M12 17v4"/></svg>
-        </div>
-        <div class="industry-name">IT и&nbsp;услуги</div>
-      </div>
-      <div class="card industry-card">
-        <div class="industry-icon">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M12 2v4"/><path d="M12 18v4"/><circle cx="12" cy="12" r="6"/><path d="M2 12h4"/><path d="M18 12h4"/></svg>
-        </div>
-        <div class="industry-name">Энергетика</div>
-      </div>
-      <div class="card industry-card">
-        <div class="industry-icon">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M12 3c-1.2 0-2.4.6-3 1.7A3.6 3.6 0 0 0 4.6 9c-1 .6-1.7 1.8-1.5 3.2a3.5 3.5 0 0 0 2 5l.3.1h13.2a3.5 3.5 0 0 0 2.3-5.1 3.5 3.5 0 0 0-1.5-3.2A3.6 3.6 0 0 0 15 4.7 3.8 3.8 0 0 0 12 3z"/><path d="M12 12v6"/></svg>
-        </div>
-        <div class="industry-name">Агро</div>
-      </div>
-      <div class="card industry-card">
-        <div class="industry-icon">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M18 8h2a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1h2"/><path d="M8 8V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v3"/><path d="M10 12h4"/></svg>
-        </div>
-        <div class="industry-name">Логистика</div>
-      </div>
-      <div class="card industry-card">
-        <div class="industry-icon">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M12 22a7 7 0 0 0 7-7c0-2-1-3.9-3-5.5s-3.5-4-4-6.5c-.5 2.5-2 4.9-4 6.5C6 11.1 5 13 5 15a7 7 0 0 0 7 7z"/></svg>
-        </div>
-        <div class="industry-name">Фарма</div>
-      </div>
-    </div>
-
-    <div class="lifecycle-track reveal">
-      <div class="lifecycle-stage">
-        <div class="lifecycle-stage-name">Зарождение</div>
-        <div class="lifecycle-stage-desc">Структурирование, риски</div>
-      </div>
-      <div class="lifecycle-stage">
-        <div class="lifecycle-stage-name">Рост</div>
-        <div class="lifecycle-stage-desc">Сделки, партнёрства</div>
-      </div>
-      <div class="lifecycle-stage active">
-        <div class="lifecycle-stage-name">Зрелость</div>
-        <div class="lifecycle-stage-desc">Защита, оптимизация</div>
-      </div>
-      <div class="lifecycle-stage active">
-        <div class="lifecycle-stage-name">Спад</div>
-        <div class="lifecycle-stage-desc">Реструктуризация</div>
-      </div>
-      <div class="lifecycle-stage">
-        <div class="lifecycle-stage-name">Ликвидация</div>
-        <div class="lifecycle-stage-desc">Банкротство, закрытие</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ════════════ CASES ════════════ -->
-<section class="section" id="cases">
-  <div class="container">
-    <div class="section-label reveal">Практика</div>
-    <h2 class="section-title reveal">Ситуации, которые мы&nbsp;закрыли</h2>
-    <div class="section-subtitle reveal">Обезличенные кейсы из&nbsp;реальной практики. Каждый начинался с&nbsp;ситуации, знакомой нашим клиентам.</div>
-    <div class="cases-grid">
-
-      <div class="card case-card reveal">
-        <div class="case-industry">Производство &middot; Владелец</div>
-        <div class="case-title">Выездная проверка с&nbsp;доначислением 340&nbsp;млн&nbsp;₽</div>
-        <div class="case-text">Собственник производственного холдинга получил акт выездной проверки. Налоговая квалифицировала цепочку поставок как схему дробления. Параллельно инициировалась доследственная проверка. Мы вошли на&nbsp;стадии возражений, перестроили доказательную базу и&nbsp;вели коммуникацию с&nbsp;инспекцией и&nbsp;следствием одновременно.</div>
-        <div class="case-result">
-          <div class="case-result-label">Результат</div>
-          <div class="case-result-val">Доначисления снижены до 41 млн ₽. Уголовное дело не возбуждено.</div>
-        </div>
-      </div>
-
-      <div class="card case-card reveal reveal-delay-1">
-        <div class="case-industry">Ритейл &middot; Управленец</div>
-        <div class="case-title">Генеральный директор под угрозой субсидиарки на&nbsp;780&nbsp;млн&nbsp;₽</div>
-        <div class="case-text">Генеральный директор торговой сети, назначенный за&nbsp;два года до&nbsp;банкротства, оказался основным ответчиком по&nbsp;субсидиарной ответственности. Предыдущий менеджмент вывел активы, а&nbsp;долги остались. Конкурсный управляющий подал заявление на&nbsp;всех КДЛ. Мы выстроили линию защиты, отделяющую действия клиента от&nbsp;действий предшественников.</div>
-        <div class="case-result">
-          <div class="case-result-label">Результат</div>
-          <div class="case-result-val">Полное снятие субсидиарной ответственности. Срок: 7 месяцев.</div>
-        </div>
-      </div>
-
-      <div class="card case-card reveal reveal-delay-2">
-        <div class="case-industry">Строительство &middot; Владелец</div>
-        <div class="case-title">Партнёр вывел 60% активов через аффилированные структуры</div>
-        <div class="case-text">Один из&nbsp;двух совладельцев строительной компании обнаружил, что партнёр за&nbsp;полтора года создал параллельную структуру, перевёл ключевые контракты и&nbsp;переоформил технику. К&nbsp;моменту обращения к&nbsp;нам формально компания уже была пустой. Мы запустили одновременно корпоративный спор, обеспечительные меры и&nbsp;уголовное производство.</div>
-        <div class="case-result">
-          <div class="case-result-label">Результат</div>
-          <div class="case-result-val">Возврат активов. Выкуп доли партнёра. Срок: 11 месяцев.</div>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<!-- ════════════ RATINGS ════════════ -->
-<section class="section" id="ratings" style="padding-top:0;">
-  <div class="container">
-    <div class="ratings-row reveal">
-      <div class="rating-item">
-        <div class="rating-logo">Право.ru-300</div>
-        <div class="rating-year">2023, 2024</div>
-      </div>
-      <div class="rating-item">
-        <div class="rating-logo">Chambers</div>
-        <div class="rating-year">Russia</div>
-      </div>
-      <div class="rating-item">
-        <div class="rating-logo">Legal 500</div>
-        <div class="rating-year">EMEA</div>
-      </div>
-      <div class="rating-item">
-        <div class="rating-logo">RAEX</div>
-        <div class="rating-year">600</div>
-      </div>
-      <div class="rating-item">
-        <div class="rating-logo">Коммерсантъ</div>
-        <div class="rating-year">Лучшие юрфирмы</div>
-      </div>
-      <div class="rating-item">
-        <div class="rating-logo">Best Lawyers</div>
-        <div class="rating-year">Russia</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ════════════ FORM ════════════ -->
-<section class="form-section" id="form">
-  <div class="container">
-    <div class="form-wrapper reveal">
-      <div>
-        <h2 class="form-title">Если вы здесь, значит ситуация требует внимания</h2>
-        <p class="form-sub">Расскажите кратко, что происходит. Мы&nbsp;изучим ситуацию и&nbsp;свяжемся, если сможем быть полезны. Это не обязательство — это начало разговора.</p>
-        <div class="form-note">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-          Конфиденциальность гарантирована
-        </div>
-      </div>
-      <div>
-        <form class="form-fields" id="app-form">
-          <input type="text" class="input" name="name" placeholder="Имя" required>
-          <input type="text" class="input" name="company" placeholder="Компания и должность">
-          <input type="text" class="input" name="contact" placeholder="Телефон или email" required>
-          <textarea class="input" name="situation" rows="3" placeholder="Опишите ситуацию"></textarea>
-          <button type="submit" class="submit-btn">Отправить</button>
-        </form>
-        <div class="form-success" id="form-success">
-          <div class="form-success-check">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-          </div>
-          <div class="form-success-title">Принято</div>
-          <div class="form-success-text">Мы свяжемся с вами в течение 24 часов.</div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ════════════ FOOTER ════════════ -->
+<!-- Footer -->
 <footer class="footer">
-  <div class="container">
-    <div class="footer-top">
+  <div class="footer-inner">
+    <div>
       <div class="footer-brand">
         <svg width="32" height="32" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <rect x="2" y="2" width="96" height="96" rx="6" fill="none" stroke="rgba(255,255,255,.1)" stroke-width="1.5"/>
-          <rect x="16" y="14" width="68" height="1.5" rx=".75" fill="#C8963E" opacity=".5"/>
-          <text x="30" y="64" text-anchor="middle" font-family="Georgia,serif" font-size="46" font-weight="700" fill="rgba(255,255,255,.4)">Г</text>
-          <rect x="49.5" y="28" width="1" height="48" rx=".5" fill="#C8963E" opacity=".35"/>
-          <text x="70" y="64" text-anchor="middle" font-family="Georgia,serif" font-size="46" font-weight="700" fill="rgba(255,255,255,.4)">П</text>
-          <rect x="16" y="84.5" width="68" height="1.5" rx=".75" fill="#C8963E" opacity=".5"/>
+          <rect x="2" y="2" width="96" height="96" rx="6" fill="none" stroke="rgba(255,255,255,.15)" stroke-width="1.5"/>
+          <rect x="16" y="14" width="68" height="1.5" rx=".75" fill="#C8963E" opacity=".8"/>
+          <text x="30" y="64" text-anchor="middle" font-family="Georgia,serif" font-size="46" font-weight="700" fill="white">Г</text>
+          <rect x="49.5" y="28" width="1" height="48" rx=".5" fill="#C8963E" opacity=".6"/>
+          <text x="70" y="64" text-anchor="middle" font-family="Georgia,serif" font-size="46" font-weight="700" fill="white">П</text>
+          <rect x="16" y="84.5" width="68" height="1.5" rx=".75" fill="#C8963E" opacity=".8"/>
         </svg>
-        <span class="footer-brand-text">Гарант-Профит</span>
+        <span>Гарант-Профит</span>
       </div>
       <div class="footer-contacts">
-        123112, Москва, Пресненская&nbsp;наб., д.&nbsp;12, 37&nbsp;этаж<br>
-        <a href="tel:+79771473887">+7 977 147-38-87</a>
+        <p>Пресненская наб., 12, 37 эт.</p>
+        <p><a href="tel:+79771473887">+7 977 147-38-87</a></p>
       </div>
-    </div>
-    <div class="footer-bottom">
-      <div class="footer-copy">&copy; 2002&ndash;2026 Юридическое агентство &laquo;Гарант-Профит&raquo;</div>
-      <div class="footer-socials">
-        <a href="#" class="footer-social" aria-label="Telegram">
+      <div class="footer-social-row">
+        <a href="#" class="footer-social" title="Telegram">
           <svg viewBox="0 0 24 24"><path d="M9.04 15.54l-.26 3.73c.37 0 .53-.16.73-.35l1.74-1.68 3.62 2.67c.66.37 1.13.18 1.31-.62l2.37-11.2c.21-1-.36-1.39-1.02-1.15L3.32 11.16c-.95.37-.93.92-.16 1.17l4.43 1.38 10.28-6.48c.48-.32.93-.14.56.18L9.04 15.54z"/></svg>
         </a>
       </div>
     </div>
+    <div>
+      <ul class="footer-links">
+        <li><a href="#">Политика конфиденциальности</a></li>
+        <li><a href="#">О компании</a></li>
+        <li><a href="#">Для СМИ</a></li>
+        <li><a href="#">География</a></li>
+      </ul>
+    </div>
+    <div></div>
   </div>
+  <div class="footer-copy">&copy; 2002–2026 Гарант-Профит. Все права защищены.</div>
 </footer>
 
+<!-- Case Modal -->
+<div class="modal-overlay" id="modal-overlay">
+  <div class="modal" id="modal"></div>
+</div>
+
+<!-- Login Modal -->
+<div class="login-overlay" id="login-overlay">
+  <div class="login-modal" style="position:relative">
+    <button class="login-close" onclick="document.getElementById('login-overlay').classList.remove('active');document.body.style.overflow=''">&times;</button>
+    <h2>Личный кабинет</h2>
+    <p>Войдите для доступа к материалам</p>
+    <input class="login-field" type="email" placeholder="Email">
+    <input class="login-field" type="password" placeholder="Пароль">
+    <button class="login-submit">Войти</button>
+  </div>
+</div>
+
 <script>
-(function() {
-  'use strict';
-
-  // Sticky header
-  var header = document.getElementById('header');
-  window.addEventListener('scroll', function() {
-    header.classList.toggle('scrolled', window.scrollY > 60);
-  }, { passive: true });
-
-  // Smooth scroll
-  document.querySelectorAll('a[href^="#"]').forEach(function(a) {
-    a.addEventListener('click', function(e) {
-      var t = document.querySelector(this.getAttribute('href'));
-      if (t) {
-        e.preventDefault();
-        t.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }
-    });
-  });
-
-  // Scroll reveal
-  var reveals = document.querySelectorAll('.reveal');
-  var revealObs = new IntersectionObserver(function(entries) {
-    entries.forEach(function(entry) {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-      }
-    });
-  }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
-  reveals.forEach(function(el) { revealObs.observe(el); });
-
-  // CountUp
-  var counted = false;
-  var statsArea = document.querySelector('.hero-stats');
-  var countObs = new IntersectionObserver(function(entries) {
-    if (entries[0].isIntersecting && !counted) {
-      counted = true;
-      runCountUp();
-    }
-  }, { threshold: 0.4 });
-  countObs.observe(statsArea);
-
-  function runCountUp() {
-    document.querySelectorAll('[data-target]').forEach(function(el) {
-      var target = parseFloat(el.dataset.target);
-      var suffix = el.dataset.suffix || '';
-      var dec = parseInt(el.dataset.decimal) || 0;
-      var dur = 2000;
-      var start = performance.now();
-      (function tick(now) {
-        var p = Math.min((now - start) / dur, 1);
-        var e = 1 - Math.pow(1 - p, 3);
-        var v = e * target;
-        el.innerHTML = (dec > 0 ? v.toFixed(dec) : Math.round(v)) + suffix;
-        if (p < 1) requestAnimationFrame(tick);
-      })(start);
-    });
+const CASES = [
+  {
+    id:'tax-01', industry:'Производство', type:'Налоги', color:'#4a6741',
+    title:'Выездная проверка. Доначисление 340 млн ₽',
+    subtitle:'Угроза уголовного дела',
+    preview:'Генеральный директор производственного холдинга получил акт выездной проверки. Налоговая квалифицировала цепочку поставок как схему дробления.',
+    situation:'Собственник производственного холдинга получил акт выездной налоговой проверки с доначислениями на 340 млн рублей. Инспекция квалифицировала цепочку поставок через аффилированные компании как схему дробления бизнеса. Параллельно была инициирована доследственная проверка по ст. 199 УК РФ. Под угрозой оказались как активы компании, так и личная свобода руководителя.',
+    actions:['Вошли на стадии подготовки возражений на акт проверки','Перестроили доказательную базу: подтвердили деловую цель каждой операции','Подготовили экономическое обоснование ценообразования','Вели параллельную коммуникацию с инспекцией и следственными органами','Добились частичной отмены доначислений на стадии досудебного урегулирования'],
+    result:{metrics:'Доначисления: 340 → 41 млн ₽ (−88%)', outcome:'Уголовное дело: не возбуждено', duration:'9 месяцев'},
+    tags:['Налоги','Проверка','2024','Россия'],
+    icon:'<path d="M3 21V8l4-3v16"/><path d="M7 21V5l4-3v19"/><path d="M11 21V4"/><path d="M15 21V8l4 3v10"/><path d="M19 21v-7"/>'
+  },
+  {
+    id:'bankr-01', industry:'Ритейл', type:'Банкротство', color:'#6b4a8a',
+    title:'Субсидиарная ответственность CEO. 780 млн ₽',
+    subtitle:'Личная ответственность руководителя',
+    preview:'CEO крупной розничной сети привлекали к субсидиарной ответственности на 780 млн рублей после банкротства компании.',
+    situation:'После банкротства розничной сети кредиторы подали заявление о привлечении генерального директора к субсидиарной ответственности на 780 млн рублей. Арбитражный управляющий утверждал, что руководитель не подал заявление о банкротстве вовремя и совершал убыточные сделки. Под угрозой оказалось всё личное имущество: квартира, автомобили, банковские счета.',
+    actions:['Провели анализ оснований для привлечения к субсидиарной ответственности','Доказали отсутствие причинно-следственной связи между действиями CEO и банкротством','Подготовили заключение о рыночности оспариваемых сделок','Обеспечили снятие обеспечительных мер с личного имущества'],
+    result:{metrics:'Требование: 780 млн ₽ → 0', outcome:'Полное освобождение от ответственности', duration:'14 месяцев'},
+    tags:['Банкротство','Субсидиарка','2023','Россия'],
+    icon:'<path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/>'
+  },
+  {
+    id:'conf-01', industry:'Строительство', type:'Конфликт', color:'#7a5c3a',
+    title:'Корпоративный конфликт. Вывод 60% активов',
+    subtitle:'Партнёр вывел ключевые активы',
+    preview:'Управляющий партнёр строительного холдинга обнаружил, что его партнёр систематически выводил активы через подставные компании.',
+    situation:'Управляющий директор строительного холдинга обнаружил, что его партнёр в течение двух лет систематически выводил активы компании через цепочку подставных компаний. К моменту обращения было выведено около 60% активов на сумму более 2 млрд рублей. Партнёр параллельно готовил иск о принудительном выкупе доли по заниженной цене.',
+    actions:['Получили обеспечительные меры: арест выведенных активов','Оспорили сделки по выводу активов как притворные','Инициировали уголовное преследование по факту мошенничества','Обеспечили возврат контроля над ключевыми активами'],
+    result:{metrics:'Возвращено активов на 1.8 млрд ₽', outcome:'Партнёр привлечён к ответственности', duration:'18 месяцев'},
+    tags:['Конфликт','Активы','2023','Россия'],
+    icon:'<path d="M2 20h20"/><path d="M5 20V8l4-3v15"/><path d="M9 20V5l4-2v17"/><path d="M13 20V3"/><rect x="17" y="8" width="4" height="12"/>'
+  },
+  {
+    id:'restr-01', industry:'IT', type:'Реструктуризация', color:'#3a5c7a',
+    title:'Долг 1.2 млрд. Реструктуризация за 5 мес.',
+    subtitle:'Антикризисная реструктуризация',
+    preview:'IT-компания оказалась на грани банкротства с долгом 1.2 млрд рублей после потери ключевого контракта с госзаказчиком.',
+    situation:'Крупная IT-компания потеряла ключевой государственный контракт, который обеспечивал 70% выручки. Накопленный долг перед банками и поставщиками достиг 1.2 млрд рублей. Три банка подали заявления о банкротстве. CEO нуждался в срочной реструктуризации, чтобы сохранить бизнес и команду из 400 человек.',
+    actions:['Провели переговоры с банками-кредиторами о реструктуризации','Разработали план финансового оздоровления','Добились отзыва заявлений о банкротстве','Структурировали привлечение нового инвестора'],
+    result:{metrics:'Долг реструктурирован: рассрочка на 5 лет', outcome:'Банкротство предотвращено, бизнес сохранён', duration:'5 месяцев'},
+    tags:['Реструктуризация','Долг','2024','Россия'],
+    icon:'<rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8"/><path d="M12 17v4"/>'
+  },
+  {
+    id:'tax-02', industry:'Энергетика', type:'Налоги', color:'#7a6a3a',
+    title:'Блокировка счетов. Разблокировка 89 млн ₽',
+    subtitle:'Экстренная разблокировка',
+    preview:'Энергетической компании заблокировали все расчётные счета на 89 млн рублей по решению налогового органа. Под угрозой — срыв поставок.',
+    situation:'Налоговый орган вынес решение о приостановлении операций по всем счетам энергетической компании на сумму 89 млн рублей. Причина — предполагаемые нарушения при возмещении НДС. Блокировка грозила срывом контрактов на поставку электроэнергии и штрафными санкциями от контрагентов. Финансовый директор обратился за экстренной помощью.',
+    actions:['Подготовили и подали заявление о замене обеспечительных мер','Представили банковскую гарантию вместо блокировки счетов','Оспорили основания для блокировки в вышестоящем органе','Добились полной разблокировки счетов'],
+    result:{metrics:'89 млн ₽ разблокировано', outcome:'Счета разблокированы за 12 дней', duration:'12 дней'},
+    tags:['Налоги','Блокировка','2024','Россия'],
+    icon:'<circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/>'
+  },
+  {
+    id:'ma-01', industry:'Логистика', type:'M&A', color:'#3a7a6a',
+    title:'Due diligence при поглощении',
+    subtitle:'Юридическое сопровождение сделки',
+    preview:'Логистический холдинг планировал поглощение конкурента. Требовалась полная юридическая проверка и структурирование сделки.',
+    situation:'Крупный логистический оператор планировал приобретение регионального конкурента. Предварительная оценка сделки — 850 млн рублей. Требовалось провести полный юридический due diligence, выявить скрытые риски и структурировать сделку с минимальными налоговыми последствиями. Сроки были сжаты — продавец вёл параллельные переговоры.',
+    actions:['Провели юридический due diligence за 3 недели','Выявили скрытые обязательства на 120 млн рублей','Пересогласовали цену с учётом выявленных рисков','Структурировали сделку через российский SPV'],
+    result:{metrics:'Цена скорректирована на 120 млн ₽', outcome:'Сделка закрыта, риски нейтрализованы', duration:'2 месяца'},
+    tags:['M&A','Due diligence','2024','Россия'],
+    icon:'<rect x="1" y="3" width="15" height="13" rx="2"/><path d="M16 8h5a2 2 0 012 2v8a2 2 0 01-2 2H7a2 2 0 01-2-2v-5"/>'
+  },
+  {
+    id:'conf-02', industry:'Производство', type:'Конфликт', color:'#4a6741',
+    title:'Рейдерский захват. Возврат контроля',
+    subtitle:'Защита от недружественного поглощения',
+    preview:'Группа миноритарных акционеров предприняла попытку рейдерского захвата производственного предприятия через фальсификацию решений собрания.',
+    situation:'Группа миноритарных акционеров производственного предприятия при поддержке внешнего инвестора предприняла попытку захвата контроля. Были сфальсифицированы протоколы общего собрания, на основании которых в ЕГРЮЛ внесены изменения о смене генерального директора. Новый «директор» начал переоформлять ключевые активы.',
+    actions:['Получили судебный запрет на распоряжение активами','Оспорили решения собрания как ничтожные','Восстановили записи в ЕГРЮЛ','Инициировали уголовное преследование за фальсификацию'],
+    result:{metrics:'100% контроля возвращено', outcome:'Рейдеры привлечены к уголовной ответственности', duration:'4 месяца'},
+    tags:['Конфликт','Рейдерство','2023','Россия'],
+    icon:'<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>'
+  },
+  {
+    id:'bankr-02', industry:'Ритейл', type:'Банкротство', color:'#6b4a8a',
+    title:'Контролируемое банкротство сети',
+    subtitle:'Сохранение активов при банкротстве',
+    preview:'Розничная сеть из 45 магазинов вошла в процедуру банкротства. Задача — сохранить максимум активов и защитить управленческую команду.',
+    situation:'Розничная сеть из 45 магазинов с долгом 1.5 млрд рублей вошла в процедуру банкротства. Кредиторы требовали привлечения всей управленческой команды к субсидиарной ответственности. Одновременно арбитражный управляющий оспаривал сделки за последние 3 года. Задача — провести банкротство контролируемо, сохранив активы и защитив менеджмент.',
+    actions:['Обеспечили назначение лояльного арбитражного управляющего','Разработали стратегию контролируемого банкротства','Защитили управленческую команду от субсидиарной ответственности','Организовали выкуп ключевых активов на торгах'],
+    result:{metrics:'Сохранено 70% активов', outcome:'Менеджмент защищён от ответственности', duration:'20 месяцев'},
+    tags:['Банкротство','Ритейл','2023','Россия'],
+    icon:'<path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/>'
+  },
+  {
+    id:'conf-03', industry:'Фарма', type:'Конфликт', color:'#5a3a7a',
+    title:'Давление на CEO. Защита позиции',
+    subtitle:'Корпоративный конфликт на уровне совета директоров',
+    preview:'CEO фармацевтической компании подвергся давлению со стороны совета директоров с целью принудительного увольнения и лишения опционов.',
+    situation:'Генеральный директор фармацевтической компании вступил в конфликт с советом директоров после того, как заблокировал сделку по продаже ключевого актива аффилированной структуре. Совет директоров инициировал процедуру досрочного прекращения полномочий и пытался лишить CEO опционной программы стоимостью $3M.',
+    actions:['Оспорили правомерность решения совета директоров','Получили обеспечительные меры, запрещающие смену CEO','Провели независимую оценку заблокированной сделки','Добились мирового соглашения на выгодных условиях'],
+    result:{metrics:'Опционы $3M сохранены', outcome:'CEO сохранил позицию', duration:'6 месяцев'},
+    tags:['Конфликт','CEO','2024','Россия'],
+    icon:'<path d="M12 2a4.5 4.5 0 00-4.5 4.5c0 1.657.87 3.11 2.175 3.932L9 12l3 2 3-2-.675-1.568A4.495 4.495 0 0016.5 6.5 4.5 4.5 0 0012 2z"/><path d="M9 14v4a2 2 0 002 2h2a2 2 0 002-2v-4"/>'
+  },
+  {
+    id:'bankr-03', industry:'Агро', type:'Банкротство', color:'#4a7a3a',
+    title:'Субсидиарка. Защита управленца',
+    subtitle:'Защита финансового директора',
+    preview:'Финансового директора агрохолдинга привлекали к субсидиарной ответственности на 450 млн рублей после банкротства компании.',
+    situation:'После банкротства крупного агрохолдинга конкурсный управляющий подал заявление о привлечении финансового директора к субсидиарной ответственности на 450 млн рублей. Основание — подписание ряда платёжных поручений, которые были квалифицированы как вывод активов. Под арест попало личное имущество: дом, земельный участок, автомобили.',
+    actions:['Доказали, что финансовый директор действовал в рамках утверждённого бюджета','Представили документы о деловой цели каждого платежа','Привлекли экспертов для подтверждения рыночности операций','Добились снятия ареста с личного имущества'],
+    result:{metrics:'Требование 450 млн ₽ → отказано', outcome:'Субсидиарная ответственность снята', duration:'11 месяцев'},
+    tags:['Банкротство','Субсидиарка','2024','Россия'],
+    icon:'<path d="M12 22a7 7 0 007-7c0-2-1-3.9-3-5.5s-3.5-4-4-6.5c-.5 2.5-2 4.9-4 6.5C6 11.1 5 13 5 15a7 7 0 007 7z"/>'
   }
+];
 
-  // Login modal
-  var overlay = document.getElementById('modal-overlay');
-  var loginBtn = document.getElementById('login-btn');
-  var closeBtn = document.getElementById('modal-close');
+// Industry icons for hero grid
+const INDUSTRY_ICONS = {
+  'Производство':'M3 21V8l4-3v16M7 21V5l4-3v19',
+  'Ритейл':'M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z',
+  'Строительство':'M2 20h20M5 20V8l4-3v15M13 20V3',
+  'IT':'M2 3h20v14H2zM8 21h8M12 17v4',
+  'Энергетика':'M13 2L3 14h9l-1 8 10-12h-9l1-8',
+  'Логистика':'M1 3h15v13H1zM16 8h4l3 3v5h-7V8z',
+  'Фарма':'M12 2a4 4 0 00-4 4c0 2 2 3 2 6h4c0-3 2-4 2-6a4 4 0 00-4-4zM10 12h4v3h-4z',
+  'Агро':'M12 22a7 7 0 007-7c0-2-1-4-3-5.5S12.5 5.5 12 3c-.5 2.5-2 5-4 6.5S5 13 5 15a7 7 0 007 7z'
+};
 
-  loginBtn.addEventListener('click', function() {
-    overlay.classList.add('open');
-  });
-  closeBtn.addEventListener('click', function() {
-    overlay.classList.remove('open');
-  });
-  overlay.addEventListener('click', function(e) {
-    if (e.target === overlay) overlay.classList.remove('open');
-  });
-  document.addEventListener('keydown', function(e) {
-    if (e.key === 'Escape') overlay.classList.remove('open');
-  });
+// Render hero grid
+const heroGrid = document.getElementById('hero-grid');
+const gridItems = [];
+for(let i = 0; i < 18; i++){
+  const c = CASES[i % CASES.length];
+  gridItems.push(`<div class="hero-grid-item" style="background:linear-gradient(135deg,${c.color}40,${c.color}15)">${c.industry}</div>`);
+}
+heroGrid.innerHTML = gridItems.join('');
 
-  // Form
-  var form = document.getElementById('app-form');
-  var success = document.getElementById('form-success');
-  form.addEventListener('submit', function(e) {
-    e.preventDefault();
-    if (!form.elements.name.value.trim() || !form.elements.contact.value.trim()) return;
-    form.style.display = 'none';
-    success.style.display = 'block';
+// Render case cards
+const rowContainer = document.getElementById('row-container');
+CASES.forEach((c, i) => {
+  const card = document.createElement('div');
+  card.className = 'card';
+  card.innerHTML = `
+    <div class="card-inner" style="border-top:3px solid ${c.color}">
+      <div class="card-image" style="background:linear-gradient(160deg,${c.color}30,#0d0d0d)">
+        <svg viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.3)" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">${c.icon}</svg>
+      </div>
+      <div class="card-overlay"></div>
+      <div class="card-content">
+        <div class="card-industry">${c.industry}</div>
+        <div class="card-title">${c.title}</div>
+        <div class="card-status">Завершён</div>
+      </div>
+    </div>
+    <div class="card-info">
+      <div class="card-tags">${c.tags.map(t=>`<span class="card-tag">${t}</span>`).join('')}</div>
+      <div class="card-preview">${c.preview}</div>
+      <div class="card-result">${c.result.metrics}</div>
+      <button class="card-more" data-idx="${i}">&#9654; Подробнее</button>
+    </div>`;
+  card.addEventListener('click', (e) => {
+    if(!e.target.closest('.card-more')) return;
+    openModal(i);
   });
-})();
+  // Also open on card-inner click (for mobile)
+  card.querySelector('.card-inner').addEventListener('click', () => openModal(i));
+  rowContainer.appendChild(card);
+});
+
+// Row scroll
+const arrowLeft = document.getElementById('arrow-left');
+const arrowRight = document.getElementById('arrow-right');
+const scrollAmt = () => rowContainer.clientWidth * 0.75;
+arrowLeft.addEventListener('click', () => rowContainer.scrollBy({left: -scrollAmt(), behavior:'smooth'}));
+arrowRight.addEventListener('click', () => rowContainer.scrollBy({left: scrollAmt(), behavior:'smooth'}));
+
+// Modal
+const modalOverlay = document.getElementById('modal-overlay');
+const modal = document.getElementById('modal');
+
+function openModal(idx){
+  const c = CASES[idx];
+  const similar = CASES.filter((_,i) => i !== idx).slice(0,4);
+  modal.innerHTML = `
+    <button class="modal-close" onclick="closeModal()">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M18 6L6 18"/><path d="M6 6l12 12"/></svg>
+    </button>
+    <div class="modal-hero" style="background:linear-gradient(160deg,${c.color}50,#151515)">
+      <div class="modal-hero-overlay"></div>
+      <div class="modal-hero-content">
+        <div class="modal-tags">${c.industry} · ${c.type}</div>
+        <h2 class="modal-title">${c.title}</h2>
+        <div class="modal-meta">
+          <span>Длительность: ${c.result.duration}</span>
+          <span>Юрисдикция: Россия</span>
+        </div>
+      </div>
+    </div>
+    <div class="modal-body">
+      <div class="modal-section">
+        <h3>Ситуация</h3>
+        <p>${c.situation}</p>
+      </div>
+      <div class="modal-section">
+        <h3>Что мы сделали</h3>
+        <ul class="modal-actions">${c.actions.map(a=>`<li>${a}</li>`).join('')}</ul>
+      </div>
+      <div class="modal-section">
+        <h3>Результат</h3>
+        <div class="modal-result-box">
+          <p>${c.result.metrics}</p>
+          <p>${c.result.outcome}</p>
+          <p style="color:var(--text-secondary);font-weight:400">Срок: ${c.result.duration}</p>
+        </div>
+      </div>
+    </div>
+    <div class="modal-similar">
+      <h3>Похожие кейсы</h3>
+      <div class="modal-similar-row">
+        ${similar.map((s,si) => `
+          <div class="modal-similar-card" style="background:linear-gradient(160deg,${s.color}40,#0d0d0d)" onclick="closeModal();setTimeout(()=>openModal(${CASES.indexOf(s)}),350)">
+            <div class="card-overlay"></div>
+            <div class="card-content">
+              <div class="card-industry">${s.industry}</div>
+              <div class="card-title" style="font-size:11px">${s.title}</div>
+            </div>
+          </div>
+        `).join('')}
+      </div>
+    </div>`;
+  modalOverlay.classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeModal(){
+  modalOverlay.classList.remove('active');
+  document.body.style.overflow = '';
+}
+modalOverlay.addEventListener('click', (e) => { if(e.target === modalOverlay) closeModal(); });
+document.addEventListener('keydown', (e) => {
+  if(e.key === 'Escape'){
+    closeModal();
+    document.getElementById('login-overlay').classList.remove('active');
+    document.body.style.overflow = '';
+  }
+});
+
+// Header scroll
+const header = document.getElementById('header');
+window.addEventListener('scroll', () => {
+  header.classList.toggle('scrolled', window.scrollY > 50);
+});
+
+// Login modal
+document.getElementById('login-btn').addEventListener('click', () => {
+  document.getElementById('login-overlay').classList.add('active');
+  document.body.style.overflow = 'hidden';
+});
+document.getElementById('login-overlay').addEventListener('click', (e) => {
+  if(e.target === document.getElementById('login-overlay')){
+    e.target.classList.remove('active');
+    document.body.style.overflow = '';
+  }
+});
+
+// FAQ accordion
+document.querySelectorAll('.faq-question').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const item = btn.parentElement;
+    const wasActive = item.classList.contains('active');
+    document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('active'));
+    if(!wasActive) item.classList.add('active');
+  });
+});
+
+// Reveal on scroll
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
+}, {threshold: 0.1});
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 </script>
 </body>
 </html>
