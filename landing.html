@@ -864,129 +864,191 @@ const INDUSTRY_ICONS = {
 // Generate SVG scene illustrations for each industry
 function sceneSVG(industry, color, w, h) {
   w = w || 600; h = h || 340;
+  const lighten = (hex, amt) => {
+    let r = parseInt(hex.slice(1,3),16), g = parseInt(hex.slice(3,5),16), b = parseInt(hex.slice(5,7),16);
+    r = Math.min(255, r+amt); g = Math.min(255, g+amt); b = Math.min(255, b+amt);
+    return `rgb(${r},${g},${b})`;
+  };
+  const c2 = lighten(color, 40);
+  const c3 = lighten(color, 80);
   const scenes = {
-    'Производство': `<rect width="${w}" height="${h}" fill="${color}"/>
-      <rect x="0" y="${h*.6}" width="${w}" height="${h*.4}" fill="${color}" opacity=".6"/>
-      <rect x="${w*.05}" y="${h*.25}" width="${w*.18}" height="${h*.55}" rx="2" fill="#fff" opacity=".07"/>
-      <rect x="${w*.05}" y="${h*.25}" width="${w*.18}" height="${h*.08}" rx="2" fill="#fff" opacity=".12"/>
-      <rect x="${w*.08}" y="${h*.36}" width="${w*.02}" height="${h*.35}" fill="#fff" opacity=".05"/>
-      <rect x="${w*.12}" y="${h*.4}" width="${w*.02}" height="${h*.31}" fill="#fff" opacity=".05"/>
-      <rect x="${w*.16}" y="${h*.38}" width="${w*.02}" height="${h*.33}" fill="#fff" opacity=".05"/>
-      <rect x="${w*.28}" y="${h*.15}" width="${w*.25}" height="${h*.65}" rx="3" fill="#fff" opacity=".06"/>
-      <rect x="${w*.28}" y="${h*.15}" width="${w*.25}" height="${h*.1}" rx="3" fill="#fff" opacity=".1"/>
-      <circle cx="${w*.405}" cy="${h*.2}" r="${h*.025}" fill="#fff" opacity=".15"/>
-      <rect x="${w*.31}" y="${h*.3}" width="${w*.19}" height="${h*.04}" rx="1" fill="#fff" opacity=".04"/>
-      <rect x="${w*.31}" y="${h*.37}" width="${w*.14}" height="${h*.04}" rx="1" fill="#fff" opacity=".04"/>
-      <rect x="${w*.58}" y="${h*.2}" width="${w*.2}" height="${h*.6}" rx="2" fill="#fff" opacity=".05"/>
-      <rect x="${w*.58}" y="${h*.2}" width="${w*.2}" height="${h*.08}" rx="2" fill="#fff" opacity=".09"/>
-      <rect x="${w*.82}" y="${h*.3}" width="${w*.14}" height="${h*.5}" rx="2" fill="#fff" opacity=".04"/>
-      <line x1="${w*.88}" y1="${h*.15}" x2="${w*.88}" y2="${h*.3}" stroke="#fff" stroke-width="2" opacity=".08"/>
-      <polygon points="${w*.85},${h*.15} ${w*.91},${h*.15} ${w*.88},${h*.08}" fill="#fff" opacity=".06"/>`,
+    'Производство': `<defs><linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${c3}" stop-opacity=".3"/><stop offset="1" stop-color="${color}" stop-opacity=".1"/></linearGradient></defs>
+      <rect width="${w}" height="${h}" fill="${color}"/>
+      <rect width="${w}" height="${h*.55}" fill="url(#sky)"/>
+      <rect x="0" y="${h*.55}" width="${w}" height="${h*.45}" fill="#000" opacity=".2"/>
+      <rect x="${w*.04}" y="${h*.18}" width="${w*.22}" height="${h*.62}" rx="3" fill="#fff" opacity=".12"/>
+      <rect x="${w*.04}" y="${h*.18}" width="${w*.22}" height="${h*.1}" rx="3" fill="#fff" opacity=".2"/>
+      <rect x="${w*.07}" y="${h*.32}" width="${w*.04}" height="${h*.4}" fill="#fff" opacity=".1"/>
+      <rect x="${w*.13}" y="${h*.35}" width="${w*.04}" height="${h*.37}" fill="#fff" opacity=".08"/>
+      <rect x="${w*.19}" y="${h*.32}" width="${w*.04}" height="${h*.4}" fill="#fff" opacity=".1"/>
+      <line x1="${w*.15}" y1="${h*.08}" x2="${w*.15}" y2="${h*.18}" stroke="#fff" stroke-width="3" opacity=".2"/>
+      <polygon points="${w*.12},${h*.08} ${w*.18},${h*.08} ${w*.15},${h*.02}" fill="#fff" opacity=".15"/>
+      <rect x="${w*.3}" y="${h*.12}" width="${w*.35}" height="${h*.68}" rx="4" fill="#fff" opacity=".1"/>
+      <rect x="${w*.3}" y="${h*.12}" width="${w*.35}" height="${h*.12}" rx="4" fill="#fff" opacity=".18"/>
+      <circle cx="${w*.475}" cy="${h*.18}" r="${h*.03}" fill="${c2}" opacity=".35"/>
+      <rect x="${w*.34}" y="${h*.28}" width="${w*.12}" height="${h*.15}" rx="2" fill="#fff" opacity=".08"/>
+      <rect x="${w*.48}" y="${h*.28}" width="${w*.12}" height="${h*.15}" rx="2" fill="#fff" opacity=".08"/>
+      <rect x="${w*.34}" y="${h*.47}" width="${w*.27}" height="${h*.06}" rx="2" fill="#fff" opacity=".06"/>
+      <rect x="${w*.34}" y="${h*.56}" width="${w*.2}" height="${h*.06}" rx="2" fill="#fff" opacity=".06"/>
+      <rect x="${w*.7}" y="${h*.22}" width="${w*.25}" height="${h*.58}" rx="3" fill="#fff" opacity=".08"/>
+      <rect x="${w*.7}" y="${h*.22}" width="${w*.25}" height="${h*.1}" rx="3" fill="#fff" opacity=".15"/>
+      <rect x="${w*.73}" y="${h*.36}" width="${w*.06}" height="${h*.12}" rx="1" fill="${c2}" opacity=".12"/>
+      <rect x="${w*.81}" y="${h*.36}" width="${w*.06}" height="${h*.12}" rx="1" fill="${c2}" opacity=".1"/>
+      <rect x="${w*.73}" y="${h*.52}" width="${w*.19}" height="${h*.04}" rx="1" fill="#fff" opacity=".06"/>
+      <rect x="${w*.73}" y="${h*.6}" width="${w*.14}" height="${h*.04}" rx="1" fill="#fff" opacity=".06"/>`,
 
     'Ритейл': `<rect width="${w}" height="${h}" fill="${color}"/>
-      <rect x="${w*.05}" y="${h*.35}" width="${w*.28}" height="${h*.5}" rx="3" fill="#fff" opacity=".07"/>
-      <rect x="${w*.05}" y="${h*.35}" width="${w*.28}" height="${h*.12}" rx="3" fill="#fff" opacity=".1"/>
-      <rect x="${w*.08}" y="${h*.52}" width="${w*.08}" height="${h*.12}" rx="1" fill="#fff" opacity=".05"/>
-      <rect x="${w*.19}" y="${h*.52}" width="${w*.08}" height="${h*.12}" rx="1" fill="#fff" opacity=".05"/>
-      <rect x="${w*.38}" y="${h*.25}" width="${w*.28}" height="${h*.6}" rx="3" fill="#fff" opacity=".08"/>
-      <rect x="${w*.38}" y="${h*.25}" width="${w*.28}" height="${h*.1}" rx="3" fill="#fff" opacity=".12"/>
-      <rect x="${w*.41}" y="${h*.4}" width="${w*.1}" height="${h*.18}" rx="1" fill="#fff" opacity=".05"/>
-      <rect x="${w*.53}" y="${h*.4}" width="${w*.1}" height="${h*.18}" rx="1" fill="#fff" opacity=".05"/>
-      <rect x="${w*.72}" y="${h*.3}" width="${w*.22}" height="${h*.55}" rx="3" fill="#fff" opacity=".06"/>
-      <rect x="${w*.72}" y="${h*.3}" width="${w*.22}" height="${h*.1}" rx="3" fill="#fff" opacity=".1"/>
-      <circle cx="${w*.83}" cy="${h*.55}" r="${h*.06}" fill="#fff" opacity=".04"/>
-      <rect x="${w*.78}" y="${h*.65}" width="${w*.1}" height="${h*.03}" rx="1" fill="#fff" opacity=".06"/>`,
+      <rect x="0" y="${h*.65}" width="${w}" height="${h*.35}" fill="#000" opacity=".15"/>
+      <rect x="${w*.03}" y="${h*.2}" width="${w*.3}" height="${h*.6}" rx="4" fill="#fff" opacity=".12"/>
+      <rect x="${w*.03}" y="${h*.2}" width="${w*.3}" height="${h*.14}" rx="4" fill="#fff" opacity=".2"/>
+      <text x="${w*.18}" y="${h*.29}" text-anchor="middle" font-family="sans-serif" font-size="${h*.05}" fill="#fff" opacity=".3">SHOP</text>
+      <rect x="${w*.07}" y="${h*.4}" width="${w*.1}" height="${h*.18}" rx="2" fill="${c2}" opacity=".15"/>
+      <rect x="${w*.2}" y="${h*.4}" width="${w*.1}" height="${h*.18}" rx="2" fill="${c2}" opacity=".12"/>
+      <rect x="${w*.07}" y="${h*.62}" width="${w*.22}" height="${h*.04}" rx="1" fill="#fff" opacity=".08"/>
+      <rect x="${w*.38}" y="${h*.15}" width="${w*.3}" height="${h*.65}" rx="4" fill="#fff" opacity=".1"/>
+      <rect x="${w*.38}" y="${h*.15}" width="${w*.3}" height="${h*.12}" rx="4" fill="#fff" opacity=".18"/>
+      <rect x="${w*.42}" y="${h*.32}" width="${w*.08}" height="${h*.2}" rx="2" fill="${c2}" opacity=".12"/>
+      <rect x="${w*.52}" y="${h*.32}" width="${w*.08}" height="${h*.2}" rx="2" fill="${c2}" opacity=".14"/>
+      <rect x="${w*.42}" y="${h*.56}" width="${w*.22}" height="${h*.04}" rx="1" fill="#fff" opacity=".08"/>
+      <rect x="${w*.42}" y="${h*.63}" width="${w*.15}" height="${h*.04}" rx="1" fill="#fff" opacity=".06"/>
+      <rect x="${w*.73}" y="${h*.18}" width="${w*.24}" height="${h*.62}" rx="4" fill="#fff" opacity=".08"/>
+      <rect x="${w*.73}" y="${h*.18}" width="${w*.24}" height="${h*.12}" rx="4" fill="#fff" opacity=".15"/>
+      <circle cx="${w*.85}" cy="${h*.5}" r="${h*.08}" fill="#fff" opacity=".06"/>
+      <rect x="${w*.78}" y="${h*.62}" width="${w*.14}" height="${h*.04}" rx="1" fill="#fff" opacity=".08"/>`,
 
-    'Строительство': `<rect width="${w}" height="${h}" fill="${color}"/>
-      <rect x="${w*.1}" y="${h*.4}" width="${w*.35}" height="${h*.45}" rx="2" fill="#fff" opacity=".07"/>
-      <line x1="${w*.28}" y1="${h*.1}" x2="${w*.28}" y2="${h*.4}" stroke="#fff" stroke-width="3" opacity=".1"/>
-      <line x1="${w*.15}" y1="${h*.2}" x2="${w*.4}" y2="${h*.2}" stroke="#fff" stroke-width="2" opacity=".07"/>
-      <line x1="${w*.28}" y1="${h*.2}" x2="${w*.42}" y2="${h*.12}" stroke="#fff" stroke-width="2" opacity=".06"/>
-      <rect x="${w*.14}" y="${h*.5}" width="${w*.08}" height="${h*.12}" rx="1" fill="#fff" opacity=".05"/>
-      <rect x="${w*.25}" y="${h*.5}" width="${w*.08}" height="${h*.12}" rx="1" fill="#fff" opacity=".05"/>
-      <rect x="${w*.36}" y="${h*.5}" width="${w*.05}" height="${h*.2}" rx="1" fill="#fff" opacity=".04"/>
-      <rect x="${w*.55}" y="${h*.3}" width="${w*.25}" height="${h*.55}" rx="2" fill="#fff" opacity=".06"/>
-      <rect x="${w*.58}" y="${h*.38}" width="${w*.06}" height="${h*.08}" rx="1" fill="#fff" opacity=".05"/>
-      <rect x="${w*.67}" y="${h*.38}" width="${w*.06}" height="${h*.08}" rx="1" fill="#fff" opacity=".05"/>
-      <rect x="${w*.58}" y="${h*.52}" width="${w*.06}" height="${h*.08}" rx="1" fill="#fff" opacity=".05"/>
-      <rect x="${w*.67}" y="${h*.52}" width="${w*.06}" height="${h*.08}" rx="1" fill="#fff" opacity=".05"/>
-      <rect x="${w*.85}" y="${h*.2}" width="${w*.06}" height="${h*.65}" rx="1" fill="#fff" opacity=".04"/>`,
+    'Строительство': `<defs><linearGradient id="sky2" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${c3}" stop-opacity=".25"/><stop offset="1" stop-color="${color}" stop-opacity=".05"/></linearGradient></defs>
+      <rect width="${w}" height="${h}" fill="${color}"/>
+      <rect width="${w}" height="${h*.5}" fill="url(#sky2)"/>
+      <rect x="0" y="${h*.6}" width="${w}" height="${h*.4}" fill="#000" opacity=".15"/>
+      <rect x="${w*.08}" y="${h*.3}" width="${w*.35}" height="${h*.55}" rx="3" fill="#fff" opacity=".12"/>
+      <rect x="${w*.12}" y="${h*.38}" width="${w*.08}" height="${h*.12}" rx="1" fill="${c2}" opacity=".15"/>
+      <rect x="${w*.23}" y="${h*.38}" width="${w*.08}" height="${h*.12}" rx="1" fill="${c2}" opacity=".15"/>
+      <rect x="${w*.12}" y="${h*.54}" width="${w*.08}" height="${h*.12}" rx="1" fill="${c2}" opacity=".12"/>
+      <rect x="${w*.23}" y="${h*.54}" width="${w*.08}" height="${h*.12}" rx="1" fill="${c2}" opacity=".12"/>
+      <rect x="${w*.34}" y="${h*.38}" width="${w*.06}" height="${h*.28}" rx="1" fill="#fff" opacity=".06"/>
+      <line x1="${w*.28}" y1="${h*.05}" x2="${w*.28}" y2="${h*.3}" stroke="${c2}" stroke-width="4" opacity=".2"/>
+      <line x1="${w*.15}" y1="${h*.12}" x2="${w*.42}" y2="${h*.12}" stroke="${c2}" stroke-width="3" opacity=".15"/>
+      <line x1="${w*.28}" y1="${h*.12}" x2="${w*.46}" y2="${h*.05}" stroke="${c2}" stroke-width="2" opacity=".12"/>
+      <rect x="${w*.52}" y="${h*.2}" width="${w*.28}" height="${h*.65}" rx="4" fill="#fff" opacity=".1"/>
+      <rect x="${w*.55}" y="${h*.28}" width="${w*.08}" height="${h*.1}" rx="1" fill="${c2}" opacity=".15"/>
+      <rect x="${w*.66}" y="${h*.28}" width="${w*.08}" height="${h*.1}" rx="1" fill="${c2}" opacity=".15"/>
+      <rect x="${w*.55}" y="${h*.42}" width="${w*.08}" height="${h*.1}" rx="1" fill="${c2}" opacity=".12"/>
+      <rect x="${w*.66}" y="${h*.42}" width="${w*.08}" height="${h*.1}" rx="1" fill="${c2}" opacity=".12"/>
+      <rect x="${w*.55}" y="${h*.56}" width="${w*.08}" height="${h*.1}" rx="1" fill="${c2}" opacity=".1"/>
+      <rect x="${w*.66}" y="${h*.56}" width="${w*.08}" height="${h*.1}" rx="1" fill="${c2}" opacity=".1"/>
+      <rect x="${w*.85}" y="${h*.15}" width="${w*.08}" height="${h*.7}" rx="1" fill="#fff" opacity=".08"/>
+      <rect x="${w*.84}" y="${h*.1}" width="${w*.1}" height="${h*.06}" rx="1" fill="${c2}" opacity=".12"/>`,
 
     'IT': `<rect width="${w}" height="${h}" fill="${color}"/>
-      <rect x="${w*.08}" y="${h*.15}" width="${w*.4}" height="${h*.3}" rx="4" fill="#fff" opacity=".06"/>
-      <rect x="${w*.08}" y="${h*.15}" width="${w*.4}" height="${h*.05}" rx="4" fill="#fff" opacity=".1"/>
-      <circle cx="${w*.12}" cy="${h*.175}" r="${h*.012}" fill="#E50914" opacity=".5"/>
-      <circle cx="${w*.155}" cy="${h*.175}" r="${h*.012}" fill="#C8963E" opacity=".5"/>
-      <circle cx="${w*.19}" cy="${h*.175}" r="${h*.012}" fill="#4a6741" opacity=".5"/>
-      <rect x="${w*.11}" y="${h*.24}" width="${w*.15}" height="${h*.02}" rx="1" fill="#4a6741" opacity=".15"/>
-      <rect x="${w*.11}" y="${h*.28}" width="${w*.25}" height="${h*.02}" rx="1" fill="#fff" opacity=".05"/>
-      <rect x="${w*.14}" y="${h*.32}" width="${w*.2}" height="${h*.02}" rx="1" fill="#3a5c7a" opacity=".12"/>
-      <rect x="${w*.11}" y="${h*.36}" width="${w*.12}" height="${h*.02}" rx="1" fill="#fff" opacity=".04"/>
-      <rect x="${w*.08}" y="${h*.55}" width="${w*.18}" height="${h*.35}" rx="3" fill="#fff" opacity=".05"/>
-      <rect x="${w*.08}" y="${h*.55}" width="${w*.18}" height="${h*.06}" rx="3" fill="#fff" opacity=".08"/>
-      <rect x="${w*.3}" y="${h*.55}" width="${w*.18}" height="${h*.35}" rx="3" fill="#fff" opacity=".05"/>
-      <rect x="${w*.3}" y="${h*.55}" width="${w*.18}" height="${h*.06}" rx="3" fill="#fff" opacity=".08"/>
-      <rect x="${w*.55}" y="${h*.2}" width="${w*.38}" height="${h*.65}" rx="3" fill="#fff" opacity=".04"/>
-      <circle cx="${w*.74}" cy="${h*.5}" r="${h*.12}" fill="none" stroke="#fff" stroke-width="1.5" opacity=".06"/>
-      <circle cx="${w*.74}" cy="${h*.5}" r="${h*.06}" fill="#fff" opacity=".03"/>`,
+      <rect x="${w*.06}" y="${h*.1}" width="${w*.44}" height="${h*.38}" rx="6" fill="#fff" opacity=".1"/>
+      <rect x="${w*.06}" y="${h*.1}" width="${w*.44}" height="${h*.07}" rx="6" fill="#fff" opacity=".18"/>
+      <circle cx="${w*.11}" cy="${h*.135}" r="${h*.015}" fill="#E55" opacity=".5"/>
+      <circle cx="${w*.15}" cy="${h*.135}" r="${h*.015}" fill="#EC3" opacity=".5"/>
+      <circle cx="${w*.19}" cy="${h*.135}" r="${h*.015}" fill="#5C5" opacity=".5"/>
+      <rect x="${w*.1}" y="${h*.2}" width="${w*.18}" height="${h*.025}" rx="1" fill="#5C5" opacity=".25"/>
+      <rect x="${w*.1}" y="${h*.24}" width="${w*.3}" height="${h*.025}" rx="1" fill="#fff" opacity=".08"/>
+      <rect x="${w*.13}" y="${h*.28}" width="${w*.25}" height="${h*.025}" rx="1" fill="#58f" opacity=".2"/>
+      <rect x="${w*.1}" y="${h*.32}" width="${w*.15}" height="${h*.025}" rx="1" fill="#C8963E" opacity=".2"/>
+      <rect x="${w*.1}" y="${h*.36}" width="${w*.22}" height="${h*.025}" rx="1" fill="#fff" opacity=".06"/>
+      <rect x="${w*.13}" y="${h*.4}" width="${w*.12}" height="${h*.025}" rx="1" fill="#5C5" opacity=".15"/>
+      <rect x="${w*.06}" y="${h*.55}" width="${w*.2}" height="${h*.35}" rx="4" fill="#fff" opacity=".08"/>
+      <rect x="${w*.06}" y="${h*.55}" width="${w*.2}" height="${h*.07}" rx="4" fill="#fff" opacity=".14"/>
+      <rect x="${w*.09}" y="${h*.66}" width="${w*.14}" height="${h*.04}" rx="1" fill="#fff" opacity=".06"/>
+      <rect x="${w*.09}" y="${h*.73}" width="${w*.1}" height="${h*.04}" rx="1" fill="#fff" opacity=".06"/>
+      <rect x="${w*.3}" y="${h*.55}" width="${w*.2}" height="${h*.35}" rx="4" fill="#fff" opacity=".08"/>
+      <rect x="${w*.3}" y="${h*.55}" width="${w*.2}" height="${h*.07}" rx="4" fill="#fff" opacity=".14"/>
+      <rect x="${w*.33}" y="${h*.66}" width="${w*.14}" height="${h*.04}" rx="1" fill="#fff" opacity=".06"/>
+      <rect x="${w*.55}" y="${h*.15}" width="${w*.4}" height="${h*.7}" rx="5" fill="#fff" opacity=".07"/>
+      <circle cx="${w*.75}" cy="${h*.45}" r="${h*.15}" fill="none" stroke="${c2}" stroke-width="2" opacity=".15"/>
+      <circle cx="${w*.75}" cy="${h*.45}" r="${h*.08}" fill="${c2}" opacity=".08"/>
+      <line x1="${w*.6}" y1="${h*.45}" x2="${w*.9}" y2="${h*.45}" stroke="#fff" stroke-width="1" opacity=".08"/>
+      <line x1="${w*.75}" y1="${h*.3}" x2="${w*.75}" y2="${h*.6}" stroke="#fff" stroke-width="1" opacity=".08"/>
+      <rect x="${w*.6}" y="${h*.68}" width="${w*.3}" height="${h*.06}" rx="2" fill="#fff" opacity=".06"/>`,
 
-    'Энергетика': `<rect width="${w}" height="${h}" fill="${color}"/>
-      <line x1="${w*.1}" y1="${h*.3}" x2="${w*.25}" y2="${h*.2}" stroke="#fff" stroke-width="2.5" opacity=".1"/>
-      <line x1="${w*.25}" y1="${h*.2}" x2="${w*.4}" y2="${h*.35}" stroke="#fff" stroke-width="2.5" opacity=".1"/>
-      <line x1="${w*.4}" y1="${h*.35}" x2="${w*.55}" y2="${h*.18}" stroke="#fff" stroke-width="2.5" opacity=".1"/>
-      <line x1="${w*.55}" y1="${h*.18}" x2="${w*.7}" y2="${h*.32}" stroke="#fff" stroke-width="2.5" opacity=".1"/>
-      <line x1="${w*.7}" y1="${h*.32}" x2="${w*.9}" y2="${h*.22}" stroke="#fff" stroke-width="2.5" opacity=".1"/>
-      <rect x="${w*.08}" y="${h*.3}" width="${w*.04}" height="${h*.55}" fill="#fff" opacity=".06"/>
-      <rect x="${w*.23}" y="${h*.2}" width="${w*.04}" height="${h*.65}" fill="#fff" opacity=".06"/>
-      <rect x="${w*.38}" y="${h*.35}" width="${w*.04}" height="${h*.5}" fill="#fff" opacity=".06"/>
-      <rect x="${w*.53}" y="${h*.18}" width="${w*.04}" height="${h*.67}" fill="#fff" opacity=".06"/>
-      <rect x="${w*.68}" y="${h*.32}" width="${w*.04}" height="${h*.53}" fill="#fff" opacity=".06"/>
-      <rect x="${w*.88}" y="${h*.22}" width="${w*.04}" height="${h*.63}" fill="#fff" opacity=".06"/>
-      <circle cx="${w*.5}" cy="${h*.7}" r="${h*.08}" fill="#fff" opacity=".04"/>
-      <polygon points="${w*.47},${h*.63} ${w*.53},${h*.63} ${w*.5},${h*.58}" fill="#C8963E" opacity=".15"/>`,
+    'Энергетика': `<defs><linearGradient id="sky3" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${c3}" stop-opacity=".2"/><stop offset="1" stop-color="${color}" stop-opacity=".05"/></linearGradient></defs>
+      <rect width="${w}" height="${h}" fill="${color}"/>
+      <rect width="${w}" height="${h*.45}" fill="url(#sky3)"/>
+      <rect x="0" y="${h*.65}" width="${w}" height="${h*.35}" fill="#000" opacity=".12"/>
+      <line x1="${w*.08}" y1="${h*.35}" x2="${w*.22}" y2="${h*.2}" stroke="#fff" stroke-width="4" opacity=".2"/>
+      <line x1="${w*.22}" y1="${h*.2}" x2="${w*.38}" y2="${h*.38}" stroke="#fff" stroke-width="4" opacity=".2"/>
+      <line x1="${w*.38}" y1="${h*.38}" x2="${w*.52}" y2="${h*.15}" stroke="#fff" stroke-width="4" opacity=".2"/>
+      <line x1="${w*.52}" y1="${h*.15}" x2="${w*.68}" y2="${h*.35}" stroke="#fff" stroke-width="4" opacity=".2"/>
+      <line x1="${w*.68}" y1="${h*.35}" x2="${w*.85}" y2="${h*.2}" stroke="#fff" stroke-width="4" opacity=".2"/>
+      <line x1="${w*.85}" y1="${h*.2}" x2="${w*.95}" y2="${h*.28}" stroke="#fff" stroke-width="4" opacity=".2"/>
+      <rect x="${w*.06}" y="${h*.35}" width="${w*.06}" height="${h*.5}" fill="#fff" opacity=".1"/>
+      <rect x="${w*.2}" y="${h*.2}" width="${w*.06}" height="${h*.65}" fill="#fff" opacity=".1"/>
+      <rect x="${w*.36}" y="${h*.38}" width="${w*.06}" height="${h*.47}" fill="#fff" opacity=".1"/>
+      <rect x="${w*.5}" y="${h*.15}" width="${w*.06}" height="${h*.7}" fill="#fff" opacity=".1"/>
+      <rect x="${w*.66}" y="${h*.35}" width="${w*.06}" height="${h*.5}" fill="#fff" opacity=".1"/>
+      <rect x="${w*.83}" y="${h*.2}" width="${w*.06}" height="${h*.65}" fill="#fff" opacity=".1"/>
+      <circle cx="${w*.5}" cy="${h*.72}" r="${h*.1}" fill="${c2}" opacity=".08"/>
+      <polygon points="${w*.47},${h*.66} ${w*.53},${h*.66} ${w*.5},${h*.6}" fill="${c2}" opacity=".2"/>
+      <line x1="${w*.08}" y1="${h*.42}" x2="${w*.22}" y2="${h*.42}" stroke="#fff" stroke-width="1" opacity=".08"/>
+      <line x1="${w*.22}" y1="${h*.42}" x2="${w*.38}" y2="${h*.42}" stroke="#fff" stroke-width="1" opacity=".08"/>`,
 
     'Логистика': `<rect width="${w}" height="${h}" fill="${color}"/>
-      <rect x="${w*.05}" y="${h*.4}" width="${w*.4}" height="${h*.35}" rx="2" fill="#fff" opacity=".06"/>
-      <rect x="${w*.05}" y="${h*.4}" width="${w*.4}" height="${h*.08}" rx="2" fill="#fff" opacity=".09"/>
-      <rect x="${w*.08}" y="${h*.52}" width="${w*.1}" height="${h*.1}" rx="1" fill="#fff" opacity=".04"/>
-      <rect x="${w*.2}" y="${h*.52}" width="${w*.1}" height="${h*.1}" rx="1" fill="#fff" opacity=".04"/>
-      <rect x="${w*.32}" y="${h*.52}" width="${w*.1}" height="${h*.1}" rx="1" fill="#fff" opacity=".04"/>
-      <rect x="${w*.5}" y="${h*.3}" width="${w*.2}" height="${h*.12}" rx="2" fill="#fff" opacity=".07"/>
-      <rect x="${w*.5}" y="${h*.44}" width="${w*.2}" height="${h*.12}" rx="2" fill="#fff" opacity=".05"/>
-      <rect x="${w*.5}" y="${h*.58}" width="${w*.2}" height="${h*.12}" rx="2" fill="#fff" opacity=".05"/>
-      <rect x="${w*.75}" y="${h*.35}" width="${w*.2}" height="${h*.15}" rx="3" fill="#fff" opacity=".06"/>
-      <circle cx="${w*.8}" cy="${h*.62}" r="${h*.04}" fill="#fff" opacity=".05"/>
-      <circle cx="${w*.9}" cy="${h*.62}" r="${h*.04}" fill="#fff" opacity=".05"/>
-      <rect x="${w*.76}" y="${h*.5}" width="${w*.18}" height="${h*.08}" rx="1" fill="#fff" opacity=".04"/>`,
+      <rect x="0" y="${h*.6}" width="${w}" height="${h*.4}" fill="#000" opacity=".12"/>
+      <rect x="${w*.03}" y="${h*.3}" width="${w*.42}" height="${h*.42}" rx="3" fill="#fff" opacity=".12"/>
+      <rect x="${w*.03}" y="${h*.3}" width="${w*.42}" height="${h*.1}" rx="3" fill="#fff" opacity=".18"/>
+      <rect x="${w*.07}" y="${h*.44}" width="${w*.1}" height="${h*.12}" rx="2" fill="${c2}" opacity=".15"/>
+      <rect x="${w*.19}" y="${h*.44}" width="${w*.1}" height="${h*.12}" rx="2" fill="${c2}" opacity=".12"/>
+      <rect x="${w*.31}" y="${h*.44}" width="${w*.1}" height="${h*.12}" rx="2" fill="${c2}" opacity=".15"/>
+      <rect x="${w*.07}" y="${h*.6}" width="${w*.34}" height="${h*.04}" rx="1" fill="#fff" opacity=".08"/>
+      <rect x="${w*.5}" y="${h*.22}" width="${w*.24}" height="${h*.16}" rx="3" fill="#fff" opacity=".12"/>
+      <rect x="${w*.5}" y="${h*.4}" width="${w*.24}" height="${h*.16}" rx="3" fill="#fff" opacity=".1"/>
+      <rect x="${w*.5}" y="${h*.58}" width="${w*.24}" height="${h*.16}" rx="3" fill="#fff" opacity=".08"/>
+      <rect x="${w*.78}" y="${h*.28}" width="${w*.18}" height="${h*.22}" rx="4" fill="#fff" opacity=".1"/>
+      <circle cx="${w*.83}" cy="${h*.6}" r="${h*.05}" fill="#fff" opacity=".08"/>
+      <circle cx="${w*.91}" cy="${h*.6}" r="${h*.05}" fill="#fff" opacity=".08"/>
+      <rect x="${w*.79}" y="${h*.48}" width="${w*.16}" height="${h*.08}" rx="2" fill="#fff" opacity=".06"/>
+      <line x1="${w*.87}" y1="${h*.15}" x2="${w*.87}" y2="${h*.28}" stroke="#fff" stroke-width="2" opacity=".1"/>`,
 
     'Фарма': `<rect width="${w}" height="${h}" fill="${color}"/>
-      <rect x="${w*.1}" y="${h*.2}" width="${w*.25}" height="${h*.6}" rx="3" fill="#fff" opacity=".05"/>
-      <rect x="${w*.13}" y="${h*.25}" width="${w*.04}" height="${h*.3}" rx="2" fill="#fff" opacity=".07"/>
-      <rect x="${w*.19}" y="${h*.3}" width="${w*.04}" height="${h*.25}" rx="2" fill="#fff" opacity=".06"/>
-      <rect x="${w*.25}" y="${h*.22}" width="${w*.04}" height="${h*.33}" rx="2" fill="#fff" opacity=".07"/>
-      <circle cx="${w*.15}" cy="${h*.68}" r="${h*.04}" fill="#fff" opacity=".05"/>
-      <circle cx="${w*.27}" cy="${h*.68}" r="${h*.04}" fill="#fff" opacity=".05"/>
-      <rect x="${w*.42}" y="${h*.15}" width="${w*.3}" height="${h*.45}" rx="4" fill="#fff" opacity=".06"/>
-      <circle cx="${w*.57}" cy="${h*.35}" r="${h*.1}" fill="none" stroke="#fff" stroke-width="1.5" opacity=".08"/>
-      <circle cx="${w*.57}" cy="${h*.35}" r="${h*.04}" fill="#fff" opacity=".04"/>
-      <line x1="${w*.57}" y1="${h*.25}" x2="${w*.57}" y2="${h*.45}" stroke="#fff" stroke-width="1" opacity=".06"/>
-      <line x1="${w*.47}" y1="${h*.35}" x2="${w*.67}" y2="${h*.35}" stroke="#fff" stroke-width="1" opacity=".06"/>
-      <rect x="${w*.8}" y="${h*.25}" width="${w*.12}" height="${h*.5}" rx="6" fill="#fff" opacity=".05"/>
-      <rect x="${w*.83}" y="${h*.35}" width="${w*.06}" height="${h*.15}" rx="3" fill="#fff" opacity=".07"/>`,
+      <rect x="${w*.06}" y="${h*.12}" width="${w*.32}" height="${h*.7}" rx="5" fill="#fff" opacity=".08"/>
+      <rect x="${w*.1}" y="${h*.18}" width="${w*.06}" height="${h*.35}" rx="3" fill="#fff" opacity=".14"/>
+      <rect x="${w*.1}" y="${h*.42}" width="${w*.06}" height="${h*.08}" fill="${c2}" opacity=".2"/>
+      <rect x="${w*.18}" y="${h*.22}" width="${w*.06}" height="${h*.32}" rx="3" fill="#fff" opacity=".12"/>
+      <rect x="${w*.18}" y="${h*.44}" width="${w*.06}" height="${h*.06}" fill="${c2}" opacity=".15"/>
+      <rect x="${w*.26}" y="${h*.15}" width="${w*.06}" height="${h*.38}" rx="3" fill="#fff" opacity=".14"/>
+      <rect x="${w*.26}" y="${h*.4}" width="${w*.06}" height="${h*.08}" fill="${c2}" opacity=".18"/>
+      <circle cx="${w*.16}" cy="${h*.72}" r="${h*.04}" fill="#fff" opacity=".08"/>
+      <circle cx="${w*.26}" cy="${h*.72}" r="${h*.04}" fill="#fff" opacity=".08"/>
+      <rect x="${w*.42}" y="${h*.1}" width="${w*.34}" height="${h*.52}" rx="6" fill="#fff" opacity=".1"/>
+      <circle cx="${w*.59}" cy="${h*.32}" r="${h*.13}" fill="none" stroke="${c2}" stroke-width="2.5" opacity=".2"/>
+      <circle cx="${w*.59}" cy="${h*.32}" r="${h*.05}" fill="${c2}" opacity=".1"/>
+      <line x1="${w*.59}" y1="${h*.19}" x2="${w*.59}" y2="${h*.45}" stroke="#fff" stroke-width="1.5" opacity=".1"/>
+      <line x1="${w*.46}" y1="${h*.32}" x2="${w*.72}" y2="${h*.32}" stroke="#fff" stroke-width="1.5" opacity=".1"/>
+      <rect x="${w*.45}" y="${h*.5}" width="${w*.12}" height="${h*.03}" rx="1" fill="#fff" opacity=".08"/>
+      <rect x="${w*.6}" y="${h*.5}" width="${w*.12}" height="${h*.03}" rx="1" fill="#fff" opacity=".08"/>
+      <rect x="${w*.82}" y="${h*.18}" width="${w*.12}" height="${h*.55}" rx="8" fill="#fff" opacity=".08"/>
+      <rect x="${w*.84}" y="${h*.28}" width="${w*.08}" height="${h*.2}" rx="4" fill="${c2}" opacity=".12"/>
+      <rect x="${w*.42}" y="${h*.68}" width="${w*.34}" height="${h*.2}" rx="4" fill="#fff" opacity=".06"/>
+      <rect x="${w*.46}" y="${h*.73}" width="${w*.26}" height="${h*.04}" rx="1" fill="#fff" opacity=".08"/>`,
 
-    'Агро': `<rect width="${w}" height="${h}" fill="${color}"/>
-      <ellipse cx="${w*.5}" cy="${h*.85}" rx="${w*.55}" ry="${h*.2}" fill="#fff" opacity=".04"/>
-      <rect x="${w*.08}" y="${h*.5}" width="${w*.02}" height="${h*.3}" fill="#fff" opacity=".06"/>
-      <ellipse cx="${w*.09}" cy="${h*.48}" rx="${w*.04}" ry="${h*.06}" fill="#fff" opacity=".05"/>
-      <rect x="${w*.18}" y="${h*.45}" width="${w*.02}" height="${h*.35}" fill="#fff" opacity=".06"/>
-      <ellipse cx="${w*.19}" cy="${h*.43}" rx="${w*.05}" ry="${h*.07}" fill="#fff" opacity=".05"/>
-      <rect x="${w*.3}" y="${h*.48}" width="${w*.02}" height="${h*.32}" fill="#fff" opacity=".06"/>
-      <ellipse cx="${w*.31}" cy="${h*.46}" rx="${w*.04}" ry="${h*.06}" fill="#fff" opacity=".05"/>
-      <circle cx="${w*.75}" cy="${h*.25}" r="${h*.1}" fill="#C8963E" opacity=".08"/>
-      <rect x="${w*.5}" y="${h*.35}" width="${w*.3}" height="${h*.35}" rx="3" fill="#fff" opacity=".05"/>
-      <rect x="${w*.5}" y="${h*.35}" width="${w*.3}" height="${h*.07}" rx="3" fill="#fff" opacity=".08"/>
-      <rect x="${w*.53}" y="${h*.47}" width="${w*.08}" height="${h*.06}" rx="1" fill="#fff" opacity=".04"/>
-      <rect x="${w*.64}" y="${h*.47}" width="${w*.08}" height="${h*.06}" rx="1" fill="#fff" opacity=".04"/>`
+    'Агро': `<defs><linearGradient id="sky4" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${c3}" stop-opacity=".3"/><stop offset=".6" stop-color="${color}" stop-opacity=".1"/><stop offset="1" stop-color="#2a4a1a" stop-opacity=".2"/></linearGradient></defs>
+      <rect width="${w}" height="${h}" fill="${color}"/>
+      <rect width="${w}" height="${h}" fill="url(#sky4)"/>
+      <ellipse cx="${w*.5}" cy="${h*.85}" rx="${w*.55}" ry="${h*.22}" fill="#fff" opacity=".06"/>
+      <circle cx="${w*.8}" cy="${h*.18}" r="${h*.1}" fill="${c2}" opacity=".15"/>
+      <circle cx="${w*.8}" cy="${h*.18}" r="${h*.07}" fill="${c3}" opacity=".08"/>
+      <rect x="${w*.06}" y="${h*.42}" width="${w*.025}" height="${h*.38}" fill="#fff" opacity=".12"/>
+      <ellipse cx="${w*.072}" cy="${h*.4}" rx="${w*.04}" ry="${h*.07}" fill="${c2}" opacity=".12"/>
+      <ellipse cx="${w*.05}" cy="${h*.38}" rx="${w*.03}" ry="${h*.05}" fill="${c2}" opacity=".1"/>
+      <rect x="${w*.14}" y="${h*.38}" width="${w*.025}" height="${h*.42}" fill="#fff" opacity=".12"/>
+      <ellipse cx="${w*.152}" cy="${h*.36}" rx="${w*.05}" ry="${h*.08}" fill="${c2}" opacity=".12"/>
+      <ellipse cx="${w*.13}" cy="${h*.34}" rx="${w*.035}" ry="${h*.06}" fill="${c2}" opacity=".1"/>
+      <rect x="${w*.24}" y="${h*.4}" width="${w*.025}" height="${h*.4}" fill="#fff" opacity=".12"/>
+      <ellipse cx="${w*.252}" cy="${h*.38}" rx="${w*.04}" ry="${h*.07}" fill="${c2}" opacity=".12"/>
+      <rect x="${w*.34}" y="${h*.42}" width="${w*.025}" height="${h*.38}" fill="#fff" opacity=".1"/>
+      <ellipse cx="${w*.352}" cy="${h*.4}" rx="${w*.04}" ry="${h*.07}" fill="${c2}" opacity=".1"/>
+      <rect x="${w*.5}" y="${h*.28}" width="${w*.32}" height="${h*.42}" rx="4" fill="#fff" opacity=".1"/>
+      <rect x="${w*.5}" y="${h*.28}" width="${w*.32}" height="${h*.08}" rx="4" fill="#fff" opacity=".16"/>
+      <rect x="${w*.54}" y="${h*.4}" width="${w*.1}" height="${h*.08}" rx="2" fill="${c2}" opacity=".12"/>
+      <rect x="${w*.67}" y="${h*.4}" width="${w*.1}" height="${h*.08}" rx="2" fill="${c2}" opacity=".12"/>
+      <rect x="${w*.54}" y="${h*.52}" width="${w*.23}" height="${h*.04}" rx="1" fill="#fff" opacity=".08"/>
+      <rect x="${w*.54}" y="${h*.6}" width="${w*.15}" height="${h*.04}" rx="1" fill="#fff" opacity=".06"/>
+      <rect x="${w*.86}" y="${h*.35}" width="${w*.1}" height="${h*.45}" rx="3" fill="#fff" opacity=".06"/>
+      <rect x="${w*.88}" y="${h*.4}" width="${w*.06}" height="${h*.08}" rx="2" fill="${c2}" opacity=".1"/>`
   };
   const scene = scenes[industry] || scenes['Производство'];
   const svg = `<svg xmlns='http://www.w3.org/2000/svg' width='${w}' height='${h}' viewBox='0 0 ${w} ${h}'>${scene}</svg>`;
